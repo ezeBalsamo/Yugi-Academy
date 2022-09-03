@@ -7,7 +7,7 @@ Your place to learn all about Yu-Gi-Oh! cards, sets, ban lists and much more
 [![Markdown Lint](https://github.com/ezeBalsamo/Yugi-Academy/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/ezeBalsamo/Yugi-Academy/actions/workflows/markdown-lint.yml)
 [![GitHub release](https://img.shields.io/github/release/ezeBalsamo/Yugi-Academy.svg)](https://github.com/ezeBalsamo/Yugi-Academy/releases/latest)
 
-This website and its development have an educational purpose, guided by Coderhouse's Python course.
+This application has an educational purpose, guided by Coderhouse's Python course.
 
 ## Quick links
 

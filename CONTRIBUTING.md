@@ -21,7 +21,6 @@ You can report issues [here](https://github.com/ezeBalsamo/Yugi-Academy/issues/n
 - Code contributions without test cases have a lower probability of being merged
   into the main branch.
 
-
 ## Contributing documentation
 
 The project documentation is maintained in this repository in the `docs` folder
