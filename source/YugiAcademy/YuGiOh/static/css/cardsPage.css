@@ -1,9 +1,13 @@
-body {
-    background-image: url("../assets/backgroundImage.png");
+.block {
+    background-image: url("../assets/fondo.png");
+    background-repeat: no-repeat;
+    max-width: 100%;
+    padding: 20%;
+    margin-left: 30rem;
 }
 
 h1 {
-    color: white;
+    color: #d9b054;
 }
 
 
