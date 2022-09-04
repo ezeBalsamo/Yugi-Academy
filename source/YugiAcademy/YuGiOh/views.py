@@ -9,3 +9,6 @@ def inicio(request):
 
 def cards(request):
     return render(request, "YuGiOh/cards.html")
+
+def decks(request):
+    return render(request, "YuGiOh/decks.html")
