@@ -19,3 +19,5 @@ def myCards(request):
 def aboutUs(request):
     return render(request, "YuGiOh/aboutUs.html")
 
+def login(request):
+    return render(request, "YuGiOh/login.html")
