@@ -12,3 +12,10 @@ def cards(request):
 
 def decks(request):
     return render(request, "YuGiOh/decks.html")
+
+def myCards(request):
+    return render(request, "YuGiOh/myCards.html")
+
+def aboutUs(request):
+    return render(request, "YuGiOh/aboutUs.html")
+
