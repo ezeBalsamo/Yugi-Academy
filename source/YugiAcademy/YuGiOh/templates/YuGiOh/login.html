@@ -13,11 +13,9 @@
 
   <body class="login" data-admin-utc-offset="0">
     <div id="content-main">
-      <form action="/yugioh/cards" method="post" id="login-form">
+      <form action="/yugioh/cards" method="post" id="login-form"> {% csrf_token %}
         <input
           type="hidden"
-          name="csrfmiddlewaretoken"
-          value="CgDVyqH0Ge3wuOBtFCM5Yt4YIm6bl92kygYUs6jr9M3k0Dk3MMVxhBmpbDtObCsK"
         />
 
         <h1>Login</h1>
