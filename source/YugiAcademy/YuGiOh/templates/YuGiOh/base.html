@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  {% load static %}
+
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+  <link rel="icon" href="../../static/assets/logo-small.png">
+
+</head>
+<body>
+
+<header>
+
+  <nav class="main-menu header-footer">
+    <ul class="nav-menu">
+      <div>
+        <li><a href="{% url 'Home' %}"><img src="../../static/assets/logo.png" id="logo"></a></li>
+      </div>
+
+      <div id="nav-links">
+                <span class="abrir">
+                  <li> <a href="{% url 'Cards' %}">Cards</a></li>
+                  <li> <a href="{% url 'Decks' %}">Decks</a></li>
+                  <li> <a href="{% url 'About' %}">About</a></li>
+                </span>
+      </div>
+      </label>
+    </ul>
+  </nav>
+</header>
+
+<main class="main-content-background">
+  <h1>
+    {% block page-content %}
+    {% endblock %}
+  </h1>
+</main>
+</body>
+</html>
