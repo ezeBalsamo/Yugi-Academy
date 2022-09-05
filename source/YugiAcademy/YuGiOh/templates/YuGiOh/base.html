@@ -20,14 +20,14 @@
   <nav class="main-menu header-footer">
     <ul class="nav-menu">
       <div>
-        <li><a href="{% url 'Home' %}"><img src="../../static/assets/logo.png" id="logo"></a></li>
+        <li><a href="{% url 'home' %}"><img src="../../static/assets/logo.png" id="logo"></a></li>
       </div>
 
       <div id="nav-links">
                 <span class="abrir">
-                  <li> <a href="{% url 'Cards' %}">Cards</a></li>
-                  <li> <a href="{% url 'Decks' %}">Decks</a></li>
-                  <li> <a href="{% url 'About' %}">About</a></li>
+                  <li> <a href="{% url 'cards' %}">Cards</a></li>
+                  <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
+                  <li> <a href="{% url 'about' %}">About</a></li>
                 </span>
       </div>
       </label>
@@ -36,10 +36,8 @@
 </header>
 
 <main class="main-content-background">
-  <h1>
     {% block page-content %}
     {% endblock %}
-  </h1>
 </main>
 </body>
 </html>
