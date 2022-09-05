@@ -1,0 +1,13 @@
+{% extends "YuGiOh/base.html" %}
+{% block page-content %}
+    <h1>Booster Pack Cards</h1>
+    {% if not booster_pack_cards %}
+        <p>No booster pack card has been registered yet.</p>
+    {% else %}
+        <ul>
+            {% for booster_pack_card in booster_pack_cards %}
+                <li>{{booster_pack_card.card_name}} - {{booster_pack_card.identifier}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
