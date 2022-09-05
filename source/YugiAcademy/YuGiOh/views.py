@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect
-from .models import MonsterCard, SpellCard, TrapCard
-from .forms import SpellCardForm
+from .models import MonsterCard, SpellCard, TrapCard, BoosterPack
+from .forms import SpellCardForm, SearchBoosterPackForm
 
 
 def home(request):
     return render(request, "YuGiOh/index.html")
+
+
+def login(request):
+    return render(request, "YuGiOh/login.html")
+
+
+def about(request):
+    return render(request, "YuGiOh/about.html")
 
 
 def cards(request):
@@ -37,9 +45,25 @@ def register_spell_card(request):
     raise Exception(f'The {request.method} method was not expected')
 
 
-def about(request):
-    return render(request, "YuGiOh/about.html")
+def booster_packs_according_to(request):
+
+    if request.method == 'POST':
+        form = SearchBoosterPackForm(request.POST)
+        if form.is_valid():
+            partial_name = form.cleaned_data.get('name')
+            return BoosterPack.objects.filter(name__icontains=partial_name)
+        else:
+            raise Exception(f'The {form} is not valid.')
+
+    if request.method == 'GET':
+        return []
+
+    raise Exception(f'The {request.method} method was not expected')
 
 
-def login(request):
-    return render(request, "YuGiOh/login.html")
+def booster_packs(request):
+    context = {
+        'form': SearchBoosterPackForm(),
+        'booster_packs': booster_packs_according_to(request)
+    }
+    return render(request, "YuGiOh/booster_packs.html", context)
