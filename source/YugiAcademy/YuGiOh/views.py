@@ -78,7 +78,7 @@ def find_or_store_booster_pack(request):
                             code=form_data.get('code'),
                             release_date=form_data.get('release_date'))
             booster_pack.save()
-            return redirect('booster_packs')
+            return redirect('booster-packs')
 
     if request.method == 'GET':
         context = {
