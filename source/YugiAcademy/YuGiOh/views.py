@@ -24,7 +24,7 @@ def cards(request):
     return render(request, "YuGiOh/cards.html", context)
 
 
-def register_spell_card(request):
+def find_or_store_spell_card(request):
     if request.method == 'POST':
         form = SpellCardForm(request.POST)
         if form.is_valid():
@@ -46,7 +46,6 @@ def register_spell_card(request):
 
 
 def booster_packs_according_to(request):
-
     if request.method == 'POST':
         form = SearchBoosterPackForm(request.POST)
         if form.is_valid():
@@ -69,7 +68,7 @@ def booster_packs(request):
     return render(request, "YuGiOh/booster_packs.html", context)
 
 
-def register_booster_pack(request):
+def find_or_store_booster_pack(request):
     if request.method == 'POST':
         form = BoosterPackForm(request.POST)
         if form.is_valid():
@@ -79,7 +78,7 @@ def register_booster_pack(request):
                             code=form_data.get('code'),
                             release_date=form_data.get('release_date'))
             booster_pack.save()
-            return redirect('cards')
+            return redirect('booster_packs')
 
     if request.method == 'GET':
         context = {
@@ -91,13 +90,15 @@ def register_booster_pack(request):
 
 
 def booster_pack_cards(request, booster_pack_id: id):
+    booster_pack = BoosterPack.objects.get(id=booster_pack_id)
     context = {
-        'booster_pack_cards': BoosterPackCard.objects.filter(booster_pack__id=booster_pack_id)
+        'booster_pack': booster_pack,
+        'booster_pack_cards': BoosterPackCard.objects.filter(booster_pack=booster_pack)
     }
     return render(request, "YuGiOh/booster_pack_cards.html", context)
 
 
-def register_booster_pack_card(request):
+def find_or_store_booster_pack_card(request):
     if request.method == 'POST':
         form = BoosterPackCardForm(request.POST)
         if form.is_valid():
