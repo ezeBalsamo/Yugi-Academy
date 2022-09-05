@@ -118,3 +118,10 @@ def register_booster_pack_card(request):
         return render(request, 'YuGiOh/booster_pack_card_registration.html', context)
 
     raise Exception(f'The {request.method} method was not expected')
+
+
+def delete_booster_pack_card(request, booster_pack_card_id: int):
+    booster_pack_card = BoosterPackCard.objects.get(id=booster_pack_card_id)
+    booster_pack = booster_pack_card.booster_pack
+    booster_pack_card.delete()
+    return redirect(f'/yugioh/booster-pack/{booster_pack.id}')

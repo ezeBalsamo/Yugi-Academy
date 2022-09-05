@@ -8,6 +8,7 @@
         <ul>
             {% for booster_pack_card in booster_pack_cards %}
                 <li>{{booster_pack_card.card_name}} - {{booster_pack_card.identifier}}</li>
+                <a href="{% url 'delete_booster_pack_card' booster_pack_card.id %}">Delete</a>
             {% endfor %}
         </ul>
     {% endif %}
