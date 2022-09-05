@@ -1,6 +1,7 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
     <h1>Booster Packs</h1>
+    <a href="{% url 'register_booster_pack' %}">Register booster pack</a>
     <form action="" method="post"> {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Search</button>

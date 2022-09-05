@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import MonsterCard, SpellCard, TrapCard, BoosterPack
-from .forms import SpellCardForm, SearchBoosterPackForm
+from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm
 
 
 def home(request):
@@ -67,3 +67,24 @@ def booster_packs(request):
         'booster_packs': booster_packs_according_to(request)
     }
     return render(request, "YuGiOh/booster_packs.html", context)
+
+
+def register_booster_pack(request):
+    if request.method == 'POST':
+        form = BoosterPackForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            booster_pack = \
+                BoosterPack(name=form_data.get('name'),
+                            code=form_data.get('code'),
+                            release_date=form_data.get('release_date'))
+            booster_pack.save()
+            return redirect('cards')
+
+    if request.method == 'GET':
+        context = {
+            'form': BoosterPackForm()
+        }
+        return render(request, 'YuGiOh/booster_pack_registration.html', context)
+
+    raise Exception(f'The {request.method} method was not expected')
