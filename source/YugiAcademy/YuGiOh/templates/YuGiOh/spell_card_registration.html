@@ -1,0 +1,17 @@
+{% extends "YuGiOh/base.html" %}
+
+{% block page-content %}
+    <h1>Spell Card Registration</h1>
+    <form action="" method="post"> {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
+        <br>
+        <label for="type">Type</label>
+        <input type="text" name="type" id="type" required />
+        <br>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" required></textarea>
+        <br>
+        <button type="submit">Store</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "YuGiOh/base.html" %}
+
+{% block page-content %}
+    <h1>Booster Pack Registration</h1>
+    <form action="" method="post"> {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
+        <br>
+        <label for="code">Code</label>
+        <input type="text" name="code" id="code" required />
+        <br>
+        <label for="release_date">Release date</label>
+        <input type="date" name="release_date" id="release_date" required>
+        <br>
+        <button type="submit">Store</button>
+    </form>
+{% endblock %}

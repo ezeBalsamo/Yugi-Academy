@@ -1,0 +1,15 @@
+{% extends "YuGiOh/base.html" %}
+{% block page-content %}
+    <h1>Cards in {{ booster_pack.name }}</h1>
+    <a href="{% url 'find_or_store_booster_pack_card' %}">Register booster pack card</a>
+    {% if not booster_pack_cards %}
+        <p>No booster pack card has been registered yet.</p>
+    {% else %}
+        <ul>
+            {% for booster_pack_card in booster_pack_cards %}
+                <li>{{booster_pack_card.card_name}} - {{booster_pack_card.identifier}}</li>
+                <a href="{% url 'delete_booster_pack_card' booster_pack_card.id %}">Delete</a>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
