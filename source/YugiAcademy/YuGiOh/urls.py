@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
+from .views import home, register_spell_card, cards, about, login
 
 urlpatterns = [
-    path('', views.home, name="Home"),
-    path('cards', views.cards, name="Cards"),
-    path('decks', views.decks, name="Decks"),
-    path('about', views.about, name="About"),
-    path('login', views.login, name="Login"),
+    path('', home, name="home"),
+    path('cards/registration', register_spell_card, name="register_spell_card"),
+    path('cards', cards, name="cards"),
+    path('about', about, name="about"),
+    path('login', login, name="login"),
 ]
