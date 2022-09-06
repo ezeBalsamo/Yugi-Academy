@@ -20,6 +20,10 @@ This application has an educational purpose, guided by Coderhouse's Python cours
 - The code is licensed under [MIT](LICENSE).
 - The documentation is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
+## Installation
+
+To load the project follow these [instructions](docs/how-to/how-to-install.md).
+
 ## Contributing
 
 Check the [Contribution Guidelines](CONTRIBUTING.md)
