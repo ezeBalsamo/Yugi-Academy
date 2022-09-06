@@ -1,6 +1,6 @@
 # How to use
 
-Are you ready to become the next generation duelist? 
+Are you ready to become the next generation duelist?
 Great, with this guide you'll be more than ready.
 
 Don't forget to read [how to install](how-to-install.md) this application.
@@ -18,7 +18,7 @@ The main idea behind is that:
 
 - There are booster packs.
 
-- There are cards belonging to booster packs. 
+- There are cards belonging to booster packs.
 
 This is a like the so-called 'many-to-many relationship':
 a card may belong to many booster packs and a booster pack may have many cards.
@@ -76,10 +76,10 @@ Example
 ## Booster packs
 
 You can visit the Booster Packs link from the navigation bar.
-There, you will see, of course, the booster packs. 
+There, you will see, of course, the booster packs.
 But first, you will need to filter them (by their name).
 Here, you can also register a booster pack.
-Once you register a booster pack, you won´t see it immediately. 
+Once you register a booster pack, you won´t see it immediately.
 You will have to filter them (again, by name).
 
 Eventually, you will see a message notifying that:

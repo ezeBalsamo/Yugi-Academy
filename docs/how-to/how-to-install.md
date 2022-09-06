@@ -3,7 +3,7 @@
 First of all, you need to clone the repository:
 
 ```shell
-git clone https://github.com/ezeBalsamo/Yugi-Academy.git 
+git clone https://github.com/ezeBalsamo/Yugi-Academy.git
 ```
 
 This will clone the project in Yugi-Academy/
@@ -58,7 +58,7 @@ from django.core.management.utils import get_random_secret_key
 get_random_secret_key()
 ```
 
-A new random secret key will be generated. 
+A new random secret key will be generated.
 You have to copy it (without the quotes) and replaced it the `.env` file.
 For instance, if the secret is:
 
@@ -78,7 +78,7 @@ python manage.py sqlmigrate YuGiOh 0001
 python manage.py migrate
 ```
 
-You are almost ready. 
+You are almost ready.
 In order to play around with your application, you need to start the server.
 
 ```shell
