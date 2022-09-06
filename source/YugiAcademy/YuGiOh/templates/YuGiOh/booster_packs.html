@@ -2,6 +2,7 @@
 {% block page-content %}
     <h1>Booster Packs</h1>
     <a href="{% url 'find_or_store_booster_pack' %}">Register booster pack</a>
+    <p>Filter booster packs by name</p>
     <form action="" method="post"> {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Search</button>
