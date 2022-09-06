@@ -45,8 +45,7 @@ Don't forget to read [this](how-to/how-to-use.md) article to know how to use it.
 
 - Alexander Ezequiel Bálsamo - Senior Software Developer
 
-  - [Github](https://github.com/ezeBalsamo) 
-
+  - [Github](https://github.com/ezeBalsamo)
   - [LinkedIn](https://www.linkedin.com/in/ezebalsamo/)
 
 - Nicolás Guido Barbeito - Semi Senior Software Developer
