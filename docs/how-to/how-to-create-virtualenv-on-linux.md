@@ -1,6 +1,6 @@
 # Virtualenv on Linux
 
-You can create a virtualenv for your Python project on Linux by executing the following command
+You can create one for your Python project by executing the following command
 
 ```shell
 python3 -m venv venv
