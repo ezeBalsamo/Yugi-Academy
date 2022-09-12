@@ -28,6 +28,15 @@
                   <li> <a href="{% url 'cards' %}">Cards</a></li>
                   <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
                   <li> <a href="{% url 'about' %}">About</a></li>
+                  <li> <label for= "profile"> </label>
+                  <form name="form-nav" method="post" action="">
+                  <select name="avatar" id="profile" onchange="location.href=form.avatar.value;">
+                    <option id="option-hide" value="{% url 'cards' %}"> </option>
+                    <option value="{% url 'profile' %}">Profile</option>
+                    <option value="{% url 'home' %}">Logout</option>
+                  </select>
+                  </form>
+                  </li>
                 </span>
       </div>
       </label>
