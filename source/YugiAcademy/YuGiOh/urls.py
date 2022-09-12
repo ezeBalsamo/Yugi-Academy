@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import home, login, about, cards, find_or_store_spell_card, booster_packs, find_or_store_booster_pack, \
-    booster_pack_cards, find_or_store_booster_pack_card, delete_booster_pack_card
+    booster_pack_cards, find_or_store_booster_pack_card, delete_booster_pack_card, profile
 
 urlpatterns = [
     path('', home, name="home"),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('booster-pack/<int:booster_pack_id>', booster_pack_cards, name="booster_pack"),
     path('booster-pack-cards/registration', find_or_store_booster_pack_card, name="find_or_store_booster_pack_card"),
     path('booster-pack-card/delete/<int:booster_pack_card_id>', delete_booster_pack_card, name="delete_booster_pack_card"),
+    path('profile', profile, name="profile"),
 ]
 

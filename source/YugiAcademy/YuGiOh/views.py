@@ -126,3 +126,7 @@ def delete_booster_pack_card(request, booster_pack_card_id: int):
     booster_pack = booster_pack_card.booster_pack
     booster_pack_card.delete()
     return redirect(f'/yugioh/booster-pack/{booster_pack.id}')
+
+
+def profile(request):
+    return render(request, "YuGiOh/profile.html")
