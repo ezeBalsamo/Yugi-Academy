@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User
-from .forms import SignUpForm, LogInForm
+from .forms import SignUpForm, LogInForm, UserForm
 from django.contrib import messages
 
 user_log_in_page_context = {}
@@ -114,4 +114,33 @@ def signup(request):
 
 
 def profile(request):
+    global user_log_in_page_context
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            user = \
+                User(email=form_data.get('email'),
+                     username=form_data.get('username'),
+                     password=form_data.get('password'),
+                     name=form_data.get('name'),
+                     description=form_data.get('description'),
+                     web_site=form_data.get('web_site'),
+                     image=form_data.get('image'))
+
+            user_found_by_username = User.objects.get(username=user.username)
+            user_found_by_username.name = user.name
+            user_found_by_username.description = user.description
+            user_found_by_username.web_site = user.web_site
+            user_found_by_username.image = user.image
+
+            user_found_by_username.save()
+
+            user_log_in_page_context['name'] = user_found_by_username.name
+            user_log_in_page_context['description'] = user_found_by_username.description
+            user_log_in_page_context['web_site'] = user_found_by_username.web_site
+            user_log_in_page_context['image'] = user_found_by_username.image
+
+            return render(request, "profile.html", user_log_in_page_context)
+
     return render(request, "profile.html", user_log_in_page_context)
