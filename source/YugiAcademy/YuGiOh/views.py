@@ -7,10 +7,6 @@ def home(request):
     return render(request, "YuGiOh/index.html")
 
 
-def login(request):
-    return render(request, "YuGiOh/login.html")
-
-
 def about(request):
     return render(request, "YuGiOh/about.html")
 
@@ -85,7 +81,6 @@ def find_or_store_booster_pack(request):
             'form': BoosterPackForm()
         }
         return render(request, 'YuGiOh/booster_pack_registration.html', context)
-
     raise Exception(f'The {request.method} method was not expected')
 
 
@@ -126,7 +121,3 @@ def delete_booster_pack_card(request, booster_pack_card_id: int):
     booster_pack = booster_pack_card.booster_pack
     booster_pack_card.delete()
     return redirect(f'/yugioh/booster-pack/{booster_pack.id}')
-
-
-def profile(request):
-    return render(request, "YuGiOh/profile.html")
