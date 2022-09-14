@@ -133,3 +133,12 @@ dmypy.json
 
 # NPM
 node_modules/
+/source/YugiAcademy/Users/migrations/0001_initial.py
+/source/YugiAcademy/Users/migrations/0002_user_username.py
+/source/YugiAcademy/Users/migrations/0003_alter_user_username.py
+/source/YugiAcademy/Users/migrations/0004_alter_user_description_alter_user_image_and_more.py
+/source/YugiAcademy/Users/migrations/0005_alter_user_description_alter_user_image_and_more.py
+/source/YugiAcademy/Users/migrations/__init__.py
+/source/YugiAcademy/Users/__init__.py
+/source/YugiAcademy/__init__.py
+/source/__init__.py
