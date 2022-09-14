@@ -1,12 +1,12 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
 
-<form action="/yugioh/profile" method="post" id="profile-form" enctype="multipart/form-data">
+<form action="/accounts/profile" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
     <div id="avatar-block">
       <figure>
         <img src="../static/assets/profile-icon-white.png">
         <span> <img src="../static/assets/camera-gold.png" title="Load a profile image">
-        <input type="file" id="adjunct"  name="adjunct" accept=".pdf,.jpg,.png" value="image"/>
+        <input type="file" id="adjunct"  name="adjunct" accept=".jpg,.png" value="image"/>
         </span>
         </figure>
       </div>
@@ -17,9 +17,6 @@
       <input
             type="text"
             name="username"
-            autocomplete="username"
-            maxlength="150"
-            required=""
             id="username"
             value = "{{username}}"
       readonly />
@@ -27,16 +24,11 @@
 
       <div class="form-row">
         <p>Full name</p>
-        <label for="full_name"></label>
+        <label for="name"></label>
         <input
             type="text"
-            name="full_name"
-            autofocus=""
-            autocapitalize="none"
-            autocomplete="full_name"
-            maxlength="150"
-            required=""
-            id="full_name"
+            name="name"
+            id="name"
             placeholder="Enter your full name"
             value = "{{name}}"
         />
@@ -44,22 +36,17 @@
 
     <div class="form-row">
       <p>Description</p>
-      <label for="field_description"></label>
-      <textarea id="field_description" name="field_description" placeholder="Describe yourself" value = "{{description}}"></textarea>
+      <label for="description"></label>
+      <textarea id="description" name="description" placeholder="Describe yourself"> {{description}} </textarea>
     </div>
 
     <div class="form-row">
       <p>Link to social network</p>
-      <label for="id_social_network"></label>
+      <label for="web_site"></label>
       <input
             type="text"
-            name="link"
-            autofocus=""
-            autocapitalize="none"
-            autocomplete="link"
-            maxlength="150"
-            required=""
-            id="id_social_network"
+            name="web_site"
+            id="web_site"
             placeholder="Enter your social network"
             value = "{{web_site}}"
       />
@@ -67,16 +54,11 @@
 
     <div class="form-row">
       <p>Email</p>
-      <label for="id_email"></label>
+      <label for="email"></label>
       <input
             type="email"
             name="email"
-            autofocus=""
-            autocapitalize="none"
-            autocomplete="email"
-            maxlength="150"
-            required=""
-            id="id_email"
+            id="email"
             placeholder="Enter your email"
             value = "{{email}}"
             readonly />
@@ -84,13 +66,11 @@
 
     <div class="form-row">
       <p>Password</p>
-      <label for="id_password"></label>
+      <label for="password"></label>
       <input
             type="password"
             name="password"
-            autocomplete="current-password"
-            required=""
-            id="id_password"
+            id="password"
             value = "{{password}}"
             readonly />
     </div>
