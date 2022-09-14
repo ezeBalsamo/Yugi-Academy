@@ -6,7 +6,7 @@ class User(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=25)
-    description = models.DateField(null=True, blank=True)
+    description = models.CharField(max_length=250, null=True, blank=True)
     web_site = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
