@@ -271,7 +271,7 @@ select#profile option {
     visibility: visible;
 }
 
-#field_description{
+#description{
   min-height: 5rem;
   min-width: 75%;
   text-align: left;
