@@ -15,6 +15,21 @@ main {
 h1 {
     font-size: 2em;
     margin: 0.67em 0;
+    color: #d9b054;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+
+input {
+  text-align: left;
+  max-width: 75%;
 }
 
 #backgroundVideo {
@@ -32,19 +47,171 @@ h1 {
   margin-left: 10rem;
 }
 
-#login-form {
-  color: black;
-  margin-top: 2rem;
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: 15% 35% auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.main-menu {
+  border: 1px black solid;
+  color: white;
+}
+
+.main-menu li {
+  list-style-type: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 1.3rem;
+  font-size: 1.4rem;
+}
+
+.main-menu li :hover {
+  color: #d9b054;
+}
+
+#nav-links {
+  text-align: right;
+}
+
+.header-footer {
+  background: black;
+}
+
+.header-footer a {
+  text-decoration: none;
+  color: white;
+}
+
+#logo {
+  max-width: 10rem;
+}
+
+#welcome-message {
+    display: flex;
+    cursor: inherit;
+    justify-content: center;
+    color: #d9b054;
+}
+
+.main-content-background {
+  background-image: url("../assets/background-image.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  min-height: 50rem;
+}
+
+#authentication-form {
+  color: white;
+  text-align: left;
+  margin: 10% auto;
   font-size: 1.2rem;
   border: 2px solid black;
   border-radius: 3%;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  max-width: 50%;
+  background-image: url("../../static/assets/login-background-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.form-row {
+#authentication-form h1 {
+    font-size: 2em;
+    margin: 0.67em 4rem;
+    display: block;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.8em;
+    font-weight: bold;
+}
+
+#authentication-form label {
   text-align: center;
-  margin-top: 2rem;
+  font-weight: bold;
+}
+
+#authentication-form a{
+    color: #d9b054;
+}
+
+#profile-form {
+  background-color: black;
+  text-align: center;
+  margin: 0.8rem auto;
+  font-size: 1.2rem;
+  border: 2px solid black;
+  border-radius: 3%;
+  max-width: 25%;
+  color: white;
+}
+
+#profile-form h1 {
+  padding: 0 0 0;
+  margin: 1rem;
+  text-align: center;
+}
+
+#profile-form label {
+  font-weight: bold;
+}
+
+#profile-form input {
+    min-width: 75%;
+}
+
+
+.form-row {
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.submit-row {
+  text-align: left;
+  margin-left: 15%;
+}
+
+#profile-form .form-row {
+    text-align: center;
+    margin-left: 0;
+}
+
+#profile-form .submit-row {
+    text-align: center;
+    margin-left: 0;
+}
+
+#submit-button {
+  background-color: #d9b054;
+  color: white;
+  border: #6c7983;
+  border-radius: 10%;
+  padding: 1rem 2rem 1rem 2rem;
+  min-width: 8rem;
+  max-width: 10rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-self: center;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#change-password-button{
+  background-color: #6c7983;
+  color: white;
+  border: #6c7983;
+  border-radius: 10%;
+  padding: 1rem;
+  min-width: 8rem;
+  max-width: 10rem;
+  cursor: pointer;
+  margin: 1rem 0;
+  align-self: center;
+  text-align: center;
+  font-weight: bold;
 }
 
 select#profile{
@@ -67,75 +234,8 @@ select#profile option {
   text-align: center;
 }
 
-
 #option-hide{
   display: none;
-}
-
-.submit-row {
-  text-align: center;
-}
-
-#profile-form {
-  margin-top: 2.5rem;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-#profile-form h1 {
-  font-size: 2rem;
-  padding: 0 0 0;
-  margin: 1rem;
-  text-align: center;
-}
-
-#profile-form label {
-  margin: 0.5rem;
-  font-weight: bold;
-}
-
-
-#login-form label {
-  margin: 0.5rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-input {
-  text-align: left;
-  min-width: 15%;
-  margin: 0 1rem;
-}
-
-#change-password-button{
-  background-color: #6c7983;
-  color: white;
-  border: #6c7983;
-  border-radius: 10%;
-  padding: 1rem;
-  min-width: 8rem;
-  max-width: 10rem;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  align-self: center;
-  text-align: center;
-}
-
-#submit-button {
-  background-color: #d9b054;
-  color: white;
-  border: #6c7983;
-  border-radius: 10%;
-  padding: 1rem 2rem 1rem 2rem;
-  min-width: 8rem;
-  max-width: 10rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  align-self: center;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
 }
 
 #avatar-block{
@@ -154,15 +254,15 @@ input {
 #avatar-block figure span {
     position: absolute;
     top: 0;
-    width: 95%;
-    height: 95%;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.6);
     transition: all 100ms ease-out;
     opacity: 0;
     visibility: hidden;
     max-width: 10rem;
     cursor: pointer;
-    margin-left: -9.95rem;
+    margin-left: -10rem;
     border-radius: 50%;
 }
 
@@ -171,67 +271,15 @@ input {
     visibility: visible;
 }
 
-#image-login {
-  max-width: 100%;
-  max-height: 65%;
-  display: block;
-  margin: 0px auto;
+#field_description{
+  min-height: 5rem;
+  min-width: 75%;
+  text-align: left;
 }
 
-.main-content-background {
-  background-image: url("../assets/background-image.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: right;
-  min-height: 50rem;
-}
-
-h1 {
-  color: #d9b054;
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
-}
-
-.nav-menu {
-  display: grid;
-  grid-template-columns: 15% auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.main-menu {
-  border: 1px #191c1c solid;
-}
-
-.main-menu li {
-  list-style-type: none;
-  cursor: pointer;
-  display: inline-block;
-  padding: 0 1.3rem;
-  font-size: 1.4rem;
-}
-
-.main-menu li a:hover {
-  color: #d9b054;
-}
-
-#nav-links {
-  text-align: right;
-}
-
-.header-footer {
-  background: #191c1c;
-}
-
-.header-footer a {
-  text-decoration: none;
-  color: white;
-}
-
-#logo {
-  max-width: 10rem;
+#adjunct {
+    margin-top: -10rem;
+    padding-top: 10rem;
+    opacity: 0;
+    cursor: pointer;
 }
