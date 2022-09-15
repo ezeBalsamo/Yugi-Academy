@@ -94,6 +94,7 @@ def signup(request):
 
             if user_found_by_username is None and email_found is None:
                 user.save()
+                user_log_in_page(user)
                 return render(request, 'YuGiOh/cards.html', user_log_in_page_context)
 
             else:
