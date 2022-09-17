@@ -1,6 +1,6 @@
 import pytest
 
-from utils.src.instance_creation_failed import InstanceCreationFailed
+from assertions.instance_creation_failed import InstanceCreationFailed
 
 
 def test_exception_raises():
