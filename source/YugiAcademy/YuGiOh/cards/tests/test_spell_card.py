@@ -1,6 +1,6 @@
 import pytest
 
-from YuGiOh.cards.src.spell_card import SpellCard
+from YuGiOh.cards.spell_card import SpellCard
 from assertions.instance_creation_failed import InstanceCreationFailed
 
 
