@@ -1,6 +1,6 @@
 from django.db import models
 
-from YuGiOh.models import Card
+from .card import Card
 
 
 class MonsterCard(Card):

@@ -1,6 +1,4 @@
-from abc import abstractmethod
-
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
@@ -30,19 +28,3 @@ class BoosterPackCard(models.Model):
 
     def booster_pack_code(self):
         return self.booster_pack.code
-
-
-class Card(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    description = models.CharField(max_length=8000)
-    set = GenericRelation(to=BoosterPackCard)
-
-    @abstractmethod
-    def related_query_name(self):
-        pass
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        abstract = True
