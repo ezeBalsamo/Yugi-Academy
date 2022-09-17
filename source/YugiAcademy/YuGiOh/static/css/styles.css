@@ -109,13 +109,16 @@ input {
   color: white;
   text-align: left;
   margin: 10% auto;
-  font-size: 1.2rem;
   border: 2px solid black;
   border-radius: 3%;
   max-width: 50%;
   background-image: url("../../static/assets/login-background-image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#authentication-form p{
+      font-size: 1.2rem;
 }
 
 #authentication-form h1 {
@@ -132,7 +135,7 @@ input {
   font-weight: bold;
 }
 
-#authentication-form a{
+#create-account{
     color: #d9b054;
 }
 
@@ -169,7 +172,7 @@ input {
 
 .submit-row {
   text-align: left;
-  margin-left: 15%;
+  margin-left: 3%;
 }
 
 #profile-form .form-row {
@@ -182,25 +185,8 @@ input {
     margin-left: 0;
 }
 
-#submit-button {
-  background-color: #d9b054;
-  color: white;
-  border: #6c7983;
-  border-radius: 10%;
-  padding: 1rem 2rem 1rem 2rem;
-  min-width: 8rem;
-  max-width: 10rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  align-self: center;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-}
 
-#change-password-button{
-  background-color: #6c7983;
+.button {
   color: white;
   border: #6c7983;
   border-radius: 10%;
@@ -212,6 +198,26 @@ input {
   align-self: center;
   text-align: center;
   font-weight: bold;
+}
+
+#back-button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    text-decoration: none;
+    background-color: #6c7983;
+}
+
+#login-button {
+  background-color: #d9b054;
+}
+
+#signup-button {
+  background-color: #d9b054;
+}
+
+
+#change-password-button{
+  background-color: #6c7983;
 }
 
 select#profile{
