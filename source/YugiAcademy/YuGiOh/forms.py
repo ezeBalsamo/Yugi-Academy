@@ -1,5 +1,6 @@
 from django import forms
-from .models import SpellCard, BoosterPack
+from cards.spell_card import SpellCard
+from booster_packs.booster_pack import BoosterPack
 
 
 class SpellCardForm(forms.Form):

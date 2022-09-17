@@ -2,7 +2,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-from YuGiOh.models import BoosterPack
+from .booster_pack import BoosterPack
 
 
 class BoosterPackCard(models.Model):
