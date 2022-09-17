@@ -23,3 +23,10 @@ def test_spell_card_description_must_not_be_blank():
         with pytest.raises(InstanceCreationFailed) as exception_info:
             SpellCard.named(name='Pot of Greed', type='Normal', description=invalid_description)
         assert exception_info.message_text() == 'Description must not be blank.'
+
+
+def test_instance_creation_and_accessing():
+    spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+    assert spell_card.name == 'Pot of Greed'
+    assert spell_card.type == 'Normal'
+    assert spell_card.description == 'Draw 2 cards.'

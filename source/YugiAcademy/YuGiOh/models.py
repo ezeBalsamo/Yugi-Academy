@@ -76,6 +76,8 @@ class SpellCard(Card):
         enforce_not_blank(type, "Type")
         enforce_not_blank(description, "Description")
 
+        return cls(name=name, type=type, description=description)
+
     def related_query_name(self):
         return 'spell_card'
 
