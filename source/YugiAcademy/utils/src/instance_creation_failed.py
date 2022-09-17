@@ -1,0 +1,2 @@
+class InstanceCreationFailed(Exception):
+    pass
