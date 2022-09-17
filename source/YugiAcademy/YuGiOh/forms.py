@@ -1,5 +1,5 @@
 from django import forms
-from cards.spell_card import SpellCard
+from cards import SpellCard
 from booster_packs.booster_pack import BoosterPack
 
 
