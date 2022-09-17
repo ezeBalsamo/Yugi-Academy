@@ -215,6 +215,10 @@ input {
   background-color: #d9b054;
 }
 
+#save-button {
+  background-color: #d9b054;
+}
+
 
 #change-password-button{
   background-color: #6c7983;
@@ -300,4 +304,8 @@ select#profile option {
 .image-about{
   max-width: 100%;
   margin: 2rem;
+}
+
+#about-message {
+    text-align: center;
 }
