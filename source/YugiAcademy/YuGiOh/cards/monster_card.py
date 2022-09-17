@@ -15,6 +15,7 @@ class MonsterCard(Card):
     @classmethod
     def named(cls, name: str, race: str, attribute: str, level: int, attack: int, defense: int, description: str):
         enforce_not_blank(name, "Name")
+        enforce_not_blank(race, "Race")
 
     def related_query_name(self):
         return 'monster_card'
