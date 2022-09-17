@@ -11,6 +11,7 @@ class TrapCard(Card):
     def named(cls, name: str, type: str, description: str):
         enforce_not_blank(name, "Name")
         enforce_not_blank(type, "Type")
+        enforce_not_blank(description, "Description")
 
     def related_query_name(self):
         return 'trap_card'
