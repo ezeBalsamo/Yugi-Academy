@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from cards import MonsterCard, SpellCard, TrapCard
-from booster_packs.booster_pack import BoosterPack
-from booster_packs.booster_pack_card import BoosterPackCard
+from booster_packs import BoosterPack, BoosterPackCard
 from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm, BoosterPackCardForm
 
 
