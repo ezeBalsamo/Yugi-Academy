@@ -283,3 +283,15 @@ select#profile option {
     opacity: 0;
     cursor: pointer;
 }
+
+.about-images{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-about{
+  max-width: 100%;
+  margin: 2rem;
+}
