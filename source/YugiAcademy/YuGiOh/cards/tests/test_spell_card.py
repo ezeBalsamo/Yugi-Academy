@@ -1,7 +1,7 @@
 import pytest
 
+from YuGiOh.cards.src.spell_card import SpellCard
 from utils.src.instance_creation_failed import InstanceCreationFailed
-from YuGiOh.models import SpellCard
 
 
 def test_spell_card_name_must_not_be_blank():
