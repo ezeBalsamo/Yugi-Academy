@@ -84,13 +84,13 @@ def signup(request):
                 user_found_by_username = User.objects.get(username=user.username)
 
             except:
-                display_message = 'Username has already been used'
+                display_message = 'Email had already been used'
 
             try:
                 email_found = User.objects.get(email=user.email)
 
             except:
-                display_message = 'Email has already been used'
+                display_message = 'Username had already been used'
 
             if user_found_by_username is None and email_found is None:
                 user.save()
