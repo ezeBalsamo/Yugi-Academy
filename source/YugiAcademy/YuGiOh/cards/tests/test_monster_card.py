@@ -42,3 +42,15 @@ def test_monster_card_attribute_must_not_be_blank():
                               description='The ultimate wizard in terms of attack and defense.')
         assert exception_info.message_text() == 'Attribute must not be blank.'
 
+
+def test_monster_card_description_must_not_be_blank():
+    for invalid_description in ['', ' ']:
+        with pytest.raises(InstanceCreationFailed) as exception_info:
+            MonsterCard.named(name='Dark Magician',
+                              race='Spellcaster',
+                              attribute='Dark',
+                              level=7,
+                              attack=2500,
+                              defense=2100,
+                              description=invalid_description)
+        assert exception_info.message_text() == 'Description must not be blank.'

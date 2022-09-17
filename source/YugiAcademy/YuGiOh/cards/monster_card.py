@@ -17,6 +17,7 @@ class MonsterCard(Card):
         enforce_not_blank(name, "Name")
         enforce_not_blank(race, "Race")
         enforce_not_blank(attribute, "Attribute")
+        enforce_not_blank(description, "Description")
 
     def related_query_name(self):
         return 'monster_card'
