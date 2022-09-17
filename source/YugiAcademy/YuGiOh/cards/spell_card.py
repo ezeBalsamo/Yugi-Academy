@@ -1,7 +1,7 @@
 from django.db import models
 
 from YuGiOh.models import Card
-from assertions.assertions import enforce_not_blank
+from assertions import enforce_not_blank
 
 
 class SpellCard(Card):
