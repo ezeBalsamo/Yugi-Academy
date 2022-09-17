@@ -1,13 +1,27 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
 
-<form action="/accounts/profile" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
+<!--
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+  document.getElementById('profile-icon-white').hidden = true;
+};
+</script>
+-->
+
+
+<form action="" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
     <div id="avatar-block">
       <figure>
-        <img src="../static/assets/profile-icon-white.png">
-        <span> <img src="../static/assets/camera-gold.png" title="Load a profile image">
-        <input type="file" id="adjunct"  name="adjunct" accept=".jpg,.png" value="image"/>
-        </span>
+        <img id="profile-icon-white" src="../static/assets/profile-icon-white.png">
+<!--        <p><img id="output" style="border-radius: 50%; max-height: 10rem"  /></p> -->
+          <input type="file" id="image"  name="image" accept=".jpg,.png"/> <!-- onchange="loadFile(event)" -->
+          <label for="image" style="cursor: pointer;">
+            <span> <img src="../static/assets/camera-gold.png" title="Load a profile image">
+            </span>
+          </label>
         </figure>
       </div>
 

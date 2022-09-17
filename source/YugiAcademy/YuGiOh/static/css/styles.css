@@ -251,7 +251,7 @@ select#profile option {
     transition: all 100ms ease-out;
 }
 
-#avatar-block figure span {
+#avatar-block figure label {
     position: absolute;
     top: 0;
     width: 100%;
@@ -262,11 +262,11 @@ select#profile option {
     visibility: hidden;
     max-width: 10rem;
     cursor: pointer;
-    margin-left: -10rem;
-    border-radius: 50%;
+    margin-left: -14rem;
+    border-radius: 30%;
 }
 
-#avatar-block figure:hover > span{
+#avatar-block figure:hover > label{
     opacity: 1;
     visibility: visible;
 }
@@ -277,7 +277,7 @@ select#profile option {
   text-align: left;
 }
 
-#adjunct {
+#image {
     margin-top: -10rem;
     padding-top: 10rem;
     opacity: 0;
