@@ -3,7 +3,7 @@ from abc import abstractmethod
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
-from YuGiOh.booster_packs.booster_pack_card import BoosterPackCard
+from YuGiOh.booster_packs import BoosterPackCard
 
 
 class Card(models.Model):

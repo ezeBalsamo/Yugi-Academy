@@ -1,7 +1,7 @@
 import pytest
 
+from YuGiOh.cards import TrapCard
 from assertions.instance_creation_failed import InstanceCreationFailed
-from YuGiOh.cards.trap_card import TrapCard
 
 
 def test_trap_card_name_must_not_be_blank():
