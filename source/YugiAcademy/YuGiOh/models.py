@@ -4,6 +4,13 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+from utils.src.instance_creation_failed import InstanceCreationFailed
+
+
+def enforce_not_blank(string, name):
+    if not string.strip():
+        raise InstanceCreationFailed(f'{name} must not be blank.')
+
 
 class BoosterPack(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -62,6 +69,10 @@ class MonsterCard(Card):
 
 class SpellCard(Card):
     type = models.CharField(max_length=20)
+
+    @classmethod
+    def named(cls, name: str, type: str, description: str):
+        enforce_not_blank(name, "Name")
 
     def related_query_name(self):
         return 'spell_card'
