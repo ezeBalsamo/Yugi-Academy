@@ -309,3 +309,8 @@ select#profile option {
 #about-message {
     text-align: center;
 }
+
+#display-message {
+    color:red;
+    margin-left: 1rem;
+}
