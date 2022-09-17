@@ -20,3 +20,9 @@ class SignUpForm(forms.Form):
 class LogInForm(forms.Form):
     username = forms.CharField(max_length=50)
     password = forms.CharField(max_length=25)
+
+
+class ChangePasswordForm(forms.Form):
+    current_password = forms.CharField(max_length=25)
+    new_password = forms.CharField(max_length=25)
+    confirm_password = forms.CharField(max_length=25)

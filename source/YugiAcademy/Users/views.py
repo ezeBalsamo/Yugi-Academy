@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User
-from .forms import SignUpForm, LogInForm, UserForm
+from .forms import SignUpForm, LogInForm, UserForm, ChangePasswordForm
 from django.contrib import messages
 
 user_log_in_page_context = {}
@@ -116,6 +116,7 @@ def signup(request):
 
 def profile(request):
     global user_log_in_page_context
+
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -145,3 +146,53 @@ def profile(request):
             return render(request, "profile.html", user_log_in_page_context)
 
     return render(request, "profile.html", user_log_in_page_context)
+
+
+def change_password(request):
+    global user_log_in_page_context
+
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            current_password = form_data.get('current_password')
+            new_password = form_data.get('new_password')
+            confirm_password = form_data.get('confirm_password')
+
+            if new_password != confirm_password:
+                display_message = 'New password and confirmation password are different'
+                messages.info(request, display_message)
+                return redirect('change_password')
+
+            if current_password == new_password:
+                display_message = 'New password must be different to current password'
+                messages.info(request, display_message)
+                return redirect('change_password')
+
+            if user_log_in_page_context['password'] != current_password:
+                display_message = 'Current password is wrong'
+                messages.info(request, display_message)
+                return redirect('change_password')
+
+            else:
+
+                user_found_by_username = User.objects.get(username=user_log_in_page_context['username'])
+                user_found_by_username.password = new_password
+                user_found_by_username.save()
+                user_log_in_page_context['password'] = new_password
+
+                display_message = 'Your password was changed successfully!'
+                messages.info(request, display_message)
+                return redirect('change_password')
+
+        else:
+            display_message = 'Enter valid information'
+            messages.info(request, display_message)
+            return redirect('change_password')
+
+    if request.method == 'GET':
+        context = {
+            'form': ChangePasswordForm(request.GET)
+        }
+
+        return render(request, 'change_password.html', context)
