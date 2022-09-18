@@ -31,6 +31,8 @@ class BoosterPackCard(models.Model):
         enforce_not_blank(rarity, "Rarity")
         enforce_are_related(identifier, booster_pack)
 
+        return cls(card=card, booster_pack=booster_pack, identifier=identifier, rarity=rarity)
+
     def card_name(self):
         return self.card.name
 

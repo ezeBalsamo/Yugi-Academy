@@ -48,3 +48,18 @@ def test_booster_pack_card_identifier_must_be_related_to_booster_pack_code():
 
     assert exception_info.message_text() == \
            'Identifier must be related to code of Legend of Blue Eyes White Dragon (LOB-EN).'
+
+
+@pytest.mark.django_db
+def test_booster_pack_card_instance_creation_and_accessing():
+    card = pot_of_greed()
+    pack = booster_pack()
+    booster_pack_card = BoosterPackCard.referring_to(card=card,
+                                                     booster_pack=pack,
+                                                     identifier='LOB-EN119',
+                                                     rarity='Rare')
+    assert booster_pack_card.card == card
+    assert booster_pack_card.booster_pack == pack
+    assert booster_pack_card.identifier == 'LOB-EN119'
+    assert booster_pack_card.rarity == 'Rare'
+
