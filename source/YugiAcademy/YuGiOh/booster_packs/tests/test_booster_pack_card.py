@@ -73,6 +73,7 @@ def test_booster_pack_card_instance_creation_and_accessing():
                                                          identifier='LOB-EN119',
                                                          rarity='Rare')
         assert booster_pack_card.card == card
+        assert booster_pack_card.card_name() == card.name
         assert booster_pack_card.booster_pack == pack
         assert booster_pack_card.identifier == 'LOB-EN119'
         assert booster_pack_card.rarity == 'Rare'
