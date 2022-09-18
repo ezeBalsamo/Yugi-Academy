@@ -1,5 +1,7 @@
 from django.db import models
 
+from datetime import datetime
+
 from assertions import enforce_not_blank
 
 
@@ -9,7 +11,7 @@ class BoosterPack(models.Model):
     release_date = models.DateField()
 
     @classmethod
-    def named(cls, name, code, release_date):
+    def named(cls, name: str, code: str, release_date: datetime):
         enforce_not_blank(name, "Name")
         enforce_not_blank(code, "Code")
 
