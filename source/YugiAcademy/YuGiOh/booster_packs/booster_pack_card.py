@@ -16,9 +16,14 @@ class BoosterPackCard(models.Model):
     booster_pack = models.ForeignKey(to=BoosterPack, on_delete=models.PROTECT)
     identifier = models.CharField(max_length=20, unique=True)
     rarity = models.CharField(max_length=20)
-    card_type = models.ForeignKey(ContentType, on_delete=models.PROTECT)
-    card_id = models.PositiveIntegerField()
-    card = GenericForeignKey('card_type', 'card_id')
+    content_type = models.ForeignKey(ContentType, on_delete=models.PROTECT)
+    object_id = models.PositiveIntegerField()
+    card = GenericForeignKey()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["content_type", "object_id"]),
+        ]
 
     @classmethod
     def referring_to(cls, card, booster_pack: BoosterPack, identifier: str, rarity: str):
