@@ -1,7 +1,7 @@
 from django.db import models
 
 from .card import Card
-from assertions import enforce_not_blank, enforce_must_be_between
+from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_be_positive
 
 
 class MonsterCard(Card):
@@ -19,6 +19,8 @@ class MonsterCard(Card):
         enforce_not_blank(attribute, "Attribute")
         enforce_not_blank(description, "Description")
         enforce_must_be_between(1, level, 12, "Level")
+        enforce_must_be_positive(attack, "Attack")
+
 
     def related_query_name(self):
         return 'monster_card'

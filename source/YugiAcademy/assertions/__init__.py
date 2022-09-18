@@ -1,1 +1,1 @@
-from .assertions import enforce_not_blank, enforce_must_be_between
+from .assertions import enforce_not_blank, enforce_must_be_between, enforce_must_be_positive

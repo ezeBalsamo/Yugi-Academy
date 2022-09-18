@@ -56,6 +56,18 @@ def test_monster_card_level_must_between_1_and_12():
         assert exception_info.message_text() == 'Level must be between 1 and 12.'
 
 
+def test_monster_card_attack_must_be_positive():
+    with pytest.raises(InstanceCreationFailed) as exception_info:
+        MonsterCard.named(name='Dark Magician',
+                          race='Spellcaster',
+                          attribute='Dark',
+                          level=7,
+                          attack=-100,
+                          defense=2100,
+                          description='The ultimate wizard in terms of attack and defense.')
+    assert exception_info.message_text() == 'Attack must be positive.'
+
+
 def test_monster_card_description_must_not_be_blank():
     for invalid_description in ['', ' ']:
         with pytest.raises(InstanceCreationFailed) as exception_info:
