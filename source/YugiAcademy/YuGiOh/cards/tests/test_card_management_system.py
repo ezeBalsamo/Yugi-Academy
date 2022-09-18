@@ -18,7 +18,7 @@ def assert_is_empty(collection):
 
 
 @pytest.mark.django_db
-def test_register_spell_card():
+def test_store_spell_card():
     system = CardManagementSystem()
     assert_is_empty(system.spell_cards())
     spell_card = pot_of_greed()
@@ -27,7 +27,7 @@ def test_register_spell_card():
 
 
 @pytest.mark.django_db
-def test_cannot_register_spell_card_when_there_is_one_with_same_name():
+def test_cannot_store_spell_card_when_there_is_one_with_same_name():
     system = CardManagementSystem()
     spell_card = pot_of_greed()
     another_spell_card = SpellCard.named(name=spell_card.name, type='Continuous', description='Win the game')
