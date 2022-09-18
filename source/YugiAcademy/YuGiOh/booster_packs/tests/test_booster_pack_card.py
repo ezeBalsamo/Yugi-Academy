@@ -26,3 +26,14 @@ def test_booster_pack_card_identifier_must_not_be_blank():
                                          rarity='Rare')
 
         assert exception_info.message_text() == 'Identifier must not be blank.'
+
+
+def test_booster_pack_card_rarity_must_not_be_blank():
+    for invalid_rarity in ['', ' ']:
+        with pytest.raises(InstanceCreationFailed) as exception_info:
+            BoosterPackCard.referring_to(card=pot_of_greed(),
+                                         booster_pack=booster_pack(),
+                                         identifier='LOB-EN119',
+                                         rarity=invalid_rarity)
+
+        assert exception_info.message_text() == 'Rarity must not be blank.'

@@ -17,6 +17,7 @@ class BoosterPackCard(models.Model):
     @classmethod
     def referring_to(cls, card, booster_pack: BoosterPack, identifier: str, rarity: str):
         enforce_not_blank(identifier, "Identifier")
+        enforce_not_blank(rarity, "Rarity")
 
     def card_name(self):
         return self.card.name
