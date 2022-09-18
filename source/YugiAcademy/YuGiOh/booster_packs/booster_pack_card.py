@@ -3,7 +3,13 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from assertions import enforce_not_blank
+from assertions.instance_creation_failed import InstanceCreationFailed
 from .booster_pack import BoosterPack
+
+
+def enforce_are_related(identifier, booster_pack):
+    if not identifier.startswith(booster_pack.code):
+        raise InstanceCreationFailed(f'Identifier must be related to code of {booster_pack} ({booster_pack.code}).')
 
 
 class BoosterPackCard(models.Model):
@@ -18,6 +24,7 @@ class BoosterPackCard(models.Model):
     def referring_to(cls, card, booster_pack: BoosterPack, identifier: str, rarity: str):
         enforce_not_blank(identifier, "Identifier")
         enforce_not_blank(rarity, "Rarity")
+        enforce_are_related(identifier, booster_pack)
 
     def card_name(self):
         return self.card.name

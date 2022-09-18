@@ -37,3 +37,14 @@ def test_booster_pack_card_rarity_must_not_be_blank():
                                          rarity=invalid_rarity)
 
         assert exception_info.message_text() == 'Rarity must not be blank.'
+
+
+def test_booster_pack_card_identifier_must_be_related_to_booster_pack_code():
+    with pytest.raises(InstanceCreationFailed) as exception_info:
+        BoosterPackCard.referring_to(card=pot_of_greed(),
+                                     booster_pack=booster_pack(),
+                                     identifier='XXX-1234',
+                                     rarity='Rare')
+
+    assert exception_info.message_text() == \
+           'Identifier must be related to code of Legend of Blue Eyes White Dragon (LOB-EN).'
