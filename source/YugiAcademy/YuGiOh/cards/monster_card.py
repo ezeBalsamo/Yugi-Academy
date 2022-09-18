@@ -1,6 +1,8 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from .card import Card
+from YuGiOh.booster_packs import BoosterPackCard
 from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_be_positive
 
 
@@ -11,6 +13,7 @@ class MonsterCard(Card):
     level = models.IntegerField()
     attack = models.IntegerField()
     defense = models.IntegerField()
+    set = GenericRelation(to=BoosterPackCard, related_query_name='monster_card')
 
     @classmethod
     def named(cls, name: str, race: str, attribute: str, level: int, attack: int, defense: int, description: str):
@@ -29,6 +32,3 @@ class MonsterCard(Card):
                    attack=attack,
                    defense=defense,
                    description=description)
-
-    def related_query_name(self):
-        return 'monster_card'
