@@ -20,7 +20,7 @@ class MonsterCard(Card):
         enforce_not_blank(description, "Description")
         enforce_must_be_between(1, level, 12, "Level")
         enforce_must_be_positive(attack, "Attack")
-
+        enforce_must_be_positive(defense, "Defense")
 
     def related_query_name(self):
         return 'monster_card'
