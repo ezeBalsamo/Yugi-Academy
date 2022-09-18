@@ -91,3 +91,20 @@ def test_monster_card_description_must_not_be_blank():
                               defense=2100,
                               description=invalid_description)
         assert exception_info.message_text() == 'Description must not be blank.'
+
+
+def test_monster_card_instance_creation_and_accessing():
+    monster_card = MonsterCard.named(name='Dark Magician',
+                                     race='Spellcaster',
+                                     attribute='Dark',
+                                     level=7,
+                                     attack=2500,
+                                     defense=2100,
+                                     description='The ultimate wizard in terms of attack and defense.')
+    assert monster_card.name == 'Dark Magician'
+    assert monster_card.race == 'Spellcaster'
+    assert monster_card.attribute == 'Dark'
+    assert monster_card.level == 7
+    assert monster_card.attack == 2500
+    assert monster_card.defense == 2100
+    assert monster_card.description == 'The ultimate wizard in terms of attack and defense.'

@@ -22,5 +22,13 @@ class MonsterCard(Card):
         enforce_must_be_positive(attack, "Attack")
         enforce_must_be_positive(defense, "Defense")
 
+        return cls(name=name,
+                   race=race,
+                   attribute=attribute,
+                   level=level,
+                   attack=attack,
+                   defense=defense,
+                   description=description)
+
     def related_query_name(self):
         return 'monster_card'
