@@ -4,3 +4,7 @@ class InstanceCreationFailed(Exception):
 
 class SystemRestrictionInfringed(Exception):
     pass
+
+
+class DataInconsistencyFound(Exception):
+    pass
