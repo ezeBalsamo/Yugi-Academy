@@ -36,3 +36,13 @@ def test_cannot_store_spell_card_when_there_is_one_with_same_name():
         system.store_spell_card(another_spell_card)
     assert exception_info.message_text() == 'There is already a spell card named Pot of Greed'
     assert_the_only_one_in(system.spell_cards(), spell_card)
+
+
+@pytest.mark.django_db
+def test_purge_spell_card():
+    system = CardManagementSystem()
+    spell_card = pot_of_greed()
+    system.store_spell_card(spell_card)
+    assert_the_only_one_in(system.spell_cards(), spell_card)
+    system.purge_spell_card(spell_card)
+    assert_is_empty(system.spell_cards())

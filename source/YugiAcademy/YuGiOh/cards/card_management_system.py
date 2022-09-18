@@ -14,3 +14,6 @@ class CardManagementSystem:
         if self.spell_cards_repository.filter(name=spell_card.name):
             raise SystemRestrictionInfringed(f'There is already a spell card named {spell_card.name}')
         spell_card.save()
+
+    def purge_spell_card(self, spell_card):
+        spell_card.delete()
