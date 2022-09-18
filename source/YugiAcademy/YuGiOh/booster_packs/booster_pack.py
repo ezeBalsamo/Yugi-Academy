@@ -11,6 +11,7 @@ class BoosterPack(models.Model):
     @classmethod
     def named(cls, name, code, release_date):
         enforce_not_blank(name, "Name")
+        enforce_not_blank(code, "Code")
 
     def __str__(self):
         return self.name
