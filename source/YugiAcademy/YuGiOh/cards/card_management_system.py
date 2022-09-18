@@ -19,3 +19,7 @@ class CardManagementSystem:
         if not self.spell_cards_repository.filter(name=spell_card.name):
             raise DataInconsistencyFound(f'{spell_card} was expected to be found, but it was not.')
         spell_card.delete()
+
+    def update_spell_card_with(self, spell_card, updated_spell_card):
+        spell_card.synchronize_with(updated_spell_card)
+        spell_card.save()

@@ -17,3 +17,8 @@ class SpellCard(Card):
         enforce_not_blank(description, "Description")
 
         return cls(name=name, type=type, description=description)
+
+    def synchronize_with(self, spell_card):
+        self.name = spell_card.name
+        self.type = spell_card.type
+        self.description = spell_card.description

@@ -8,13 +8,33 @@ def pot_of_greed():
     return SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
 
 
-def assert_the_only_one_in(collection, element):
+def sogen():
+    return SpellCard.named(name="Sogen",
+                           type="Field",
+                           description="All Warrior and Beast-Warrior monsters on the field gain 200 ATK/DEF.")
+
+
+def with_the_only_one_in(collection, closure):
     assert len(collection) == 1
-    assert collection[0] == element
+    closure(collection[0])
+
+
+def assert_the_only_one_in(collection, expected_element):
+    def assert_equals(element, another_element):
+        assert element == another_element
+
+    with_the_only_one_in(collection, lambda found_element: assert_equals(found_element, expected_element))
 
 
 def assert_is_empty(collection):
     assert not collection
+
+
+def assert_spell_card_was_updated(spell_card, updated_spell_card, managed_spell_card):
+    assert managed_spell_card == spell_card
+    assert managed_spell_card.name == updated_spell_card.name
+    assert managed_spell_card.type == updated_spell_card.type
+    assert managed_spell_card.description == updated_spell_card.description
 
 
 @pytest.mark.django_db
@@ -58,3 +78,15 @@ def test_cannot_purge_spell_card_not_found():
         system.purge_spell_card(spell_card)
     assert exception_info.message_text() == 'Pot of Greed was expected to be found, but it was not.'
     assert_is_empty(system.spell_cards())
+
+
+@pytest.mark.django_db
+def test_update_spell_card():
+    system = CardManagementSystem()
+    spell_card = pot_of_greed()
+    updated_spell_card = sogen()
+    system.store_spell_card(spell_card)
+    system.update_spell_card_with(spell_card, updated_spell_card)
+    with_the_only_one_in(system.spell_cards(),
+                         lambda managed_spell_card: assert_spell_card_was_updated(spell_card, updated_spell_card,
+                                                                                  managed_spell_card))
