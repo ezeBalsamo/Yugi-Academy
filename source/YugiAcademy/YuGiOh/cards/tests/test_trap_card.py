@@ -26,7 +26,8 @@ def test_trap_card_description_must_not_be_blank():
 
 
 def test_instance_creation_and_accessing():
-    spell_card = TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.')
-    assert spell_card.name == 'Jar of Greed'
-    assert spell_card.type == 'Normal'
-    assert spell_card.description == 'Draw 1 card.'
+    trap_card = TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.')
+    assert trap_card.name == 'Jar of Greed'
+    assert trap_card.type == 'Normal'
+    assert trap_card.description == 'Draw 1 card.'
+    assert str(trap_card) == trap_card.name

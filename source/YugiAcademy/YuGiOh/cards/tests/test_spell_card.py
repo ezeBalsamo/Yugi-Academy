@@ -30,3 +30,4 @@ def test_instance_creation_and_accessing():
     assert spell_card.name == 'Pot of Greed'
     assert spell_card.type == 'Normal'
     assert spell_card.description == 'Draw 2 cards.'
+    assert str(spell_card) == spell_card.name

@@ -108,3 +108,4 @@ def test_monster_card_instance_creation_and_accessing():
     assert monster_card.attack == 2500
     assert monster_card.defense == 2100
     assert monster_card.description == 'The ultimate wizard in terms of attack and defense.'
+    assert str(monster_card) == monster_card.name
