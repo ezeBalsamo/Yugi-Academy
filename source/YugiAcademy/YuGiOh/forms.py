@@ -1,6 +1,6 @@
 from django import forms
-from cards import SpellCard
-from booster_packs import BoosterPack
+from YuGiOh.cards import SpellCard
+from YuGiOh.booster_packs import BoosterPack
 
 
 class SpellCardForm(forms.Form):
