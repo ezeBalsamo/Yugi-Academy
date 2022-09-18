@@ -13,5 +13,7 @@ class BoosterPack(models.Model):
         enforce_not_blank(name, "Name")
         enforce_not_blank(code, "Code")
 
+        return cls(name=name, code=code, release_date=release_date)
+
     def __str__(self):
         return self.name
