@@ -35,9 +35,3 @@ class BoosterPackCard(models.Model):
 
     def card_name(self):
         return self.card.name
-
-    def booster_pack_name(self):
-        return self.booster_pack.name
-
-    def booster_pack_code(self):
-        return self.booster_pack.code
