@@ -1,4 +1,4 @@
-from .instance_creation_failed import InstanceCreationFailed
+from .exceptions import InstanceCreationFailed
 
 
 def enforce_not_blank(string, name):

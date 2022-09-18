@@ -2,7 +2,7 @@ import pytest
 
 from datetime import datetime
 
-from assertions.instance_creation_failed import InstanceCreationFailed
+from assertions import InstanceCreationFailed
 from YuGiOh.booster_packs import BoosterPack
 
 

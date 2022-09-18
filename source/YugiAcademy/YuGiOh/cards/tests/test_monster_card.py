@@ -1,6 +1,6 @@
 import pytest
 
-from assertions.instance_creation_failed import InstanceCreationFailed
+from assertions import InstanceCreationFailed
 from YuGiOh.cards import MonsterCard
 
 
