@@ -4,7 +4,7 @@ from datetime import datetime
 
 from assertions.instance_creation_failed import InstanceCreationFailed
 from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
-from YuGiOh.cards import SpellCard
+from YuGiOh.cards import SpellCard, TrapCard, MonsterCard
 
 
 def booster_pack():
@@ -15,6 +15,20 @@ def booster_pack():
 
 def pot_of_greed():
     return SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+
+
+def jar_of_greed():
+    return TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.')
+
+
+def dark_magician():
+    return MonsterCard.named(name='Dark Magician',
+                             race='Spellcaster',
+                             attribute='Dark',
+                             level=7,
+                             attack=2500,
+                             defense=2100,
+                             description='The ultimate wizard in terms of attack and defense.')
 
 
 def test_booster_pack_card_identifier_must_not_be_blank():
@@ -52,14 +66,13 @@ def test_booster_pack_card_identifier_must_be_related_to_booster_pack_code():
 
 @pytest.mark.django_db
 def test_booster_pack_card_instance_creation_and_accessing():
-    card = pot_of_greed()
-    pack = booster_pack()
-    booster_pack_card = BoosterPackCard.referring_to(card=card,
-                                                     booster_pack=pack,
-                                                     identifier='LOB-EN119',
-                                                     rarity='Rare')
-    assert booster_pack_card.card == card
-    assert booster_pack_card.booster_pack == pack
-    assert booster_pack_card.identifier == 'LOB-EN119'
-    assert booster_pack_card.rarity == 'Rare'
-
+    for card in [pot_of_greed(), jar_of_greed(), dark_magician()]:
+        pack = booster_pack()
+        booster_pack_card = BoosterPackCard.referring_to(card=card,
+                                                         booster_pack=pack,
+                                                         identifier='LOB-EN119',
+                                                         rarity='Rare')
+        assert booster_pack_card.card == card
+        assert booster_pack_card.booster_pack == pack
+        assert booster_pack_card.identifier == 'LOB-EN119'
+        assert booster_pack_card.rarity == 'Rare'
