@@ -1,3 +1,5 @@
+import collections
+
 from .exceptions import InstanceCreationFailed
 
 
@@ -14,3 +16,23 @@ def enforce_must_be_between(lower_bound, number_to_compare, upper_bound, number_
 def enforce_must_be_positive(number, number_name):
     if number < 0:
         raise InstanceCreationFailed(f'{number_name} must be positive.')
+
+
+def with_the_only_one_in(collection, closure):
+    assert len(collection) == 1
+    closure(collection[0])
+
+
+def assert_the_only_one_in(collection, expected_element):
+    def assert_equals(element, another_element):
+        assert element == another_element
+
+    with_the_only_one_in(collection, lambda found_element: assert_equals(found_element, expected_element))
+
+
+def assert_is_empty(collection):
+    assert not collection
+
+
+def assert_collections_have_same_elements(collection, another_collection):
+    assert collections.Counter(collection) == collections.Counter(another_collection)
