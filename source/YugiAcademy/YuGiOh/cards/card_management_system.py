@@ -1,5 +1,15 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 from YuGiOh.cards import SpellCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound
+
+
+def raise_not_found_spell_card_named(name):
+    raise SystemRestrictionInfringed(f'There is no spell card named {name}.')
+
+
+def raise_found_spell_card_named(name):
+    raise SystemRestrictionInfringed(f'There is already a spell card named {name}.')
 
 
 class CardManagementSystem:
@@ -8,8 +18,9 @@ class CardManagementSystem:
         self.spell_cards_repository = SpellCard.objects
 
     def assert_there_is_no_spell_card_named(self, name):
-        if self.spell_cards_repository.filter(name=name):
-            raise SystemRestrictionInfringed(f'There is already a spell card named {name}.')
+        self.spell_card_named(name=name,
+                              if_found=lambda spell_card: raise_found_spell_card_named(spell_card.name),
+                              if_none=lambda: None)
 
     def spell_cards(self):
         return list(self.spell_cards_repository.all())
@@ -28,3 +39,11 @@ class CardManagementSystem:
             self.assert_there_is_no_spell_card_named(updated_spell_card.name)
         spell_card.synchronize_with(updated_spell_card)
         spell_card.save()
+
+    def spell_card_named(self, name, if_found=None, if_none=None):
+
+        try:
+            spell_card = self.spell_cards_repository.get(name=name)
+            return spell_card if if_found is None else if_found(spell_card)
+        except ObjectDoesNotExist:
+            raise_not_found_spell_card_named(name) if if_none is None else if_none()
