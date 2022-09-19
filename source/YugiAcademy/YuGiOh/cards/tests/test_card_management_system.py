@@ -116,3 +116,12 @@ def test_cannot_update_spell_card_where_there_is_one_with_same_name():
 def test_querying_spell_card_by_name_fails_when_card_not_found():
     system = CardManagementSystem()
     system.spell_card_named(name='Pot of Greed', if_found=lambda: pytest.fail(), if_none=lambda: None)
+
+
+@pytest.mark.django_db
+def test_querying_spell_card_by_name():
+    system = CardManagementSystem()
+    spell_card = pot_of_greed()
+    system.store_spell_card(spell_card)
+    found_spell_card = system.spell_card_named(name=spell_card.name, if_none=lambda: pytest.fail())
+    assert found_spell_card == spell_card
