@@ -83,7 +83,9 @@ class TestCardManagementSystem:
         assert_collections_have_same_elements([spell_card, another_spell_card], self.system.spell_cards())
 
     def test_querying_spell_card_by_name_fails_when_card_not_found(self):
-        self.system.spell_card_named(name='Pot of Greed', if_found=lambda: pytest.fail(), if_none=lambda: None)
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.spell_card_named(name='Pot of Greed', if_found=lambda: pytest.fail())
+        assert exception_info.message_text() == 'There is no spell card named Pot of Greed.'
 
     def test_querying_spell_card_by_name(self):
         spell_card = pot_of_greed()
