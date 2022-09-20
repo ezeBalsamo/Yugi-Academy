@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import MonsterCard, SpellCard, TrapCard, BoosterPack, BoosterPackCard
+from YuGiOh.cards import MonsterCard, SpellCard, TrapCard
+from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
 from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm, BoosterPackCardForm
 
 
