@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 
-from YuGiOh.cards import SpellCard, TrapCard
+from YuGiOh.cards import SpellCard, TrapCard, MonsterCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound
 
 
@@ -29,10 +29,9 @@ class CardManagementSystem:
     def __init__(self):
         self.spell_cards_repository = SpellCard.objects
         self.trap_cards_repository = TrapCard.objects
+        self.monster_cards_repository = MonsterCard.objects
 
-    """
-    Spell cards
-    """
+    """ Spell Cards """
 
     def assert_there_is_no_spell_card_named(self, name):
         self.spell_card_named(name=name,
@@ -65,9 +64,7 @@ class CardManagementSystem:
                           if_found=if_found,
                           if_none=if_none)
 
-    """
-    Trap cards
-    """
+    """ Trap Cards """
 
     def assert_there_is_no_trap_card_named(self, name):
         self.trap_card_named(name=name,
@@ -100,3 +97,10 @@ class CardManagementSystem:
                           if_found=if_found,
                           if_none=if_none)
 
+    """ Monster Cards """
+
+    def monster_cards(self):
+        return list(self.monster_cards_repository.all())
+
+    def store_monster_card(self, monster_card):
+        monster_card.save()
