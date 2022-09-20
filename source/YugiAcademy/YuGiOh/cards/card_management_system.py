@@ -12,6 +12,10 @@ def raise_found_spell_card_named(name):
     raise SystemRestrictionInfringed(f'There is already a spell card named {name}.')
 
 
+def raise_not_found_trap_card_named(name):
+    raise SystemRestrictionInfringed(f'There is no trap card named {name}.')
+
+
 def raise_found_trap_card_named(name):
     raise SystemRestrictionInfringed(f'There is already a trap card named {name}.')
 
@@ -92,4 +96,4 @@ class CardManagementSystem:
             trap_card = self.trap_cards_repository.get(name=name)
             return trap_card if if_found is None else if_found(trap_card)
         except ObjectDoesNotExist:
-            raise_not_found_spell_card_named(name) if if_none is None else if_none()
+            raise_not_found_trap_card_named(name) if if_none is None else if_none()
