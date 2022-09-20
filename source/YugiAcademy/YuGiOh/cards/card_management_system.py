@@ -4,24 +4,24 @@ from YuGiOh.cards import SpellCard, TrapCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound
 
 
-def raise_not_found_spell_card_named(name):
-    raise SystemRestrictionInfringed(f'There is no spell card named {name}.')
-
-
-def raise_found_spell_card_named(name):
-    raise SystemRestrictionInfringed(f'There is already a spell card named {name}.')
-
-
-def raise_not_found_trap_card_named(name):
-    raise SystemRestrictionInfringed(f'There is no trap card named {name}.')
-
-
-def raise_found_trap_card_named(name):
-    raise SystemRestrictionInfringed(f'There is already a trap card named {name}.')
-
-
 def raise_expected_to_be_found(managed_object):
     raise DataInconsistencyFound(f'{managed_object} was expected to be found, but it was not.')
+
+
+def raise_found_card_named(name, card_type):
+    raise SystemRestrictionInfringed(f'There is already a {card_type} named {name}.')
+
+
+def raise_not_found_card_named(name, card_type):
+    raise SystemRestrictionInfringed(f'There is no {card_type} named {name}.')
+
+
+def card_named(name, card_type, repository, if_found, if_none):
+    try:
+        card = repository.get(name=name)
+        return card if if_found is None else if_found(card)
+    except ObjectDoesNotExist:
+        raise_not_found_card_named(name, card_type) if if_none is None else if_none()
 
 
 class CardManagementSystem:
@@ -36,7 +36,8 @@ class CardManagementSystem:
 
     def assert_there_is_no_spell_card_named(self, name):
         self.spell_card_named(name=name,
-                              if_found=lambda spell_card: raise_found_spell_card_named(spell_card.name),
+                              if_found=lambda spell_card: raise_found_card_named(spell_card.name,
+                                                                                 SpellCard.type_description),
                               if_none=lambda: None)
 
     def spell_cards(self):
@@ -58,11 +59,11 @@ class CardManagementSystem:
         spell_card.save()
 
     def spell_card_named(self, name, if_found=None, if_none=None):
-        try:
-            spell_card = self.spell_cards_repository.get(name=name)
-            return spell_card if if_found is None else if_found(spell_card)
-        except ObjectDoesNotExist:
-            raise_not_found_spell_card_named(name) if if_none is None else if_none()
+        return card_named(name=name,
+                          card_type=SpellCard.type_description,
+                          repository=self.spell_cards_repository,
+                          if_found=if_found,
+                          if_none=if_none)
 
     """
     Trap cards
@@ -70,7 +71,8 @@ class CardManagementSystem:
 
     def assert_there_is_no_trap_card_named(self, name):
         self.trap_card_named(name=name,
-                             if_found=lambda trap_card: raise_found_trap_card_named(trap_card.name),
+                             if_found=lambda trap_card: raise_found_card_named(trap_card.name,
+                                                                               TrapCard.type_description),
                              if_none=lambda: None)
 
     def trap_cards(self):
@@ -92,8 +94,9 @@ class CardManagementSystem:
         trap_card.save()
 
     def trap_card_named(self, name, if_found=None, if_none=None):
-        try:
-            trap_card = self.trap_cards_repository.get(name=name)
-            return trap_card if if_found is None else if_found(trap_card)
-        except ObjectDoesNotExist:
-            raise_not_found_trap_card_named(name) if if_none is None else if_none()
+        return card_named(name=name,
+                          card_type=TrapCard.type_description,
+                          repository=self.trap_cards_repository,
+                          if_found=if_found,
+                          if_none=if_none)
+

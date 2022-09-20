@@ -7,6 +7,7 @@ from assertions import enforce_not_blank
 
 
 class SpellCard(Card):
+    type_description = 'spell card'
     type = models.CharField(max_length=20)
     set = GenericRelation(to=BoosterPackCard, related_query_name='spell_card')
 
