@@ -81,6 +81,10 @@ class CardManagementSystem:
                              if_found=lambda _: trap_card.delete(),
                              if_none=lambda: raise_expected_to_be_found(trap_card))
 
+    def update_trap_card_with(self, trap_card, updated_trap_card):
+        trap_card.synchronize_with(updated_trap_card)
+        trap_card.save()
+
     def trap_card_named(self, name, if_found=None, if_none=None):
         try:
             trap_card = self.trap_cards_repository.get(name=name)

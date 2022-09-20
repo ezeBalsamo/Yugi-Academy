@@ -2,11 +2,27 @@ import pytest
 
 from YuGiOh.cards import CardManagementSystem, TrapCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-                        assert_is_empty, assert_the_only_one_in
+                        assert_is_empty, assert_the_only_one_in, \
+                        with_the_only_one_in
 
 
 def jar_of_greed():
     return TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.')    
+
+
+def magic_hammer():
+    return TrapCard.named(name='Magic Hammer',
+                          type='Counter',
+                          description='When a Spell Card is activated: Discard'
+                                      ' 1 card; negate the activation, and if'
+                                      ' you do, destroy it.')
+
+
+def assert_trap_card_was_updated(trap_card, updated_trap_card, managed_trap_card):
+    assert managed_trap_card == trap_card
+    assert managed_trap_card.name == updated_trap_card.name
+    assert managed_trap_card.type == updated_trap_card.type
+    assert managed_trap_card.description == updated_trap_card.description
 
 
 @pytest.mark.django_db
@@ -46,3 +62,12 @@ class TestCardManagementSystem:
             self.system.purge_trap_card(trap_card)
         assert exception_info.message_text() == 'Jar of Greed was expected to be found, but it was not.'
         assert_is_empty(self.system.trap_cards())
+
+    def test_update_trap_card(self):
+        trap_card = jar_of_greed()
+        updated_trap_card = magic_hammer()
+        self.system.store_trap_card(trap_card)
+        self.system.update_trap_card_with(trap_card, updated_trap_card)
+        with_the_only_one_in(self.system.trap_cards(),
+                             lambda managed_trap_card: assert_trap_card_was_updated(trap_card, updated_trap_card,
+                                                                                    managed_trap_card))

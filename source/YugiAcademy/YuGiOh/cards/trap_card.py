@@ -17,3 +17,8 @@ class TrapCard(Card):
         enforce_not_blank(description, "Description")
 
         return cls(name=name, type=type, description=description)
+
+    def synchronize_with(self, trap_card):
+        self.name = trap_card.name
+        self.type = trap_card.type
+        self.description = trap_card.description
