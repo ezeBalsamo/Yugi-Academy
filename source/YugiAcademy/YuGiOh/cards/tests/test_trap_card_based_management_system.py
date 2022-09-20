@@ -29,3 +29,10 @@ class TestCardManagementSystem:
             self.system.store_trap_card(another_trap_card)
         assert exception_info.message_text() == 'There is already a trap card named Jar of Greed.'
         assert_the_only_one_in(self.system.trap_cards(), trap_card)
+
+    def test_purge_trap_card(self):
+        trap_card = jar_of_greed()
+        self.system.store_trap_card(trap_card)
+        assert_the_only_one_in(self.system.trap_cards(), trap_card)
+        self.system.purge_trap_card(trap_card)
+        assert_is_empty(self.system.trap_cards())

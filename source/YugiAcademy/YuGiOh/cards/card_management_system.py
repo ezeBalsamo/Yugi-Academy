@@ -16,7 +16,6 @@ def raise_found_trap_card_named(name):
     raise SystemRestrictionInfringed(f'There is already a trap card named {name}.')
 
 
-
 class CardManagementSystem:
 
     def __init__(self):
@@ -73,6 +72,9 @@ class CardManagementSystem:
     def store_trap_card(self, trap_card):
         self.assert_there_is_no_trap_card_named(trap_card.name)
         trap_card.save()
+
+    def purge_trap_card(self, trap_card):
+        trap_card.delete()
 
     def trap_card_named(self, name, if_found=None, if_none=None):
 
