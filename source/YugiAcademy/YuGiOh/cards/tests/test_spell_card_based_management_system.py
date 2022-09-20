@@ -84,11 +84,11 @@ class TestCardManagementSystem:
 
     def test_querying_spell_card_by_name_fails_when_card_not_found(self):
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
-            self.system.spell_card_named(name='Pot of Greed', if_found=lambda: pytest.fail())
+            self.system.spell_card_named('Pot of Greed', if_found=lambda: pytest.fail())
         assert exception_info.message_text() == 'There is no spell card named Pot of Greed.'
 
     def test_querying_spell_card_by_name(self):
         spell_card = pot_of_greed()
         self.system.store_spell_card(spell_card)
-        found_spell_card = self.system.spell_card_named(name=spell_card.name, if_none=lambda: pytest.fail())
+        found_spell_card = self.system.spell_card_named(spell_card.name, if_none=lambda: pytest.fail())
         assert found_spell_card == spell_card
