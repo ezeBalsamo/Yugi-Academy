@@ -99,8 +99,22 @@ class CardManagementSystem:
 
     """ Monster Cards """
 
+    def assert_there_is_no_monster_card_named(self, name):
+        self.monster_card_named(name=name,
+                                if_found=lambda monster_card: raise_found_card_named(monster_card.name,
+                                                                                     MonsterCard.type_description),
+                                if_none=lambda: None)
+
     def monster_cards(self):
         return list(self.monster_cards_repository.all())
 
     def store_monster_card(self, monster_card):
+        self.assert_there_is_no_monster_card_named(monster_card.name)
         monster_card.save()
+
+    def monster_card_named(self, name, if_found=None, if_none=None):
+        return card_named(name=name,
+                          card_type=MonsterCard.type_description,
+                          repository=self.monster_cards_repository,
+                          if_found=if_found,
+                          if_none=if_none)

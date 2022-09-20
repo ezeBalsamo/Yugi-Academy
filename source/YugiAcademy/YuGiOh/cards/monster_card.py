@@ -7,6 +7,7 @@ from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_
 
 
 class MonsterCard(Card):
+    type_description = 'monster card'
     Attributes = models.TextChoices('Attributes', 'Dark Divine Earth Fire Light Water Wind')
     race = models.CharField(max_length=20)
     attribute = models.CharField(max_length=10, choices=Attributes.choices)
