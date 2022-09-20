@@ -7,6 +7,7 @@ from assertions import enforce_not_blank
 
 
 class TrapCard(Card):
+    type_description = 'trap card'
     type = models.CharField(max_length=20)
     set = GenericRelation(to=BoosterPackCard, related_query_name='trap_card')
 
@@ -17,3 +18,8 @@ class TrapCard(Card):
         enforce_not_blank(description, "Description")
 
         return cls(name=name, type=type, description=description)
+
+    def synchronize_with(self, trap_card):
+        self.name = trap_card.name
+        self.type = trap_card.type
+        self.description = trap_card.description

@@ -7,6 +7,7 @@ from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_
 
 
 class MonsterCard(Card):
+    type_description = 'monster card'
     Attributes = models.TextChoices('Attributes', 'Dark Divine Earth Fire Light Water Wind')
     race = models.CharField(max_length=20)
     attribute = models.CharField(max_length=10, choices=Attributes.choices)
@@ -32,3 +33,12 @@ class MonsterCard(Card):
                    attack=attack,
                    defense=defense,
                    description=description)
+    
+    def synchronize_with(self, monster_card):
+        self.name = monster_card.name
+        self.race = monster_card.race
+        self.attribute = monster_card.attribute
+        self.level = monster_card.level
+        self.attack = monster_card.attack
+        self.defense = monster_card.defense
+        self.description = monster_card.description

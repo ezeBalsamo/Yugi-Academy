@@ -2,8 +2,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-from assertions import enforce_not_blank
-from assertions.instance_creation_failed import InstanceCreationFailed
+from assertions import enforce_not_blank, InstanceCreationFailed
 from .booster_pack import BoosterPack
 
 

@@ -7,6 +7,7 @@ from assertions import enforce_not_blank
 
 
 class SpellCard(Card):
+    type_description = 'spell card'
     type = models.CharField(max_length=20)
     set = GenericRelation(to=BoosterPackCard, related_query_name='spell_card')
 
@@ -17,3 +18,8 @@ class SpellCard(Card):
         enforce_not_blank(description, "Description")
 
         return cls(name=name, type=type, description=description)
+
+    def synchronize_with(self, spell_card):
+        self.name = spell_card.name
+        self.type = spell_card.type
+        self.description = spell_card.description
