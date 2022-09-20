@@ -112,6 +112,9 @@ class CardManagementSystem:
         self.assert_there_is_no_monster_card_named(monster_card.name)
         monster_card.save()
 
+    def purge_monster_card(self, monster_card):
+        monster_card.delete()
+
     def monster_card_named(self, name, if_found=None, if_none=None):
         return card_named(name=name,
                           card_type=MonsterCard.type_description,

@@ -46,3 +46,10 @@ class TestCardManagementSystem:
             self.system.store_monster_card(another_monster_card)
         assert exception_info.message_text() == 'There is already a monster card named Dark Magician.'
         assert_the_only_one_in(self.system.monster_cards(), monster_card)
+        
+    def test_purge_monster_card(self):
+        monster_card = dark_magician()
+        self.system.store_monster_card(monster_card)
+        assert_the_only_one_in(self.system.monster_cards(), monster_card)
+        self.system.purge_monster_card(monster_card)
+        assert_is_empty(self.system.monster_cards())
