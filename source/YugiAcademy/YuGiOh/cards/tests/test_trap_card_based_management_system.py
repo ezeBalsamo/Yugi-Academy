@@ -1,7 +1,8 @@
 import pytest
 
 from YuGiOh.cards import CardManagementSystem, TrapCard
-from assertions import SystemRestrictionInfringed, assert_is_empty, assert_the_only_one_in
+from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
+                        assert_is_empty, assert_the_only_one_in
 
 
 def jar_of_greed():
@@ -35,4 +36,13 @@ class TestCardManagementSystem:
         self.system.store_trap_card(trap_card)
         assert_the_only_one_in(self.system.trap_cards(), trap_card)
         self.system.purge_trap_card(trap_card)
+        assert_is_empty(self.system.trap_cards())
+
+    def test_cannot_purge_trap_card_not_found(self):
+        trap_card = jar_of_greed()
+        self.system.store_trap_card(trap_card)
+        self.system.purge_trap_card(trap_card)
+        with pytest.raises(DataInconsistencyFound) as exception_info:
+            self.system.purge_trap_card(trap_card)
+        assert exception_info.message_text() == 'Jar of Greed was expected to be found, but it was not.'
         assert_is_empty(self.system.trap_cards())

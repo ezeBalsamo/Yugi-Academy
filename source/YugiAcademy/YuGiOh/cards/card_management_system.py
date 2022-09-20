@@ -16,6 +16,10 @@ def raise_found_trap_card_named(name):
     raise SystemRestrictionInfringed(f'There is already a trap card named {name}.')
 
 
+def raise_expected_to_be_found(managed_object):
+    raise DataInconsistencyFound(f'{managed_object} was expected to be found, but it was not.')
+
+
 class CardManagementSystem:
 
     def __init__(self):
@@ -50,7 +54,6 @@ class CardManagementSystem:
         spell_card.save()
 
     def spell_card_named(self, name, if_found=None, if_none=None):
-
         try:
             spell_card = self.spell_cards_repository.get(name=name)
             return spell_card if if_found is None else if_found(spell_card)
@@ -74,10 +77,11 @@ class CardManagementSystem:
         trap_card.save()
 
     def purge_trap_card(self, trap_card):
-        trap_card.delete()
+        self.trap_card_named(name=trap_card.name,
+                             if_found=lambda _: trap_card.delete(),
+                             if_none=lambda: raise_expected_to_be_found(trap_card))
 
     def trap_card_named(self, name, if_found=None, if_none=None):
-
         try:
             trap_card = self.trap_cards_repository.get(name=name)
             return trap_card if if_found is None else if_found(trap_card)
