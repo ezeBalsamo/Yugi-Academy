@@ -118,6 +118,8 @@ class CardManagementSystem:
                                 if_none=lambda: raise_expected_to_be_found(monster_card))
 
     def update_monster_card_with(self, monster_card, updated_monster_card):
+        if monster_card.name != updated_monster_card.name:
+            self.assert_there_is_no_monster_card_named(updated_monster_card.name)
         monster_card.synchronize_with(updated_monster_card)
         monster_card.save()
 

@@ -3,7 +3,8 @@ import pytest
 from YuGiOh.cards import CardManagementSystem, MonsterCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
                         assert_is_empty, assert_the_only_one_in, \
-                        with_the_only_one_in
+                        with_the_only_one_in, \
+                        assert_collections_have_same_elements
 
 
 def dark_magician():
@@ -95,3 +96,14 @@ class TestCardManagementSystem:
         with_the_only_one_in(self.system.monster_cards(),
                              lambda managed_monster_card: 
                              assert_monster_card_was_updated(monster_card, updated_monster_card, managed_monster_card))
+        
+    def test_cannot_update_monster_card_where_there_is_one_with_same_name(self):
+        monster_card = dark_magician()
+        another_monster_card = celtic_guardian()
+        updated_monster_card = monster_card_named(monster_card.name)
+        self.system.store_monster_card(monster_card)
+        self.system.store_monster_card(another_monster_card)
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.update_monster_card_with(another_monster_card, updated_monster_card)
+        assert exception_info.message_text() == 'There is already a monster card named Dark Magician.'
+        assert_collections_have_same_elements([monster_card, another_monster_card], self.system.monster_cards())
