@@ -82,6 +82,8 @@ class CardManagementSystem:
                              if_none=lambda: raise_expected_to_be_found(trap_card))
 
     def update_trap_card_with(self, trap_card, updated_trap_card):
+        if trap_card.name != updated_trap_card.name:
+            self.assert_there_is_no_trap_card_named(updated_trap_card.name)
         trap_card.synchronize_with(updated_trap_card)
         trap_card.save()
 

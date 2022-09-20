@@ -3,7 +3,8 @@ import pytest
 from YuGiOh.cards import CardManagementSystem, TrapCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
                         assert_is_empty, assert_the_only_one_in, \
-                        with_the_only_one_in
+                        with_the_only_one_in, \
+                        assert_collections_have_same_elements
 
 
 def jar_of_greed():
@@ -71,3 +72,14 @@ class TestCardManagementSystem:
         with_the_only_one_in(self.system.trap_cards(),
                              lambda managed_trap_card: assert_trap_card_was_updated(trap_card, updated_trap_card,
                                                                                     managed_trap_card))
+        
+    def test_cannot_update_trap_card_where_there_is_one_with_same_name(self):
+        trap_card = jar_of_greed()
+        another_trap_card = magic_hammer()
+        updated_trap_card = TrapCard.named(trap_card.name, type='Continuous', description='Win the game')
+        self.system.store_trap_card(trap_card)
+        self.system.store_trap_card(another_trap_card)
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.update_trap_card_with(another_trap_card, updated_trap_card)
+        assert exception_info.message_text() == 'There is already a trap card named Jar of Greed.'
+        assert_collections_have_same_elements([trap_card, another_trap_card], self.system.trap_cards())
