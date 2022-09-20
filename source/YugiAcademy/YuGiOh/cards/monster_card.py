@@ -33,3 +33,12 @@ class MonsterCard(Card):
                    attack=attack,
                    defense=defense,
                    description=description)
+    
+    def synchronize_with(self, monster_card):
+        self.name = monster_card.name
+        self.race = monster_card.race
+        self.attribute = monster_card.attribute
+        self.level = monster_card.level
+        self.attack = monster_card.attack
+        self.defense = monster_card.defense
+        self.description = monster_card.description

@@ -2,7 +2,8 @@ import pytest
 
 from YuGiOh.cards import CardManagementSystem, MonsterCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-                        assert_is_empty, assert_the_only_one_in
+                        assert_is_empty, assert_the_only_one_in, \
+                        with_the_only_one_in
 
 
 def dark_magician():
@@ -24,6 +25,28 @@ def monster_card_named(name):
                              defense=1200,
                              description='An elf who learned to wield a sword, '
                                          'he baffles enemies with lightning-swift attacks.')
+
+
+def celtic_guardian():
+    return MonsterCard.named(name='Celtic Guardian',
+                             race='Warrior',
+                             attribute='Earth',
+                             level=4,
+                             attack=1400,
+                             defense=1200,
+                             description='An elf who learned to wield a sword, '
+                                         'he baffles enemies with lightning-swift attacks.')
+
+
+def assert_monster_card_was_updated(monster_card, updated_monster_card, managed_monster_card):
+    assert managed_monster_card == monster_card
+    assert managed_monster_card.name == updated_monster_card.name
+    assert managed_monster_card.race == updated_monster_card.race
+    assert managed_monster_card.attribute == updated_monster_card.attribute
+    assert managed_monster_card.level == updated_monster_card.level
+    assert managed_monster_card.attack == updated_monster_card.attack
+    assert managed_monster_card.defense == updated_monster_card.defense
+    assert managed_monster_card.description == updated_monster_card.description
 
 
 @pytest.mark.django_db
@@ -63,3 +86,12 @@ class TestCardManagementSystem:
             self.system.purge_monster_card(monster_card)
         assert exception_info.message_text() == 'Dark Magician was expected to be found, but it was not.'
         assert_is_empty(self.system.monster_cards())
+        
+    def test_update_monster_card(self):
+        monster_card = dark_magician()
+        updated_monster_card = celtic_guardian()
+        self.system.store_monster_card(monster_card)
+        self.system.update_monster_card_with(monster_card, updated_monster_card)
+        with_the_only_one_in(self.system.monster_cards(),
+                             lambda managed_monster_card: 
+                             assert_monster_card_was_updated(monster_card, updated_monster_card, managed_monster_card))

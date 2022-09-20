@@ -117,6 +117,10 @@ class CardManagementSystem:
                                 if_found=lambda _: monster_card.delete(),
                                 if_none=lambda: raise_expected_to_be_found(monster_card))
 
+    def update_monster_card_with(self, monster_card, updated_monster_card):
+        monster_card.synchronize_with(updated_monster_card)
+        monster_card.save()
+
     def monster_card_named(self, name, if_found=None, if_none=None):
         return card_named(name=name,
                           card_type=MonsterCard.type_description,
