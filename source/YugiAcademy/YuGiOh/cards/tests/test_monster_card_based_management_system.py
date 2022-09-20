@@ -107,3 +107,8 @@ class TestCardManagementSystem:
             self.system.update_monster_card_with(another_monster_card, updated_monster_card)
         assert exception_info.message_text() == 'There is already a monster card named Dark Magician.'
         assert_collections_have_same_elements([monster_card, another_monster_card], self.system.monster_cards())
+        
+    def test_querying_monster_card_by_name_fails_when_card_not_found(self):
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.monster_card_named(name='Dark Magician', if_found=lambda: pytest.fail())
+        assert exception_info.message_text() == 'There is no monster card named Dark Magician.'
