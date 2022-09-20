@@ -43,9 +43,9 @@ class CardManagementSystem:
         spell_card.save()
 
     def purge_spell_card(self, spell_card):
-        if not self.spell_cards_repository.filter(name=spell_card.name):
-            raise DataInconsistencyFound(f'{spell_card} was expected to be found, but it was not.')
-        spell_card.delete()
+        self.spell_card_named(name=spell_card.name,
+                              if_found=lambda _: spell_card.delete(),
+                              if_none=lambda: raise_expected_to_be_found(spell_card))
 
     def update_spell_card_with(self, spell_card, updated_spell_card):
         if spell_card.name != updated_spell_card.name:
