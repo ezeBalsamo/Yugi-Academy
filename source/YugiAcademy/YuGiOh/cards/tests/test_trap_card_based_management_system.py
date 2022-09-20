@@ -88,3 +88,9 @@ class TestCardManagementSystem:
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.trap_card_named(name='Jar of Greed', if_found=lambda: pytest.fail())
         assert exception_info.message_text() == 'There is no trap card named Jar of Greed.'
+    
+    def test_querying_trap_card_by_name(self):
+        trap_card = jar_of_greed()
+        self.system.store_trap_card(trap_card)
+        found_trap_card = self.system.trap_card_named(name=trap_card.name, if_none=lambda: pytest.fail())
+        assert found_trap_card == trap_card
