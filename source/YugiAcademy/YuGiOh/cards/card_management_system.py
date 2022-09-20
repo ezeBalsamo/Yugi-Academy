@@ -113,7 +113,9 @@ class CardManagementSystem:
         monster_card.save()
 
     def purge_monster_card(self, monster_card):
-        monster_card.delete()
+        self.monster_card_named(name=monster_card.name,
+                             if_found=lambda _: monster_card.delete(),
+                             if_none=lambda: raise_expected_to_be_found(monster_card))
 
     def monster_card_named(self, name, if_found=None, if_none=None):
         return card_named(name=name,

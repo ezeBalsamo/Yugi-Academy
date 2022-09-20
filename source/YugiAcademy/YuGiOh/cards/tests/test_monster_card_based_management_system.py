@@ -1,7 +1,8 @@
 import pytest
 
 from YuGiOh.cards import CardManagementSystem, MonsterCard
-from assertions import SystemRestrictionInfringed, assert_is_empty, assert_the_only_one_in
+from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
+                        assert_is_empty, assert_the_only_one_in
 
 
 def dark_magician():
@@ -52,4 +53,13 @@ class TestCardManagementSystem:
         self.system.store_monster_card(monster_card)
         assert_the_only_one_in(self.system.monster_cards(), monster_card)
         self.system.purge_monster_card(monster_card)
+        assert_is_empty(self.system.monster_cards())
+        
+    def test_cannot_purge_monster_card_not_found(self):
+        monster_card = dark_magician()
+        self.system.store_monster_card(monster_card)
+        self.system.purge_monster_card(monster_card)
+        with pytest.raises(DataInconsistencyFound) as exception_info:
+            self.system.purge_monster_card(monster_card)
+        assert exception_info.message_text() == 'Dark Magician was expected to be found, but it was not.'
         assert_is_empty(self.system.monster_cards())
