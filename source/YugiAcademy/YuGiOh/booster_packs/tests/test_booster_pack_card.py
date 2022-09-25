@@ -1,6 +1,6 @@
 import pytest
 
-from datetime import datetime
+from datetime import date
 
 from assertions import InstanceCreationFailed
 from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
@@ -10,7 +10,7 @@ from YuGiOh.cards import SpellCard, TrapCard, MonsterCard
 def booster_pack():
     return BoosterPack.named(name='Legend of Blue Eyes White Dragon',
                              code='LOB-EN',
-                             release_date=datetime(2002, 3, 8))
+                             release_date=date(2002, 3, 8))
 
 
 def pot_of_greed():
