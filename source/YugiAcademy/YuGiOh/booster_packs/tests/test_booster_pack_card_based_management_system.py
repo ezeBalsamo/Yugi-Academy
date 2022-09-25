@@ -29,13 +29,6 @@ class TestBoosterPackManagementSystem:
         self.card_system.store_spell_card(spell_card)
         return spell_card
 
-    def sogen(self):
-        spell_card = SpellCard.named(name="Sogen",
-                                     type="Field",
-                                     description="All Warrior and Beast-Warrior monsters on the field gain 200 ATK/DEF.")
-        self.card_system.store_spell_card(spell_card)
-        return spell_card
-
     def mirror_force(self):
         trap_card = TrapCard.named(name="Mirror Force",
                                    type="Normal",
@@ -78,7 +71,7 @@ class TestBoosterPackManagementSystem:
 
     def test_cannot_store_booster_pack_card_when_there_is_one_with_same_identifier(self):
         booster_pack_card = self.pot_of_greed_lob_en119()
-        another_booster_pack_card = BoosterPackCard.referring_to(card=self.sogen(),
+        another_booster_pack_card = BoosterPackCard.referring_to(card=self.mirror_force(),
                                                                  booster_pack=booster_pack_card.booster_pack,
                                                                  identifier=booster_pack_card.identifier,
                                                                  rarity='Common')
@@ -110,6 +103,7 @@ class TestBoosterPackManagementSystem:
         self.system.store_booster_pack_card(booster_pack_card)
         self.system.update_booster_pack_card_with(booster_pack_card, updated_booster_pack_card)
         with_the_only_one_in(self.system.booster_pack_cards(),
-                             lambda managed_booster_pack_card: assert_booster_pack_card_was_updated(booster_pack_card,
-                                                                                                    updated_booster_pack_card,
-                                                                                                    managed_booster_pack_card))
+                             lambda managed_booster_pack_card:
+                             assert_booster_pack_card_was_updated(booster_pack_card,
+                                                                  updated_booster_pack_card,
+                                                                  managed_booster_pack_card))
