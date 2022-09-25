@@ -62,8 +62,7 @@ Here, you can also go to sign up page (sign up button) to register a new user.
 
 ## User Profile
 
-You can visit the user profile page from the navigation bar displaying user 
-menu (clicking on profile white logo) and clicking on "Profile" option.
+You can visit the user profile page from the navigation bar displaying user menu (clicking on profile white logo) and clicking on "Profile" option.
 Here, you see and update user information and change user password (button).
 
 ### Information displayed
@@ -212,7 +211,6 @@ Example
 ## About
 
 You can visit the About link from the navigation bar.
-Here, you will see the porpuse of this page and all the information 
-about the authors of this Yugi Academy World!
+Here, you will see the porpuse of this page and all the information about the authors of this Yugi Academy World!
 
 ---
