@@ -36,11 +36,12 @@ Click anywhere to go to the login page.
 ## Login
 
 ### You need to have a registered user to access to yugi academy
+
 You can login to the web page with a previously registered user.
 In this page, you can also go to sign up page (with sign up button) 
 if you want to register a new user.
 
-### Information required
+### Information required for login
 
 - Username
 
@@ -50,7 +51,7 @@ if you want to register a new user.
 
 ## Sign up
 
-### Information required
+### Information required for sign up
 
 - Username
 
@@ -87,10 +88,11 @@ change user password (change password button).
 ---
 
 ## Change Password
+
 After clicking change password button, you will be redirected to a page 
 where you can change user password.
 
-### Information required
+### Information required to change password
 
 - Current password (need to be the same as current user password)
 
