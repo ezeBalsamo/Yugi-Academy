@@ -7,6 +7,7 @@ from assertions import SystemRestrictionInfringed, DataInconsistencyFound
 def raise_expected_to_be_found(managed_object):
     raise DataInconsistencyFound(f'{managed_object} was expected to be found, but it was not.')
 
+
 def raise_found_booster_pack_named(name):
     raise SystemRestrictionInfringed(f'There is already a {BoosterPack.type_description} named {name}.')
 
@@ -36,6 +37,11 @@ class BoosterPackManagementSystem:
         self.booster_pack_named(booster_pack.name,
                                 if_found=lambda _: booster_pack.delete(),
                                 if_none=lambda: raise_expected_to_be_found(booster_pack))
+        
+    
+    def update_booster_pack_with(self, booster_pack, updated_booster_pack):
+        booster_pack.synchronize_with(updated_booster_pack)
+        booster_pack.save()
 
     def booster_pack_named(self, name, if_found, if_none):
         try:
