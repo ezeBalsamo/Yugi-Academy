@@ -1,8 +1,11 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from YuGiOh.booster_packs import BoosterPack
-from assertions import SystemRestrictionInfringed
+from assertions import SystemRestrictionInfringed, DataInconsistencyFound
 
+
+def raise_expected_to_be_found(managed_object):
+    raise DataInconsistencyFound(f'{managed_object} was expected to be found, but it was not.')
 
 def raise_found_booster_pack_named(name):
     raise SystemRestrictionInfringed(f'There is already a {BoosterPack.type_description} named {name}.')
@@ -28,9 +31,11 @@ class BoosterPackManagementSystem:
     def store_booster_pack(self, booster_pack):
         self.assert_there_is_no_booster_pack_named(booster_pack.name)
         booster_pack.save()
-        
+
     def purge_booster_pack(self, booster_pack):
-        booster_pack.delete()
+        self.booster_pack_named(booster_pack.name,
+                                if_found=lambda _: booster_pack.delete(),
+                                if_none=lambda: raise_expected_to_be_found(booster_pack))
 
     def booster_pack_named(self, name, if_found, if_none):
         try:

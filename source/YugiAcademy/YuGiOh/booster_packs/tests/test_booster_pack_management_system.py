@@ -2,7 +2,8 @@ import pytest
 
 from datetime import datetime
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack
-from assertions import SystemRestrictionInfringed, assert_is_empty, assert_the_only_one_in
+from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
+                        assert_is_empty, assert_the_only_one_in
 
 
 def legend_of_blue_eyes_white_dragon():
@@ -39,4 +40,14 @@ class TestBoosterPackManagementSystem:
         self.system.store_booster_pack(booster_pack)
         assert_the_only_one_in(self.system.booster_packs(), booster_pack)
         self.system.purge_booster_pack(booster_pack)
+        assert_is_empty(self.system.booster_packs())
+        
+    def test_cannot_purge_booster_pack_not_found(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        self.system.store_booster_pack(booster_pack)
+        self.system.purge_booster_pack(booster_pack)
+        with pytest.raises(DataInconsistencyFound) as exception_info:
+            self.system.purge_booster_pack(booster_pack)
+        assert exception_info.message_text() == 'Legend of Blue Eyes White Dragon was expected to be found, but it ' \
+                                                'was not.'
         assert_is_empty(self.system.booster_packs())
