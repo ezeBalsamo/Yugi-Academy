@@ -64,7 +64,7 @@ Here, you can also go to sign up page (sign up button) to register a new user.
 
 You can visit the user profile from the navigation bar displaying user menu:
 
-- You have to click on profile white logo and click on "Profile" option. 
+- You have to click on profile white logo and click on "Profile" option.
 
 - Here, you see and update user information and change user password (button).
 
