@@ -8,10 +8,6 @@ def home(request):
     return render(request, "YuGiOh/index.html")
 
 
-def login(request):
-    return render(request, "YuGiOh/login.html")
-
-
 def about(request):
     return render(request, "YuGiOh/about.html")
 
