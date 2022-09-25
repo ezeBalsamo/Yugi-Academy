@@ -79,7 +79,9 @@ class BoosterPackManagementSystem:
         booster_pack_card.save()
 
     def purge_booster_pack_card(self, booster_pack_card):
-        booster_pack_card.delete()
+        self.booster_pack_card_identified_by(identifier=booster_pack_card.identifier,
+                                             if_found=lambda _: booster_pack_card.delete(),
+                                             if_none=lambda: raise_expected_to_be_found(booster_pack_card))
 
     def booster_pack_card_identified_by(self, identifier, if_found=None, if_none=None):
         try:

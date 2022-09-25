@@ -33,5 +33,8 @@ class BoosterPackCard(models.Model):
 
         return cls(card=card, booster_pack=booster_pack, identifier=identifier, rarity=rarity)
 
+    def __str__(self):
+        return f'{self.card_name()} - {self.identifier}'
+
     def card_name(self):
         return self.card.name

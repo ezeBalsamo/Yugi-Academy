@@ -3,7 +3,8 @@ import pytest
 from datetime import date
 from YuGiOh.cards import CardManagementSystem, SpellCard
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
-from assertions import SystemRestrictionInfringed, assert_is_empty, assert_the_only_one_in
+from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
+                        assert_is_empty, assert_the_only_one_in
 
 
 @pytest.mark.django_db
@@ -62,4 +63,13 @@ class TestBoosterPackManagementSystem:
         self.system.store_booster_pack_card(booster_pack_card)
         assert_the_only_one_in(self.system.booster_pack_cards(), booster_pack_card)
         self.system.purge_booster_pack_card(booster_pack_card)
+        assert_is_empty(self.system.booster_pack_cards())
+
+    def test_cannot_purge_booster_pack_not_found(self):
+        booster_pack_card = self.pot_of_greed_lob_en119()
+        self.system.store_booster_pack_card(booster_pack_card)
+        self.system.purge_booster_pack_card(booster_pack_card)
+        with pytest.raises(DataInconsistencyFound) as exception_info:
+            self.system.purge_booster_pack_card(booster_pack_card)
+        assert exception_info.message_text() == 'Pot of Greed - LOB-EN119 was expected to be found, but it was not.'
         assert_is_empty(self.system.booster_pack_cards())
