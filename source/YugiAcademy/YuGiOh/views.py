@@ -5,7 +5,7 @@ from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm, Booste
 
 
 def home(request):
-    return render(request, "YuGiOh/index.html")
+    return render(request, "index.html")
 
 
 def about(request):
