@@ -12,6 +12,7 @@ def enforce_are_related(identifier, booster_pack):
 
 
 class BoosterPackCard(models.Model):
+    type_description = 'booster pack card'
     booster_pack = models.ForeignKey(to=BoosterPack, on_delete=models.PROTECT)
     identifier = models.CharField(max_length=20, unique=True)
     rarity = models.CharField(max_length=20)
@@ -32,5 +33,15 @@ class BoosterPackCard(models.Model):
 
         return cls(card=card, booster_pack=booster_pack, identifier=identifier, rarity=rarity)
 
+    def __str__(self):
+        return f'{self.card_name()} - {self.identifier}'
+
     def card_name(self):
         return self.card.name
+
+    def synchronize_with(self, booster_pack_card):
+        self.card = booster_pack_card.card
+        self.booster_pack = booster_pack_card.booster_pack
+        self.identifier = booster_pack_card.identifier
+        self.rarity = booster_pack_card.rarity
+
