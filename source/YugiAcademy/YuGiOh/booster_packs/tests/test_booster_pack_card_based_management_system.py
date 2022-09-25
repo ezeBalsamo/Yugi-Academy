@@ -128,3 +128,10 @@ class TestBoosterPackManagementSystem:
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.booster_pack_card_identified_by('LOB-EN119', if_found=lambda: pytest.fail())
         assert exception_info.message_text() == 'There is no booster pack card identified by LOB-EN119.'
+
+    def test_querying_booster_pack_card_by_identifier(self):
+        booster_pack_card = self.pot_of_greed_lob_en119()
+        self.system.store_booster_pack_card(booster_pack_card)
+        found_booster_pack_card = self.system.booster_pack_card_identified_by(booster_pack_card.identifier,
+                                                                              if_none=lambda: pytest.fail())
+        assert found_booster_pack_card == booster_pack_card
