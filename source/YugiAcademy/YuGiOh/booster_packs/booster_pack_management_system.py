@@ -78,6 +78,9 @@ class BoosterPackManagementSystem:
         self.assert_there_is_no_booster_pack_card_identified_by(booster_pack_card.identifier)
         booster_pack_card.save()
 
+    def purge_booster_pack_card(self, booster_pack_card):
+        booster_pack_card.delete()
+
     def booster_pack_card_identified_by(self, identifier, if_found=None, if_none=None):
         try:
             card = self.booster_pack_cards_repository.get(identifier=identifier)

@@ -56,3 +56,10 @@ class TestBoosterPackManagementSystem:
             self.system.store_booster_pack_card(another_booster_pack_card)
         assert exception_info.message_text() == 'There is already a booster pack card identified by LOB-EN119.'
         assert_the_only_one_in(self.system.booster_pack_cards(), booster_pack_card)
+
+    def test_purge_booster_pack_card(self):
+        booster_pack_card = self.pot_of_greed_lob_en119()
+        self.system.store_booster_pack_card(booster_pack_card)
+        assert_the_only_one_in(self.system.booster_pack_cards(), booster_pack_card)
+        self.system.purge_booster_pack_card(booster_pack_card)
+        assert_is_empty(self.system.booster_pack_cards())
