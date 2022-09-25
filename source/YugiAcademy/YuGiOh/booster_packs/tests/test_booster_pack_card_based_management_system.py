@@ -123,3 +123,8 @@ class TestBoosterPackManagementSystem:
         assert exception_info.message_text() == 'There is already a booster pack card identified by LOB-EN119.'
         assert_collections_have_same_elements([booster_pack_card, another_booster_pack_card],
                                               self.system.booster_pack_cards())
+
+    def test_querying_booster_pack_by_identifier_fails_when_booster_pack_card_not_found(self):
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.booster_pack_card_identified_by('LOB-EN119', if_found=lambda: pytest.fail())
+        assert exception_info.message_text() == 'There is no booster pack card identified by LOB-EN119.'
