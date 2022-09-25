@@ -6,6 +6,7 @@ from assertions import enforce_not_blank
 
 
 class BoosterPack(models.Model):
+    type_description = 'booster pack'
     name = models.CharField(max_length=50, unique=True)
     code = models.CharField(max_length=10)
     release_date = models.DateField()
