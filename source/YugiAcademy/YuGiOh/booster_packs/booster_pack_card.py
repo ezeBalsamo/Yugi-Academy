@@ -38,3 +38,10 @@ class BoosterPackCard(models.Model):
 
     def card_name(self):
         return self.card.name
+
+    def synchronize_with(self, booster_pack_card):
+        self.card = booster_pack_card.card
+        self.booster_pack = booster_pack_card.booster_pack
+        self.identifier = booster_pack_card.identifier
+        self.rarity = booster_pack_card.rarity
+
