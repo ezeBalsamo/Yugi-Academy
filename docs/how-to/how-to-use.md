@@ -54,8 +54,6 @@ Here, you can also go to sign up page (sign up button) to register a new user.
 
 - Username
 
-- Email
-
 - Password
 
 ---
@@ -66,7 +64,7 @@ You can visit the user profile from the navigation bar displaying user menu:
 
 - You have to click on profile white logo and click on "Profile" option.
 
-- Here, you see and update user information and change user password (button).
+- Here, you can see and update your profile and your password.
 
 ### Information displayed
 
@@ -86,17 +84,17 @@ You can visit the user profile from the navigation bar displaying user menu:
 
 ---
 
-## Change Password
+## Update Password
 
-Clicking change password button, you will take you to a change password page.
+You can update your password by clicking the update password button.
 
-### Information required to change password
+### Information required to update the password
 
-- Current password (need to be the same as current user password)
+- Current password (it needs to be the same as current user password)
 
-- New password (need to be different to current user password)
+- New password (it needs to be different to current user password)
 
-- Confirm password (need to be the same as new password)
+- Confirm password (it needs to be the same as new password)
 
 ---
 
@@ -213,7 +211,7 @@ Example
 
 ## About
 
-You can visit the About link from the navigation bar.
+You can visit the About page from the navigation bar.
 Here, you will see:
 
 - Porpuse of this page.
