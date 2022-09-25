@@ -3,8 +3,9 @@ import pytest
 from datetime import date
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-    assert_is_empty, assert_the_only_one_in, \
-    with_the_only_one_in
+                        assert_is_empty, assert_the_only_one_in, \
+                        with_the_only_one_in, \
+                        assert_collections_have_same_elements
 
 
 def legend_of_blue_eyes_white_dragon():
@@ -73,3 +74,15 @@ class TestBoosterPackManagementSystem:
                              lambda managed_booster_pack: assert_booster_pack_was_updated(booster_pack,
                                                                                           updated_booster_pack,
                                                                                           managed_booster_pack))
+        
+    def test_cannot_update_booster_pack_where_there_is_one_with_same_name(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        another_booster_pack = metal_raiders()
+        updated_booster_pack = BoosterPack.named(booster_pack.name, code='SDY-EN', release_date=date.today())
+        self.system.store_booster_pack(booster_pack)
+        self.system.store_booster_pack(another_booster_pack)
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.update_booster_pack_with(another_booster_pack, updated_booster_pack)
+        assert exception_info.message_text() == 'There is already a booster pack named Legend of Blue Eyes White ' \
+                                                'Dragon.'
+        assert_collections_have_same_elements([booster_pack, another_booster_pack], self.system.booster_packs())

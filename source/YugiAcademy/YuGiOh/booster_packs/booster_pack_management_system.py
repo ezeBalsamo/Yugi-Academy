@@ -37,9 +37,10 @@ class BoosterPackManagementSystem:
         self.booster_pack_named(booster_pack.name,
                                 if_found=lambda _: booster_pack.delete(),
                                 if_none=lambda: raise_expected_to_be_found(booster_pack))
-        
-    
+
     def update_booster_pack_with(self, booster_pack, updated_booster_pack):
+        if booster_pack.name != updated_booster_pack.name:
+            self.assert_there_is_no_booster_pack_named(updated_booster_pack.name)
         booster_pack.synchronize_with(updated_booster_pack)
         booster_pack.save()
 
