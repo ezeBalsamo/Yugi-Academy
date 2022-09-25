@@ -44,7 +44,7 @@ class BoosterPackManagementSystem:
         booster_pack.synchronize_with(updated_booster_pack)
         booster_pack.save()
 
-    def booster_pack_named(self, name, if_found, if_none=None):
+    def booster_pack_named(self, name, if_found=None, if_none=None):
         try:
             card = self.booster_packs_repository.get(name=name)
             return card if if_found is None else if_found(card)
