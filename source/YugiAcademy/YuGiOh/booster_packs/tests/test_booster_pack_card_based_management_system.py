@@ -4,8 +4,9 @@ from datetime import date
 from YuGiOh.cards import CardManagementSystem, SpellCard, TrapCard
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-    assert_is_empty, assert_the_only_one_in, \
-    with_the_only_one_in
+                        assert_is_empty, assert_the_only_one_in, \
+                        with_the_only_one_in, \
+                        assert_collections_have_same_elements
 
 
 def assert_booster_pack_card_was_updated(booster_pack_card, updated_booster_pack_card, managed_booster_pack_card):
@@ -107,3 +108,18 @@ class TestBoosterPackManagementSystem:
                              assert_booster_pack_card_was_updated(booster_pack_card,
                                                                   updated_booster_pack_card,
                                                                   managed_booster_pack_card))
+
+    def test_cannot_update_booster_pack_card_where_there_is_one_with_same_identifier(self):
+        booster_pack_card = self.pot_of_greed_lob_en119()
+        another_booster_pack_card = self.mirror_force_mrd_en138()
+        updated_booster_pack_card = BoosterPackCard.referring_to(card=another_booster_pack_card.card,
+                                                                 booster_pack=booster_pack_card.booster_pack,
+                                                                 identifier=booster_pack_card.identifier,
+                                                                 rarity='Common')
+        self.system.store_booster_pack_card(booster_pack_card)
+        self.system.store_booster_pack_card(another_booster_pack_card)
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.update_booster_pack_card_with(another_booster_pack_card, updated_booster_pack_card)
+        assert exception_info.message_text() == 'There is already a booster pack card identified by LOB-EN119.'
+        assert_collections_have_same_elements([booster_pack_card, another_booster_pack_card],
+                                              self.system.booster_pack_cards())

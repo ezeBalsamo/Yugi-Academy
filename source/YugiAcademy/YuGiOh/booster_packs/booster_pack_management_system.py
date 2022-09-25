@@ -84,6 +84,8 @@ class BoosterPackManagementSystem:
                                              if_none=lambda: raise_expected_to_be_found(booster_pack_card))
 
     def update_booster_pack_card_with(self, booster_pack_card, updated_booster_pack_card):
+        if booster_pack_card.identifier != updated_booster_pack_card.identifier:
+            self.assert_there_is_no_booster_pack_card_identified_by(updated_booster_pack_card.identifier)
         booster_pack_card.synchronize_with(updated_booster_pack_card)
         booster_pack_card.save()
 
