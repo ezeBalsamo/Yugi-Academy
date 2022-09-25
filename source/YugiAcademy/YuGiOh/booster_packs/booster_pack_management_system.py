@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 
-from YuGiOh.booster_packs import BoosterPack
+from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound
 
 
@@ -20,6 +20,9 @@ class BoosterPackManagementSystem:
 
     def __init__(self):
         self.booster_packs_repository = BoosterPack.objects
+        self.booster_pack_cards_repository = BoosterPackCard.objects
+
+    """ Booster packs """
 
     def assert_there_is_no_booster_pack_named(self, name):
         self.booster_pack_named(name,
@@ -50,3 +53,11 @@ class BoosterPackManagementSystem:
             return card if if_found is None else if_found(card)
         except ObjectDoesNotExist:
             raise_not_found_booster_pack_named(name) if if_none is None else if_none()
+
+    """ Booster pack cards """
+
+    def booster_pack_cards(self):
+        return list(self.booster_pack_cards_repository.all())
+
+    def store_booster_pack_card(self, booster_pack_card):
+        booster_pack_card.save()
