@@ -86,3 +86,8 @@ class TestBoosterPackManagementSystem:
         assert exception_info.message_text() == 'There is already a booster pack named Legend of Blue Eyes White ' \
                                                 'Dragon.'
         assert_collections_have_same_elements([booster_pack, another_booster_pack], self.system.booster_packs())
+        
+    def test_querying_booster_pack_by_name_fails_when_card_not_found(self):
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.booster_pack_named('Metal Raiders', if_found=lambda: pytest.fail())
+        assert exception_info.message_text() == 'There is no booster pack named Metal Raiders.'
