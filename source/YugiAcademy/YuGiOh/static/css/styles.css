@@ -7,6 +7,10 @@
   transform: translateX(calc((100% - 100vw) / 2));
 }
 
+#welcome-video-message{
+  -webkit-text-stroke: 0.5px black;
+}
+
 .content {
   position: fixed;
   margin-top: 15rem;
