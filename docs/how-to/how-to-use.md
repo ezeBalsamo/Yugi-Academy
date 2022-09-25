@@ -38,8 +38,7 @@ Click anywhere to go to the login page.
 ### You need to have a registered user to access to yugi academy
 
 You can login to the web page with a previously registered user.
-In this page, you can also go to sign up page (with sign up button) 
-if you want to register a new user.
+In this page, you can also go to sign up page (with sign up button) if you want to register a new user.
 
 ### Information required for login
 
@@ -65,9 +64,7 @@ if you want to register a new user.
 
 You can visit the user profile page from the navigation bar displaying user 
 menu (clicking on profile white logo) and clicking on "Profile" option.
-
-In this page, you can see and update user profile information and also 
-change user password (change password button).
+In this page, you can see and update user profile information and also change user password (change password button).
 
 ### Information displayed
 
@@ -89,8 +86,7 @@ change user password (change password button).
 
 ## Change Password
 
-After clicking change password button, you will be redirected to a page 
-where you can change user password.
+After clicking change password button, you will be redirected to a page where you can change user password.
 
 ### Information required to change password
 
