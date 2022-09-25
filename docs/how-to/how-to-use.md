@@ -35,7 +35,68 @@ Click anywhere to go to the login page.
 
 ## Login
 
-For now, you can log in with any credentials as the logic is not developed yet.
+### You need to have a registered user to access to yugi academy
+
+You can login to the web page with a previously registered user.
+Here, you can also go to sign up page (sign up button) to register a new user.
+
+### Information required for login
+
+- Username
+
+- Password
+
+---
+
+## Sign up
+
+### Information required for sign up
+
+- Username
+
+- Password
+
+---
+
+## User Profile
+
+You can visit the user profile from the navigation bar displaying user menu:
+
+- You have to click on profile white logo and click on "Profile" option.
+
+- Here, you can see and update your profile and your password.
+
+### Information displayed
+
+- Profile image
+
+- Username
+
+- Full name
+
+- Description
+
+- Social network
+
+- Email
+
+- Password
+
+---
+
+## Update Password
+
+You can update your password by clicking the update password button.
+
+### Information required to update the password
+
+- Current password (it needs to be the same as current user password)
+
+- New password (it needs to be different to current user password)
+
+- Confirm password (it needs to be the same as new password)
+
+---
 
 ## Cards
 
@@ -145,5 +206,16 @@ Example
 - identifier: SD2-EN017
 
 - rarity: Common
+
+---
+
+## About
+
+You can visit the About page from the navigation bar.
+Here, you will see:
+
+- Porpuse of this page.
+
+- Information about the authors of this Yugi Academy World!
 
 ---
