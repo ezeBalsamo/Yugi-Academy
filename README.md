@@ -7,7 +7,7 @@ Your place to learn all about Yu-Gi-Oh! cards, sets, ban lists and much more
 [![Unit Tests](https://github.com/ezeBalsamo/Yugi-Academy/actions/workflows/tests.yml/badge.svg)](https://github.com/ezeBalsamo/Yugi-Academy/actions/workflows/tests.yml/badge.svg)
 [![codecov](https://codecov.io/gh/ezeBalsamo/Yugi-Academy/branch/release-candidate/graph/badge.svg?token=I4HXIPBZ93)](https://codecov.io/gh/ezeBalsamo/Yugi-Academy)
 [![Markdown Lint](https://github.com/ezeBalsamo/Yugi-Academy/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/ezeBalsamo/Yugi-Academy/actions/workflows/markdown-lint.yml)
-[![GitHub release](https://img.shields.io/github/release/ezeBalsamo/Yugi-Academy.svg)](https://github.com/ezeBalsamo/Yugi-Academy/releases/latest)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ezeBalsamo/Yugi-Academy?include_prereleases)
 
 This application has an educational purpose, guided by Coderhouse's Python course.
 
