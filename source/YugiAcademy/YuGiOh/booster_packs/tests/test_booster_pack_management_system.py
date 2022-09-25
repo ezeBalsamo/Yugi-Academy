@@ -33,4 +33,10 @@ class TestBoosterPackManagementSystem:
         assert exception_info.message_text() == 'There is already a booster pack named Legend of Blue Eyes White ' \
                                                 'Dragon.'
         assert_the_only_one_in(self.system.booster_packs(), booster_pack)
-
+        
+    def test_purge_booster_pack(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        self.system.store_booster_pack(booster_pack)
+        assert_the_only_one_in(self.system.booster_packs(), booster_pack)
+        self.system.purge_booster_pack(booster_pack)
+        assert_is_empty(self.system.booster_packs())

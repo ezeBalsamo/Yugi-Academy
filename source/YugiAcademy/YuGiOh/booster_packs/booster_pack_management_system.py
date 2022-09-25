@@ -28,6 +28,9 @@ class BoosterPackManagementSystem:
     def store_booster_pack(self, booster_pack):
         self.assert_there_is_no_booster_pack_named(booster_pack.name)
         booster_pack.save()
+        
+    def purge_booster_pack(self, booster_pack):
+        booster_pack.delete()
 
     def booster_pack_named(self, name, if_found, if_none):
         try:
