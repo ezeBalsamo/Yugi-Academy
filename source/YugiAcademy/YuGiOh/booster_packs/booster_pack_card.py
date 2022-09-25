@@ -12,6 +12,7 @@ def enforce_are_related(identifier, booster_pack):
 
 
 class BoosterPackCard(models.Model):
+    type_description = 'booster pack card'
     booster_pack = models.ForeignKey(to=BoosterPack, on_delete=models.PROTECT)
     identifier = models.CharField(max_length=20, unique=True)
     rarity = models.CharField(max_length=20)

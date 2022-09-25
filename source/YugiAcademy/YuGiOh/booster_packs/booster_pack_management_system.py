@@ -16,6 +16,15 @@ def raise_not_found_booster_pack_named(name):
     raise SystemRestrictionInfringed(f'There is no {BoosterPack.type_description} named {name}.')
 
 
+def raise_found_booster_pack_card_identified_by(identifier):
+    raise SystemRestrictionInfringed(
+        f'There is already a {BoosterPackCard.type_description} identified by {identifier}.')
+
+
+def raise_not_found_booster_pack_card_identified_by(identifier):
+    raise SystemRestrictionInfringed(f'There is no {BoosterPackCard.type_description} identified by {identifier}.')
+
+
 class BoosterPackManagementSystem:
 
     def __init__(self):
@@ -56,8 +65,22 @@ class BoosterPackManagementSystem:
 
     """ Booster pack cards """
 
+    def assert_there_is_no_booster_pack_card_identified_by(self, identifier):
+        self.booster_pack_card_identified_by(identifier,
+                                             if_found=lambda booster_pack_card:
+                                             raise_found_booster_pack_card_identified_by(booster_pack_card.identifier),
+                                             if_none=lambda: None)
+
     def booster_pack_cards(self):
         return list(self.booster_pack_cards_repository.all())
 
     def store_booster_pack_card(self, booster_pack_card):
+        self.assert_there_is_no_booster_pack_card_identified_by(booster_pack_card.identifier)
         booster_pack_card.save()
+
+    def booster_pack_card_identified_by(self, identifier, if_found=None, if_none=None):
+        try:
+            card = self.booster_pack_cards_repository.get(identifier=identifier)
+            return card if if_found is None else if_found(card)
+        except ObjectDoesNotExist:
+            raise_not_found_booster_pack_card_identified_by(identifier) if if_none is None else if_none()
