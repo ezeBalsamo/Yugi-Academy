@@ -257,6 +257,8 @@ input {
 
 #avatar-block figure img {
     max-width: 10rem;
+    max-height: 10rem;
+    border-radius: 100%;
     transition: all 100ms ease-out;
 }
 
@@ -299,6 +301,11 @@ label[for="avatar-clear_id"]
 #avatar-clear_id{
     display: none;
 }
+
+#gold-camera {
+    border-radius: 0 !important;
+}
+
 
 .about-images{
   display: flex;
