@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from YuGiOh.cards import MonsterCard, SpellCard, TrapCard
 from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
@@ -5,15 +6,11 @@ from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm, Booste
 
 
 def home(request):
-    return render(request, "YuGiOh/index.html")
-
-
-def login(request):
-    return render(request, "YuGiOh/login.html")
+    return render(request, "index.html")
 
 
 def about(request):
-    return render(request, "YuGiOh/about.html")
+    return render(request, "about.html")
 
 
 def cards(request):
@@ -61,6 +58,7 @@ def booster_packs_according_to(request):
     raise Exception(f'The {request.method} method was not expected')
 
 
+@login_required
 def booster_packs(request):
     context = {
         'form': SearchBoosterPackForm(),

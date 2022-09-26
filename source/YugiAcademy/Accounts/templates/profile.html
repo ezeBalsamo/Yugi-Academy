@@ -1,0 +1,33 @@
+{% extends "YuGiOh/base.html" %}
+{% block page-content %}
+
+    {% if messages %}
+            {% for message in messages %}
+            <p {% if message.tags %} class="message-{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+    <form action="" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
+        <div id="avatar-block">
+          <figure>
+            <img id="profile-icon-white" src="../static/assets/profile-icon-white.png">
+              <input type="file" id="image"  name="image" accept=".jpg,.png"/>
+              <label for="image" style="cursor: pointer;">
+                <span> <img src="../static/assets/camera-gold.png" title="Load a profile image">
+                </span>
+              </label>
+            </figure>
+          </div>
+
+        {{ form.as_p }}
+
+        <div class="form-row">
+          <input type="button" value="Update Password" onclick="location.href='update-password';" class="button" id="update-password-button"/>
+        </div>
+
+        <div class="submit-row">
+          <input type="submit" value="Save" class="button" id="save-button" />
+        </div>
+
+    </form>
+{% endblock %}
