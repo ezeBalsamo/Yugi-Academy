@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from YuGiOh.cards import MonsterCard, SpellCard, TrapCard
 from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
@@ -57,6 +58,7 @@ def booster_packs_according_to(request):
     raise Exception(f'The {request.method} method was not expected')
 
 
+@login_required
 def booster_packs(request):
     context = {
         'form': SearchBoosterPackForm(),
