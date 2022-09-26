@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
@@ -36,3 +37,8 @@ def signup(request):
         return render(request, "signup.html", {"form": SignUpForm()})
 
     raise Exception(f'The {request.method} method was not expected')
+
+
+@login_required
+def profile(request):
+    return render(request, "profile.html")

@@ -1,0 +1,93 @@
+{% extends "YuGiOh/base.html" %}
+{% block page-content %}
+
+
+
+
+<form action="" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
+    <div id="avatar-block">
+      <figure>
+        <img id="profile-icon-white" src="../static/assets/profile-icon-white.png">
+          <input type="file" id="image"  name="image" accept=".jpg,.png"/>
+          <label for="image" style="cursor: pointer;">
+            <span> <img src="../static/assets/camera-gold.png" title="Load a profile image">
+            </span>
+          </label>
+        </figure>
+      </div>
+
+    <div class="form-row">
+      <p>Username</p>
+      <label for="username"></label>
+      <input
+            type="text"
+            name="username"
+            id="username"
+            value = "{{username}}"
+      readonly />
+    </div>
+
+      <div class="form-row">
+        <p>Full name</p>
+        <label for="name"></label>
+        <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter your full name"
+            value = "{{name}}"
+        />
+      </div>
+
+    <div class="form-row">
+      <p>Description</p>
+      <label for="description"></label>
+      <textarea id="description" name="description" placeholder="Describe yourself"> {{description}} </textarea>
+    </div>
+
+    <div class="form-row">
+      <p>Link to social network</p>
+      <label for="web_site"></label>
+      <input
+            type="text"
+            name="web_site"
+            id="web_site"
+            placeholder="Enter your social network"
+            value = "{{web_site}}"
+      />
+    </div>
+
+    <div class="form-row">
+      <p>Email</p>
+      <label for="email"></label>
+      <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            value = "{{email}}"
+            readonly />
+    </div>
+
+    <div class="form-row">
+      <p>Password</p>
+      <label for="password"></label>
+      <input
+            type="password"
+            name="password"
+            id="password"
+            value = "{{password}}"
+            readonly />
+    </div>
+
+    <div class="form-row">
+      <input type="button" value="Change Password" onclick="location.href='change-password';" class="button" id="change-password-button"/>
+    </div>
+
+    <div class="submit-row">
+      <input type="submit" value="Save" class="button" id="save-button" />
+    </div>
+
+</form>
+
+{% endblock %}

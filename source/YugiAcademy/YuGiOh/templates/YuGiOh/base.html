@@ -23,14 +23,24 @@
         <li><a href="{% url 'home' %}"><img src="../../static/assets/logo.png" id="logo"></a></li>
       </div>
 
-      <div id="nav-links">
-                <span class="abrir">
-                  <li> <a href="{% url 'cards' %}">Cards</a></li>
-                  <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
-                  <li> <a href="{% url 'about' %}">About</a></li>
-                </span>
+      <div>
+        <li id="welcome-message">Welcome to Yugi Academy, {{ user.get_username }}!</li>
       </div>
-      </label>
+
+      <div id="nav-links">
+          <li> <a href="{% url 'cards' %}">Cards</a></li>
+          <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
+          <li> <a href="{% url 'about' %}">About</a></li>
+          <li>
+              <form name="form-nav" method="post" action="">
+                  <select name="avatar" id="profile" onchange="location.href=form.avatar.value;">
+                    <option id="option-hide" value="{% url 'cards' %}"> </option>
+                    <option value="{% url 'profile' %}">Profile</option>
+                    <option value="{% url 'home' %}">Logout</option>
+                  </select>
+              </form>
+          </li>
+      </div>
     </ul>
   </nav>
 </header>
