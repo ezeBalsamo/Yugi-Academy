@@ -9,7 +9,7 @@ def home(request):
 
 
 def about(request):
-    return render(request, "YuGiOh/about.html")
+    return render(request, "about.html")
 
 
 def cards(request):
