@@ -81,10 +81,9 @@ def store_or_update_profile_of(user, request):
         messages.info(request, "Profile has been successfully updated")
     else:
         messages.error(request, 'Profile update has failed.')
-    return redirect('profile')
 
 
-def show_profile_of(user, request):
+def form_to_show_profile_of(user, request):
     try:
         user_profile = UserProfile.objects.get(user=user)
         form = UserAndProfileForm(initial={
@@ -104,7 +103,7 @@ def show_profile_of(user, request):
             'email': user.email,
         })
 
-    return render(request, "profile.html", {"form": form})
+    return form
 
 
 @login_required
@@ -112,7 +111,9 @@ def profile(request):
     user = request.user
     if request.method == 'POST':
         store_or_update_profile_of(user, request)
+        return render(request, 'profile.html')
     elif request.method == 'GET':
-        show_profile_of(user, request)
+        form = form_to_show_profile_of(user, request)
+        return render(request, "profile.html", {"form": form})
     else:
         raise Exception(f'The {request.method} method was not expected')
