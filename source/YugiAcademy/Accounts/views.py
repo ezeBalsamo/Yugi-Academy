@@ -76,7 +76,7 @@ def store_or_update_profile_of(user, request):
         new_user_profile = UserProfile.from_form(user, form_data)
         user_profile_system.user_profile_of(user,
                                             if_found=lambda found_profile:
-                                            user_profile_system.update_user_profile(found_profile, new_user_profile),
+                                            user_profile_system.update_user_profile_with(found_profile, new_user_profile),
                                             if_none=lambda: new_user_profile.save())
         messages.info(request, "Profile has been successfully updated")
     else:
