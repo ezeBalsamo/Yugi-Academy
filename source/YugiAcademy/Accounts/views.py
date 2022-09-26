@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, UpdatePasswordForm
+from .forms import SignUpForm, UpdatePasswordForm, UserAndProfileForm
+from .models import UserProfile
 
 
 def login_with(request):
@@ -57,6 +59,60 @@ def update_password(request):
     raise Exception(f'The {request.method} method was not expected')
 
 
+def update_user_with_data_from(user, form_data):
+    user.first_name = form_data.get('first_name')
+    user.last_name = form_data.get('last_name')
+    user.email = form_data.get('email')
+    user.save()
+
+
+def store_or_update_profile_of(user, request):
+    form = UserAndProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+        form_data = form.cleaned_data
+        update_user_with_data_from(user, form_data)
+        new_user_profile = UserProfile.from_form(user, form_data)
+        try:
+            found_user_profile = UserProfile.objects.get(user=user)
+            found_user_profile.synchronize_with(new_user_profile)
+            found_user_profile.save()
+        except ObjectDoesNotExist:
+            new_user_profile.save()
+        messages.info(request, "Profile has been successfully updated")
+    else:
+        messages.error(request, 'Profile update has failed.')
+    return redirect('profile')
+
+
+def show_profile_of(user, request):
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+        form = UserAndProfileForm(initial={
+            'username': user.get_username,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+            'description': user_profile.description,
+            'social_network_link': user_profile.social_network_link,
+            'avatar': user_profile.avatar
+        })
+    except ObjectDoesNotExist:
+        form = UserAndProfileForm(initial={
+            'username': user.get_username,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+        })
+
+    return render(request, "profile.html", {"form": form})
+
+
 @login_required
 def profile(request):
-    return render(request, "profile.html")
+    user = request.user
+    if request.method == 'POST':
+        store_or_update_profile_of(user, request)
+    elif request.method == 'GET':
+        show_profile_of(user, request)
+    else:
+        raise Exception(f'The {request.method} method was not expected')
