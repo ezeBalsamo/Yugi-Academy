@@ -224,8 +224,7 @@ input {
   background-color: #6c7983;
 }
 
-select#profile{
-  background-image: url("../../static/assets/profile-icon-white.png");
+.avatar{
   border-radius: 50%;
   background-color: black;
   color: white;
@@ -237,7 +236,7 @@ select#profile{
   background-position: center;
 }
 
-select#profile option {
+.avatar option {
   margin: 25rem;
   font-size: medium;
   font-weight: bold;
