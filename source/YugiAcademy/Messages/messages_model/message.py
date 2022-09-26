@@ -11,7 +11,7 @@ class Message(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(deleted_user))
     receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(deleted_user))
     date_and_time_sent = models.DateTimeField()
-    content = models.TextField(null=True)
+    content = models.TextField()
 
     def __str__(self):
         return f'Rem: {self.remitent_user.get_username()} -> Dest: {self.destinatary_user.get_username()} - DateTime: {self.date_and_time}'
