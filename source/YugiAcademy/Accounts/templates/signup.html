@@ -20,45 +20,9 @@
             <p {% if message.tags %} class="message-{{ message.tags }}"{% endif %}>{{ message }}</p>
             {% endfor %}
         {% endif %}
-        <div class="form-row">
-          <label for="username" class="required">Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Enter a username"
-          />
-        </div>
 
-        <div class="form-row">
-          <label for="email" class="required">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter an email"
-          />
-        </div>
+       {{ form.as_p }}
 
-        <div class="form-row">
-          <label for="password" class="required">Password</label>
-          <input
-            type="password"
-            name="password1"
-            id="password"
-            placeholder="Enter a password"
-          />
-        </div>
-
-        <div class="form-row">
-          <label for="password" class="required">Confirm your password</label>
-          <input
-            type="password"
-            name="password2"
-            id="password_confirmation"
-            placeholder="Enter your password confirmation"
-          />
-        </div>
         <div class="submit-row">
           <input type="button" onclick="location.href='login';" class="button" id="back-button" value="Back"/>
           <input type="submit" value="Sign Up" class="button" id="signup-button" />

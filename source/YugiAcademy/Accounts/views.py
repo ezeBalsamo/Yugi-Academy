@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
+from .forms import SignUpForm
 
 
 def login_with(request):
@@ -22,7 +23,7 @@ def login_with(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
+        form = SignUpForm(data=request.POST)
         if form.is_valid():
             form.save()
             messages.info(request, "Sign up has been successful")
@@ -32,7 +33,6 @@ def signup(request):
             return redirect('signup')
 
     if request.method == 'GET':
-        return render(request, "signup.html")
+        return render(request, "signup.html", {"form": SignUpForm()})
 
     raise Exception(f'The {request.method} method was not expected')
-
