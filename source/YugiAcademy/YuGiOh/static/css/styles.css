@@ -263,16 +263,14 @@ input {
 #avatar-block figure label {
     position: absolute;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     transition: all 100ms ease-out;
     opacity: 0;
     visibility: hidden;
-    max-width: 10rem;
     cursor: pointer;
-    margin-left: -14rem;
-    border-radius: 30%;
 }
 
 #avatar-block figure:hover > label{
@@ -286,11 +284,20 @@ input {
   text-align: left;
 }
 
-#image {
+#select_avatar_file{
     margin-top: -10rem;
-    padding-top: 10rem;
-    opacity: 0;
+    padding-top: 5rem;
     cursor: pointer;
+    opacity: 0;
+}
+
+label[for="avatar-clear_id"]
+{
+    display:none;
+}
+
+#avatar-clear_id{
+    display: none;
 }
 
 .about-images{
