@@ -40,4 +40,4 @@ class UserProfileManagementSystem:
             user_profile = self.user_profiles_repository.get(user=user)
             return user_profile if if_found is None else if_found(user_profile)
         except ObjectDoesNotExist:
-            raise_not_found_user_profile_of(user) if if_none is None else if_none()
+            return raise_not_found_user_profile_of(user) if if_none is None else if_none()
