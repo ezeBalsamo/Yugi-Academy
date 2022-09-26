@@ -3,6 +3,7 @@ from django.db import models
 
 
 class UserProfile(models.Model):
+    type_description = 'user profile'
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.TextField(null=True)
     social_network_link = models.URLField(null=True)
