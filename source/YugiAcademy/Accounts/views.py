@@ -111,7 +111,7 @@ def profile(request):
     user = request.user
     if request.method == 'POST':
         store_or_update_profile_of(user, request)
-        return render(request, 'profile.html')
+        return redirect('profile')
     elif request.method == 'GET':
         form = form_to_show_profile_of(user, request)
         return render(request, "profile.html", {"form": form})
