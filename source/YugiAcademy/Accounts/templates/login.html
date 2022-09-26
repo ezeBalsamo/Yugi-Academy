@@ -23,27 +23,7 @@
         {% endif %}
 
 
-        <div class="form-row">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Enter your username"
-            required
-          />
-        </div>
-
-        <div class="form-row">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
+       {{ form.as_p }}
 
         <div class="submit-row">
           <input type="submit" value="Log in" class="button" id="login-button" />

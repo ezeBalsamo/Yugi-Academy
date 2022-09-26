@@ -16,7 +16,7 @@ def login_with(request):
             return redirect('login')
 
     if request.method == 'GET':
-        return render(request, "login.html")
+        return render(request, "login.html", {"form": AuthenticationForm()})
 
     raise Exception(f'The {request.method} method was not expected')
 
