@@ -17,30 +17,30 @@
 
         {% if messages %}
             {% for message in messages %}
-            <p id="display-message" >{{ message }}</p>
+            <p {% if message.tags %} class="{{ message.tags }}"{% endif %} id="display-message">{{ message }}</p>
             {% endfor %}
         {% endif %}
 
 
         <div class="form-row">
-          <p>Username</p>
-          <label for="username" class="required"></label>
+          <label for="username">Username</label>
           <input
             type="text"
             name="username"
             id="username"
             placeholder="Enter your username"
+            required
           />
         </div>
 
         <div class="form-row">
-          <p>Password</p>
-          <label for="password" class="required"></label>
+          <label for="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
             placeholder="Enter your password"
+            required
           />
         </div>
 
