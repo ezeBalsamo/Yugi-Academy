@@ -23,6 +23,3 @@ class SpellCard(Card):
         self.name = spell_card.name
         self.type = spell_card.type
         self.description = spell_card.description
-
-    def __str__(self):
-        return self.name

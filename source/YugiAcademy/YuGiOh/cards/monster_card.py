@@ -42,6 +42,3 @@ class MonsterCard(Card):
         self.attack = monster_card.attack
         self.defense = monster_card.defense
         self.description = monster_card.description
-
-    def __str__(self):
-        return self.name
