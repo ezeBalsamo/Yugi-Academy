@@ -310,7 +310,12 @@ select#profile option {
     text-align: center;
 }
 
-#display-message {
+.message-error {
     color:red;
+    margin-left: 1rem;
+}
+
+.message-info {
+    color:green;
     margin-left: 1rem;
 }
