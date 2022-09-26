@@ -8,8 +8,8 @@ def deleted_user():
 
 
 class Message(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(deleted_user))
-    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(deleted_user))
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='sender', on_delete=models.SET(deleted_user))
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='receiver', on_delete=models.SET(deleted_user))
     date_and_time_sent = models.DateTimeField()
     content = models.TextField()
 
