@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import SignUpForm, UpdatePasswordForm
 
 
 def login_with(request):
@@ -24,7 +24,7 @@ def login_with(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(data=request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             messages.info(request, "Sign up has been successful")
@@ -35,6 +35,24 @@ def signup(request):
 
     if request.method == 'GET':
         return render(request, "signup.html", {"form": SignUpForm()})
+
+    raise Exception(f'The {request.method} method was not expected')
+
+
+@login_required
+def update_password(request):
+    if request.method == 'POST':
+        form = UpdatePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Password has been successfully updated")
+            # Django will automagically redirect to login
+        else:
+            messages.error(request, 'Password update has failed.')
+            return redirect('profile')
+
+    if request.method == 'GET':
+        return render(request, "update_password.html", {"form": UpdatePasswordForm(request.user)})
 
     raise Exception(f'The {request.method} method was not expected')
 
