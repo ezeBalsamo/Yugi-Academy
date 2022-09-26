@@ -224,8 +224,7 @@ input {
   background-color: #6c7983;
 }
 
-select#profile{
-  background-image: url("../../static/assets/profile-icon-white.png");
+.avatar{
   border-radius: 50%;
   background-color: black;
   color: white;
@@ -237,7 +236,7 @@ select#profile{
   background-position: center;
 }
 
-select#profile option {
+.avatar option {
   margin: 25rem;
   font-size: medium;
   font-weight: bold;
@@ -258,22 +257,22 @@ select#profile option {
 
 #avatar-block figure img {
     max-width: 10rem;
+    max-height: 10rem;
+    border-radius: 100%;
     transition: all 100ms ease-out;
 }
 
 #avatar-block figure label {
     position: absolute;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     transition: all 100ms ease-out;
     opacity: 0;
     visibility: hidden;
-    max-width: 10rem;
     cursor: pointer;
-    margin-left: -14rem;
-    border-radius: 30%;
 }
 
 #avatar-block figure:hover > label{
@@ -287,12 +286,26 @@ select#profile option {
   text-align: left;
 }
 
-#image {
+#select_avatar_file{
     margin-top: -10rem;
-    padding-top: 10rem;
-    opacity: 0;
+    padding-top: 5rem;
     cursor: pointer;
+    opacity: 0;
 }
+
+label[for="avatar-clear_id"]
+{
+    display:none;
+}
+
+#avatar-clear_id{
+    display: none;
+}
+
+#gold-camera {
+    border-radius: 0 !important;
+}
+
 
 .about-images{
   display: flex;
