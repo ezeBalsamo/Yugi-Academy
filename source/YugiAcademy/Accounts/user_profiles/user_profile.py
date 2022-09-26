@@ -27,4 +27,5 @@ class UserProfile(models.Model):
         self.user = user_profile.user
         self.description = user_profile.description
         self.social_network_link = user_profile.social_network_link
-        self.avatar = user_profile.avatar
+        if user_profile.avatar.name is not None:
+            self.avatar = user_profile.avatar
