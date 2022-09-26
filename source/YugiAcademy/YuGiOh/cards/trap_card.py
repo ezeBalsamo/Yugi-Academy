@@ -23,3 +23,6 @@ class TrapCard(Card):
         self.name = trap_card.name
         self.type = trap_card.type
         self.description = trap_card.description
+
+    def __str__(self):
+        return self.name
