@@ -14,4 +14,13 @@ class Message(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return f'Rem: {self.remitent_user.get_username()} -> Dest: {self.destinatary_user.get_username()} - DateTime: {self.date_and_time}'
+        return f'Message from {self.sender_username()} to {self.receiver_username()} at {self.date_and_time_sent}'
+
+    def sender_username(self):
+        return self.sender.get_username()
+
+    def receiver_username(self):
+        return self.receiver.get_username()
+
+
+
