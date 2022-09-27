@@ -15,13 +15,9 @@ def show_messages_to_user(request):
         form = MessageForm(request.POST, request)
         if form.is_valid():
             form_data = form.cleaned_data
-            messages_sent = Message.objects.filter(sender=user).filter(receiver=form_data.get('receiver'))
-            messages_received = Message.objects.filter(sender=form_data.get('receiver')).filter(receiver=user)
-            messages_between_user_and_receiver = messages_sent | messages_received
-            ordered_messages_between_user_and_receiver = messages_between_user_and_receiver. \
-                order_by('date_and_time_sent')
+            receiver = form_data.get('receiver')
             context = {
-                'conversation': ordered_messages_between_user_and_receiver
+                'conversation': message_system.conversation_between(user, receiver)
             }
             return render(request, "conversation.html", context)
 

@@ -21,12 +21,11 @@ def guido():
     return user(username='Guido', password='Guido12345')
 
 
-def greetings_message():
-    sender = guido()
+def greetings_message_between(sender, receiver):
     date_and_time_sent = datetime.now()
     form_data = {
-        'receiver': nico(),
-        'content': 'Hi, Nico!'
+        'receiver': receiver,
+        'content': f'Hi, {receiver.get_username()}!'
     }
     return Message.from_form(user=sender, date_and_time_sent=date_and_time_sent, form_data=form_data)
 
@@ -40,6 +39,16 @@ class TestMessageManagementSystem:
 
     def test_store_message(self):
         assert_is_empty(self.system.messages())
-        message = greetings_message()
+        sender = guido()
+        receiver = nico()
+        message = greetings_message_between(sender, receiver)
         self.system.send_new_message(message)
         assert_the_only_one_in(self.system.messages(), message)
+
+    def test_conversation_with_one_side_messages(self):
+        sender = guido()
+        receiver = nico()
+        assert_is_empty(self.system.conversation_between(sender, receiver))
+        message = greetings_message_between(sender, receiver)
+        self.system.send_new_message(message)
+        assert_the_only_one_in(self.system.conversation_between(sender, receiver), message)
