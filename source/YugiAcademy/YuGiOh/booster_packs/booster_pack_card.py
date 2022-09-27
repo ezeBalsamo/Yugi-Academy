@@ -45,3 +45,10 @@ class BoosterPackCard(models.Model):
         self.identifier = booster_pack_card.identifier
         self.rarity = booster_pack_card.rarity
 
+    @classmethod
+    def from_form(cls, form_data):
+        return cls.referring_to(card=form_data.get('card'),
+                                booster_pack=form_data.get('booster_pack'),
+                                identifier=form_data.get('identifier'),
+                                rarity=form_data.get('rarity'))
+

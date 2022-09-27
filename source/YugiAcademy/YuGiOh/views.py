@@ -1,8 +1,17 @@
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from YuGiOh.cards import MonsterCard, SpellCard, TrapCard
-from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
+from YuGiOh.cards import CardManagementSystem, MonsterCard, SpellCard, TrapCard
+from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
 from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm, BoosterPackCardForm
+
+
+def systems() -> tuple[CardManagementSystem, BoosterPackManagementSystem]:
+    app = apps.get_app_config('YuGiOh')
+    return app.card_system, app.booster_pack_system
+
+
+card_system, booster_pack_system = systems()
 
 
 def home(request):
@@ -15,9 +24,9 @@ def about(request):
 
 def cards(request):
     context = {
-        'monster_cards': MonsterCard.objects.all(),
-        'spell_cards': SpellCard.objects.all(),
-        'trap_cards': TrapCard.objects.all()
+        'monster_cards': card_system.monster_cards(),
+        'spell_cards': card_system.spell_cards(),
+        'trap_cards': card_system.trap_cards()
     }
     return render(request, "YuGiOh/cards.html", context)
 
@@ -26,12 +35,8 @@ def find_or_store_spell_card(request):
     if request.method == 'POST':
         form = SpellCardForm(request.POST)
         if form.is_valid():
-            form_data = form.cleaned_data
-            spell_card = \
-                SpellCard(name=form_data.get('name'),
-                          type=form_data.get('type'),
-                          description=form_data.get('description'))
-            spell_card.save()
+            spell_card = SpellCard.from_from(form.cleaned_data)
+            card_system.store_spell_card(spell_card)
             return redirect('cards')
 
     if request.method == 'GET':
@@ -48,12 +53,12 @@ def booster_packs_according_to(request):
         form = SearchBoosterPackForm(request.POST)
         if form.is_valid():
             partial_name = form.cleaned_data.get('name')
-            return BoosterPack.objects.filter(name__icontains=partial_name)
+            return booster_pack_system.booster_packs_named_like(partial_name)
         else:
             raise Exception(f'The {form} is not valid.')
 
     if request.method == 'GET':
-        return []
+        return list()
 
     raise Exception(f'The {request.method} method was not expected')
 
@@ -71,12 +76,8 @@ def find_or_store_booster_pack(request):
     if request.method == 'POST':
         form = BoosterPackForm(request.POST)
         if form.is_valid():
-            form_data = form.cleaned_data
-            booster_pack = \
-                BoosterPack(name=form_data.get('name'),
-                            code=form_data.get('code'),
-                            release_date=form_data.get('release_date'))
-            booster_pack.save()
+            booster_pack = BoosterPack.from_form(form.cleaned_data)
+            booster_pack_system.store_booster_pack(booster_pack)
             return redirect('booster-packs')
 
     if request.method == 'GET':
@@ -89,10 +90,11 @@ def find_or_store_booster_pack(request):
 
 
 def booster_pack_cards(request, booster_pack_id: id):
-    booster_pack = BoosterPack.objects.get(id=booster_pack_id)
+    booster_pack = booster_pack_system.booster_pack_numbered(booster_pack_id)
+
     context = {
         'booster_pack': booster_pack,
-        'booster_pack_cards': BoosterPackCard.objects.filter(booster_pack=booster_pack)
+        'booster_pack_cards': booster_pack_system.booster_pack_cards_in(booster_pack)
     }
     return render(request, "YuGiOh/booster_pack_cards.html", context)
 
@@ -101,15 +103,9 @@ def find_or_store_booster_pack_card(request):
     if request.method == 'POST':
         form = BoosterPackCardForm(request.POST)
         if form.is_valid():
-            form_data = form.cleaned_data
-            booster_pack = form_data.get('booster_pack')
-            booster_pack_card = \
-                BoosterPackCard(card=form_data.get('card'),
-                                booster_pack=booster_pack,
-                                identifier=form_data.get('identifier'),
-                                rarity=form_data.get('rarity'))
-            booster_pack_card.save()
-            return redirect(f'/yugioh/booster-pack/{booster_pack.id}')
+            booster_pack_card = BoosterPackCard.from_form(form.cleaned_data)
+            booster_pack_system.store_booster_pack_card(booster_pack_card)
+            return redirect(f'/yugioh/booster-pack/{booster_pack_card.booster_pack.id}')
 
     if request.method == 'GET':
         context = {
@@ -121,7 +117,6 @@ def find_or_store_booster_pack_card(request):
 
 
 def delete_booster_pack_card(request, booster_pack_card_id: int):
-    booster_pack_card = BoosterPackCard.objects.get(id=booster_pack_card_id)
-    booster_pack = booster_pack_card.booster_pack
-    booster_pack_card.delete()
-    return redirect(f'/yugioh/booster-pack/{booster_pack.id}')
+    booster_pack_card = booster_pack_system.booster_pack_card_numbered(booster_pack_card_id)
+    booster_pack_system.purge_booster_pack_card(booster_pack_card)
+    return redirect(f'/yugioh/booster-pack/{booster_pack_card.booster_pack.id}')
