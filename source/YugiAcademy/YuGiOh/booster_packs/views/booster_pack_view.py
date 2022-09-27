@@ -5,7 +5,7 @@ from YuGiOh.booster_packs import BoosterPack
 from YuGiOh.models import app
 
 
-def find_or_store_booster_pack(request):
+def store_booster_pack(request):
     if request.method == 'POST':
         form = BoosterPackForm(request.POST)
         if form.is_valid():
