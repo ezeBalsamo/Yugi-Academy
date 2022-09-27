@@ -37,7 +37,7 @@ def send_message_to_user(request):
             form_data = form.cleaned_data
             date_and_time_sent = datetime.now()
             new_message = Message.from_form(user, date_and_time_sent, form_data)
-            message_system.send_message(new_message)
+            message_system.send_new_message(new_message)
 
     return render(request, "send_message.html", {"form": SendMessageForm()})
 
