@@ -4,7 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, UpdatePasswordForm, UserAndProfileForm
+from Accounts.users.forms import SignUpForm, UpdatePasswordForm
+from Accounts.user_profiles.forms import UserAndProfileForm
 from .models import UserProfile
 
 user_profile_system = apps.get_app_config('Accounts').user_profile_management_system
