@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 
 from YuGiOh.cards.forms import SpellCardForm
 from YuGiOh.cards import SpellCard
-from YuGiOh.models import card_system
+from YuGiOh.models import app
 from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 
@@ -13,7 +13,7 @@ def find_or_store_spell_card(request):
         if form.is_valid():
             try:
                 spell_card = SpellCard.from_from(form.cleaned_data)
-                card_system().store_spell_card(spell_card)
+                app.card_system.store_spell_card(spell_card)
                 return redirect('cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))

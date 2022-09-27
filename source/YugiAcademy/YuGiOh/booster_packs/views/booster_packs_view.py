@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from YuGiOh.booster_packs.forms import SearchBoosterPackForm
-from YuGiOh.models import booster_pack_system
+from YuGiOh.models import app
 
 
 def booster_packs_according_to(request):
@@ -10,7 +10,7 @@ def booster_packs_according_to(request):
         form = SearchBoosterPackForm(request.POST)
         if form.is_valid():
             partial_name = form.cleaned_data.get('name')
-            return booster_pack_system().booster_packs_named_like(partial_name)
+            return app.booster_pack_system.booster_packs_named_like(partial_name)
         else:
             raise Exception(f'The {form} is not valid.')
 

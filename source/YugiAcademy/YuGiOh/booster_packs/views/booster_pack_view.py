@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 
 from YuGiOh.booster_packs.forms import BoosterPackForm
 from YuGiOh.booster_packs import BoosterPack
-from YuGiOh.models import booster_pack_system
+from YuGiOh.models import app
 
 
 def find_or_store_booster_pack(request):
@@ -10,7 +10,7 @@ def find_or_store_booster_pack(request):
         form = BoosterPackForm(request.POST)
         if form.is_valid():
             booster_pack = BoosterPack.from_form(form.cleaned_data)
-            booster_pack_system().store_booster_pack(booster_pack)
+            app.booster_pack_system.store_booster_pack(booster_pack)
             return redirect('booster-packs')
 
     if request.method == 'GET':
