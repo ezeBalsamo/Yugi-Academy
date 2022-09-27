@@ -1,8 +1,12 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.db import models
 
 from assertions import enforce_not_blank, InstanceCreationFailed
+
+
+def deleted_user():
+    return get_user_model().objects.get_or_create(username='deleted_user')[0]
 
 
 def enforce_are_different_users(user, another_user):
@@ -11,8 +15,9 @@ def enforce_are_different_users(user, another_user):
 
 
 class Message(models.Model):
-    sender = models.OneToOneField(User, related_name='sender', on_delete=models.DO_NOTHING)
-    receiver = models.OneToOneField(User, related_name='receiver', on_delete=models.DO_NOTHING)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='sender', on_delete=models.SET(deleted_user))
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='receiver', on_delete=models.SET(deleted_user))
+
     date_and_time_sent = models.DateTimeField()
     content = models.TextField()
 

@@ -32,7 +32,7 @@ def show_messages_to_user(request):
 def send_message_to_user(request):
     user = request.user
     if request.method == 'POST':
-        form = SendMessageForm(request.POST, request)
+        form = SendMessageForm(request.POST)
         if form.is_valid():
             form_data = form.cleaned_data
             date_and_time_sent = datetime.now()
