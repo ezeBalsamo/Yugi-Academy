@@ -49,3 +49,4 @@ def test_instance_creation_and_accessing():
     assert message.sender.get_username() == 'Guido'
     assert message.date_and_time_sent == date_and_time_sent.strftime("%d/%m/%Y %H:%M:%S")
     assert message.content == 'Hola Nico, cómo estás?'
+    assert str(message) == 'Message from Guido to Nicoleta at ' + date_and_time_sent.strftime("%d/%m/%Y %H:%M:%S")
