@@ -53,7 +53,7 @@ def booster_packs_according_to(request):
         form = SearchBoosterPackForm(request.POST)
         if form.is_valid():
             partial_name = form.cleaned_data.get('name')
-            return booster_pack_system.booster_pack_named_like(partial_name)
+            return booster_pack_system.booster_packs_named_like(partial_name)
         else:
             raise Exception(f'The {form} is not valid.')
 

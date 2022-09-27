@@ -59,7 +59,7 @@ class BoosterPackManagementSystem:
     def booster_pack_numbered(self, booster_pack_id):
         return self.booster_pack_filtered_by(query_filter={'id': booster_pack_id})
 
-    def booster_pack_named_like(self, partial_name):
+    def booster_packs_named_like(self, partial_name):
         return self.booster_packs_repository.filter(name__icontains=partial_name)
 
     """ Booster pack cards """
