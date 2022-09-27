@@ -10,7 +10,7 @@
 
   <body>
     <div id="content-main">
-      <h1>Welcome to Yugi Academy Messages, {{ user.get_username }}!</h1>
+      <h1>Send messages to users in Yugi Academy!</h1>
     </div>
 
       <form action="" method="post" id="message-form"> {% csrf_token %}
@@ -18,8 +18,8 @@
         {{ form.as_p }}
 
         <div class="submit-row">
-          <input type="submit" value="Search Conversation" class="button" id="save-button" />
-          <input type="button" onclick="location.href='send_message';" class="button" value="Send message"/>
+          <input type="button" onclick="location.href='http://127.0.0.1:8000/messages/'" class="button" id="back-button" value="Back"/>
+          <input type="submit" value="Send message" class="button" id="save-button" />
         </div>
 
     </form>
