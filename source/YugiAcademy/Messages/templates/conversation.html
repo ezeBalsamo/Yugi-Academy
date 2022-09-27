@@ -21,9 +21,9 @@
         <ul>
             {% for message in conversation %}
                {% if message.sender.get_username == user.get_username %}
-                <li style="background-color: dimgrey; color: white">{{message.date_and_time_sent}} - {{message.content}}</li>
-              {% else %}
                 <li style="background-color: mediumseagreen; color: white">{{message.date_and_time_sent}} - {{message.content}}</li>
+              {% else %}
+                <li style="background-color: dimgrey; color: white">{{message.date_and_time_sent}} - {{message.content}}</li>
               {% endif %}
             {% endfor %}
         </ul>
