@@ -1,12 +1,4 @@
-from django.contrib.auth.views import LogoutView
-from django.urls import path
+from Accounts.users.urls import urlpatterns as user_urls
+from Accounts.user_profiles.urls import urlpatterns as user_profile_urls
 
-from .views import login_with, signup, update_password, profile
-
-urlpatterns = [
-    path('login', login_with, name="login"),
-    path('signup', signup, name="signup"),
-    path('logout', LogoutView.as_view(template_name='index.html'), name="logout"),
-    path('update-password', update_password, name="update_password"),
-    path('profile', profile, name="profile"),
-]
+urlpatterns = user_urls + user_profile_urls
