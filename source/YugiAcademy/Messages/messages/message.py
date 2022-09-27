@@ -19,22 +19,26 @@ class Message(models.Model):
     @classmethod
     def from_form(cls, user, date_and_time_sent, form_data):
         receiver = form_data.get('receiver')
-        formatted_date_and_time_sent = date_and_time_sent.strftime("%d/%m/%Y %H:%M:%S")
         content = form_data.get('content')
 
         enforce_are_different_users(user, receiver)
         enforce_not_blank(content, "Content")
 
-        return cls(sender=user, receiver=receiver, date_and_time_sent=formatted_date_and_time_sent, content=content)
+        return cls(sender=user, receiver=receiver, date_and_time_sent=date_and_time_sent, content=content)
 
     def __str__(self):
-        return f'Message from {self.sender_username()} to {self.receiver_username()} at {self.date_and_time_sent}'
+        return f'Message from {self.sender_username()} to {self.receiver_username()} at ' \
+               f'{self.formatted_date_and_time_sent()}'
 
     def sender_username(self):
         return self.sender.get_username()
 
     def receiver_username(self):
         return self.receiver.get_username()
+
+    def formatted_date_and_time_sent(self):
+        return self.date_and_time_sent.strftime("%d/%m/%Y %H:%M:%S")
+
 
 
 
