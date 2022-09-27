@@ -1,7 +1,6 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound
+from persistence import managed_object_filtered_by
 
 
 def raise_expected_to_be_found(managed_object):
@@ -12,17 +11,9 @@ def raise_found_booster_pack_named(name):
     raise SystemRestrictionInfringed(f'There is already a {BoosterPack.type_description} named {name}.')
 
 
-def raise_not_found_booster_pack_named(name):
-    raise SystemRestrictionInfringed(f'There is no {BoosterPack.type_description} named {name}.')
-
-
 def raise_found_booster_pack_card_identified_by(identifier):
     raise SystemRestrictionInfringed(
         f'There is already a {BoosterPackCard.type_description} identified by {identifier}.')
-
-
-def raise_not_found_booster_pack_card_identified_by(identifier):
-    raise SystemRestrictionInfringed(f'There is no {BoosterPackCard.type_description} identified by {identifier}.')
 
 
 class BoosterPackManagementSystem:
@@ -56,12 +47,20 @@ class BoosterPackManagementSystem:
         booster_pack.synchronize_with(updated_booster_pack)
         booster_pack.save()
 
+    def booster_pack_filtered_by(self, query_filter, if_found=None, if_none=None):
+        return managed_object_filtered_by(query_filter=query_filter,
+                                          repository=self.booster_packs_repository,
+                                          if_found=if_found,
+                                          if_none=if_none)
+
     def booster_pack_named(self, name, if_found=None, if_none=None):
-        try:
-            card = self.booster_packs_repository.get(name=name)
-            return card if if_found is None else if_found(card)
-        except ObjectDoesNotExist:
-            raise_not_found_booster_pack_named(name) if if_none is None else if_none()
+        return self.booster_pack_filtered_by(query_filter={'name': name}, if_found=if_found, if_none=if_none)
+
+    def booster_pack_numbered(self, booster_pack_id):
+        return self.booster_pack_filtered_by(query_filter={'id': booster_pack_id})
+
+    def booster_pack_named_like(self, partial_name):
+        return self.booster_packs_repository.filter(name__icontains=partial_name)
 
     """ Booster pack cards """
 
@@ -89,9 +88,17 @@ class BoosterPackManagementSystem:
         booster_pack_card.synchronize_with(updated_booster_pack_card)
         booster_pack_card.save()
 
+    def booster_pack_card_filtered_by(self, query_filter, if_found=None, if_none=None):
+        return managed_object_filtered_by(query_filter=query_filter,
+                                          repository=self.booster_pack_cards_repository,
+                                          if_found=if_found,
+                                          if_none=if_none)
+
     def booster_pack_card_identified_by(self, identifier, if_found=None, if_none=None):
-        try:
-            card = self.booster_pack_cards_repository.get(identifier=identifier)
-            return card if if_found is None else if_found(card)
-        except ObjectDoesNotExist:
-            raise_not_found_booster_pack_card_identified_by(identifier) if if_none is None else if_none()
+        return self.booster_pack_card_filtered_by({'identifier': identifier}, if_found=if_found, if_none=if_none)
+
+    def booster_pack_card_in(self, booster_pack):
+        return self.booster_pack_cards_repository.filter(booster_pack=booster_pack)
+
+    def booster_pack_card_numbered(self, booster_pack_card_id):
+        return self.booster_pack_card_filtered_by({'id': booster_pack_card_id})

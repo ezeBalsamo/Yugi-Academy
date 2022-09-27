@@ -127,7 +127,7 @@ class TestBoosterPackManagementSystem:
     def test_querying_booster_pack_by_identifier_fails_when_booster_pack_card_not_found(self):
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.booster_pack_card_identified_by('LOB-EN119', if_found=lambda: pytest.fail())
-        assert exception_info.message_text() == 'There is no booster pack card identified by LOB-EN119.'
+        assert exception_info.message_text() == "There is no booster pack card matching {'identifier': 'LOB-EN119'}."
 
     def test_querying_booster_pack_card_by_identifier(self):
         booster_pack_card = self.pot_of_greed_lob_en119()

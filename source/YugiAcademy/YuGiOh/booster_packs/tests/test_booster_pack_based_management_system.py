@@ -90,7 +90,7 @@ class TestBoosterPackManagementSystem:
     def test_querying_booster_pack_by_name_fails_when_booster_pack_not_found(self):
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.booster_pack_named('Metal Raiders', if_found=lambda: pytest.fail())
-        assert exception_info.message_text() == 'There is no booster pack named Metal Raiders.'
+        assert exception_info.message_text() == "There is no booster pack matching {'name': 'Metal Raiders'}."
         
     def test_querying_booster_pack_by_name(self):
         booster_pack = legend_of_blue_eyes_white_dragon()

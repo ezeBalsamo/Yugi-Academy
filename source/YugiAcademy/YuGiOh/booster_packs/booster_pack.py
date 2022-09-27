@@ -18,6 +18,12 @@ class BoosterPack(models.Model):
 
         return cls(name=name, code=code, release_date=release_date)
 
+    @classmethod
+    def form_form(cls, form_data):
+        return cls.named(name=form_data.get('name'),
+                         code=form_data.get('code'),
+                         release_date=form_data.get('release_date'))
+
     def __str__(self):
         return self.name
 
