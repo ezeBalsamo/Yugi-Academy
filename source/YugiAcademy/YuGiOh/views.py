@@ -1,9 +1,10 @@
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from YuGiOh.cards import CardManagementSystem, MonsterCard, SpellCard, TrapCard
+from YuGiOh.cards import CardManagementSystem, SpellCard
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
-from .forms import SpellCardForm, SearchBoosterPackForm, BoosterPackForm, BoosterPackCardForm
+from YuGiOh.cards.forms import SpellCardForm
+from YuGiOh.booster_packs.forms import SearchBoosterPackForm, BoosterPackForm, BoosterPackCardForm
 
 
 def systems() -> tuple[CardManagementSystem, BoosterPackManagementSystem]:
