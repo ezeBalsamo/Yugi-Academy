@@ -5,10 +5,6 @@ from django.db import models
 from assertions import enforce_not_blank, InstanceCreationFailed
 
 
-def deleted_user():
-    return get_user_model().objects.get_or_create(username='deleted_user')[0]
-
-
 def enforce_are_different_users(user, another_user):
     if user.get_username() == another_user.get_username():
         raise InstanceCreationFailed("Sender and receiver must be different users.")
