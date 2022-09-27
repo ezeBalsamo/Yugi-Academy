@@ -10,7 +10,7 @@ def find_or_store_booster_pack_card(request):
         form = BoosterPackCardForm(request.POST)
         if form.is_valid():
             booster_pack_card = BoosterPackCard.from_form(form.cleaned_data)
-            booster_pack_system.store_booster_pack_card(booster_pack_card)
+            booster_pack_system().store_booster_pack_card(booster_pack_card)
             return redirect(f'/yugioh/booster-pack/{booster_pack_card.booster_pack.id}')
 
     if request.method == 'GET':

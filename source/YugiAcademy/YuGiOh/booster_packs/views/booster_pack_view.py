@@ -10,7 +10,7 @@ def find_or_store_booster_pack(request):
         form = BoosterPackForm(request.POST)
         if form.is_valid():
             booster_pack = BoosterPack.from_form(form.cleaned_data)
-            booster_pack_system.store_booster_pack(booster_pack)
+            booster_pack_system().store_booster_pack(booster_pack)
             return redirect('booster-packs')
 
     if request.method == 'GET':
