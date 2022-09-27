@@ -10,10 +10,10 @@
     <form action="" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
         <div id="avatar-block">
           <figure>
-            <img id="profile-icon-white" src="../static/assets/profile-icon-white.png">
+            <img id="profile-icon-white" src="/static/assets/profile-icon-white.png">
               <input type="file" id="image"  name="image" accept=".jpg,.png"/>
               <label for="image" style="cursor: pointer;">
-                <span> <img src="../static/assets/camera-gold.png" title="Load a profile image">
+                <span> <img src="/static/assets/camera-gold.png" title="Load a profile image">
                 </span>
               </label>
             </figure>

@@ -98,7 +98,7 @@ input {
 }
 
 .main-content-background {
-  background-image: url("../assets/background-image.png");
+  background-image: url("/static/assets/background-image.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
@@ -112,7 +112,7 @@ input {
   border: 2px solid black;
   border-radius: 3%;
   max-width: 50%;
-  background-image: url("../../static/assets/login-background-image.jpg");
+  background-image: url("/static/assets/login-background-image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -225,7 +225,7 @@ input {
 }
 
 select#profile{
-  background-image: url("../../static/assets/profile-icon-white.png");
+  background-image: url("/static/assets/profile-icon-white.png");
   border-radius: 50%;
   background-color: black;
   color: white;
