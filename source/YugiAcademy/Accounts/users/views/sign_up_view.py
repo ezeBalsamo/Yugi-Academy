@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from users.forms import SignUpForm
+from Accounts.users.forms import SignUpForm
 
 
 def signup(request):

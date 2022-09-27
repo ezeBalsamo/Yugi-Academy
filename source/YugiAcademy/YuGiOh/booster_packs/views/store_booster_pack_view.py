@@ -5,7 +5,7 @@ from YuGiOh.booster_packs import BoosterPack
 from YuGiOh.models import app
 
 
-def find_or_store_booster_pack(request):
+def store_booster_pack(request):
     if request.method == 'POST':
         form = BoosterPackForm(request.POST)
         if form.is_valid():
@@ -17,6 +17,6 @@ def find_or_store_booster_pack(request):
         context = {
             'form': BoosterPackForm()
         }
-        return render(request, 'YuGiOh/booster_pack_registration.html', context)
+        return render(request, 'YuGiOh/store_booster_pack.html', context)
 
     raise Exception(f'The {request.method} method was not expected')

@@ -29,6 +29,11 @@ class BoosterPackManagementSystem:
                                 if_found=lambda booster_pack: raise_found_booster_pack_named(booster_pack.name),
                                 if_none=lambda: None)
 
+    def assert_it_has_no_cards(self, booster_pack):
+        booster_pack_cards = self.booster_pack_cards_in(booster_pack)
+        if booster_pack_cards:
+            raise SystemRestrictionInfringed(f'{booster_pack} cannot be deleted since it has cards.')
+
     def booster_packs(self):
         return list(self.booster_packs_repository.all())
 
@@ -37,6 +42,7 @@ class BoosterPackManagementSystem:
         booster_pack.save()
 
     def purge_booster_pack(self, booster_pack):
+        self.assert_it_has_no_cards(booster_pack)
         self.booster_pack_named(booster_pack.name,
                                 if_found=lambda _: booster_pack.delete(),
                                 if_none=lambda: raise_expected_to_be_found(booster_pack))
