@@ -17,6 +17,6 @@ def store_booster_pack_card(request):
         context = {
             'form': BoosterPackCardForm()
         }
-        return render(request, 'YuGiOh/booster_pack_card_registration.html', context)
+        return render(request, 'YuGiOh/store_booster_pack_card.html', context)
 
     raise Exception(f'The {request.method} method was not expected')

@@ -1,7 +1,7 @@
 from .booster_packs_view import booster_packs
-from .booster_pack_view import store_booster_pack
+from .store_booster_pack_view import store_booster_pack
 from .purge_booster_pack_view import purge_booster_pack
 
 from .booster_pack_cards_view import booster_pack_cards
-from .booster_pack_card_view import store_booster_pack_card
+from .store_booster_pack_card_view import store_booster_pack_card
 from .purge_booster_pack_card_view import purge_booster_pack_card
