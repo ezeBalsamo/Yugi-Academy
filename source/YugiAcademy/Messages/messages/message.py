@@ -11,8 +11,8 @@ def enforce_are_different_users(user, another_user):
 
 
 class Message(models.Model):
-    sender = models.OneToOneField(User, on_delete=models.DO_NOTHING)
-    receiver = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    sender = models.OneToOneField(User, related_name='sender', on_delete=models.DO_NOTHING)
+    receiver = models.OneToOneField(User, related_name='receiver', on_delete=models.DO_NOTHING)
     date_and_time_sent = models.DateTimeField()
     content = models.TextField()
 
