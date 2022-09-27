@@ -24,6 +24,7 @@ urlpatterns = [
     path('yugioh/', include('YuGiOh.urls')),
     path('accounts/', include('Accounts.urls')),
     path('', lambda _: redirect('yugioh/')),
+    path('messages/', include('Messages.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
