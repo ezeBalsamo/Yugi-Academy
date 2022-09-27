@@ -4,9 +4,9 @@ from datetime import date
 from YuGiOh.cards import CardManagementSystem, SpellCard, TrapCard
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-                        assert_is_empty, assert_the_only_one_in, \
-                        with_the_only_one_in, \
-                        assert_collections_have_same_elements
+    assert_is_empty, assert_the_only_one_in, \
+    with_the_only_one_in, \
+    assert_collections_have_same_elements
 
 
 def assert_booster_pack_card_was_updated(booster_pack_card, updated_booster_pack_card, managed_booster_pack_card):
@@ -141,3 +141,9 @@ class TestBoosterPackManagementSystem:
         self.system.store_booster_pack_card(booster_pack_card)
         found_booster_pack_card = self.system.booster_pack_card_numbered(booster_pack_card.id)
         assert found_booster_pack_card == booster_pack_card
+
+    def test_querying_booster_pack_cards_in_booster_pack(self):
+        booster_pack_card = self.pot_of_greed_lob_en119()
+        self.system.store_booster_pack_card(booster_pack_card)
+        found_booster_pack_cards = self.system.booster_pack_cards_in(booster_pack_card.booster_pack)
+        assert_the_only_one_in(found_booster_pack_cards, booster_pack_card)

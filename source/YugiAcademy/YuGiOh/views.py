@@ -94,7 +94,7 @@ def booster_pack_cards(request, booster_pack_id: id):
 
     context = {
         'booster_pack': booster_pack,
-        'booster_pack_cards': booster_pack_system.booster_pack_card_in(booster_pack)
+        'booster_pack_cards': booster_pack_system.booster_pack_cards_in(booster_pack)
     }
     return render(request, "YuGiOh/booster_pack_cards.html", context)
 

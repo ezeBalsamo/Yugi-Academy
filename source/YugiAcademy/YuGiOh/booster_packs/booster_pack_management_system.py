@@ -97,7 +97,7 @@ class BoosterPackManagementSystem:
     def booster_pack_card_identified_by(self, identifier, if_found=None, if_none=None):
         return self.booster_pack_card_filtered_by({'identifier': identifier}, if_found=if_found, if_none=if_none)
 
-    def booster_pack_card_in(self, booster_pack):
+    def booster_pack_cards_in(self, booster_pack):
         return self.booster_pack_cards_repository.filter(booster_pack=booster_pack)
 
     def booster_pack_card_numbered(self, booster_pack_card_id):
