@@ -97,3 +97,9 @@ class TestBoosterPackManagementSystem:
         self.system.store_booster_pack(booster_pack)
         found_booster_pack = self.system.booster_pack_named(booster_pack.name, if_none=lambda: pytest.fail())
         assert found_booster_pack == booster_pack
+
+    def test_querying_booster_pack_by_id(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        self.system.store_booster_pack(booster_pack)
+        found_booster_pack = self.system.booster_pack_numbered(booster_pack.id)
+        assert found_booster_pack == booster_pack
