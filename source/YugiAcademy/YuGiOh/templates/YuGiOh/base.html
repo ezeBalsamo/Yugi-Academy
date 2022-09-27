@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
-  <link rel="icon" href="../../static/assets/logo-small.png">
+  <link rel="icon" href="/static/assets/logo-small.png">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
   <nav class="main-menu header-footer">
     <ul class="nav-menu">
       <div>
-        <li><a href="{% url 'home' %}"><img src="../../static/assets/logo.png" id="logo"></a></li>
+        <li><a href="{% url 'home' %}"><img src="/static/assets/logo.png" id="logo"></a></li>
       </div>
 
       <div>
@@ -38,7 +38,7 @@
                 {% if user.userprofile.avatar %}
                   <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("{{user.userprofile.avatar.url }}");'>
                 {% else %}
-                  <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("../../static/assets/profile-icon-white.png");'>
+                  <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("/static/assets/profile-icon-white.png");'>
                 {% endif %}
                     <option id="option-hide" value="{% url 'cards' %}"> </option>
                     <option value="{% url 'profile' %}">Profile</option>
