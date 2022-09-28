@@ -164,11 +164,6 @@ input {
     min-width: 90%;
 }
 
-#id_username{
-    color: white;
-    border: 1rem black;
-}
-
 .form-row {
   text-align: left;
   margin-left: 2rem;
