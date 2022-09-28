@@ -161,7 +161,11 @@ input {
 }
 
 #profile-form input {
-    min-width: 75%;
+    min-width: 90%;
+}
+
+#profile-form textarea {
+    min-width: 90%;
 }
 
 
