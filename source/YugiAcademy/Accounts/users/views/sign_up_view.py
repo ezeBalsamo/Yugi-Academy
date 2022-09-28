@@ -12,7 +12,7 @@ def signup(request):
             messages.info(request, "Sign up has been successful")
             return redirect('login')
         else:
-            messages.error(request, 'Invalid credentials.')
+            messages.error(request, 'Invalid sign up credentials.')
             return redirect('signup')
 
     if request.method == 'GET':
