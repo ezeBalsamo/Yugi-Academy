@@ -28,9 +28,16 @@ if (messages_error[0] != null){
         timer: 12000
     })
     }
+
+        if(message_error === 'Profile update has failed.'){
+        Swal.fire({
+        imageUrl: '/static/assets/invalid-profile-update.jpeg',
+        imageWidth: 500,
+        imageHeight: 800,
+        timer: 12000
+    })
+    }
 }
-
-
 
 if (messages_ok[0] != null){
     let message_ok = messages_ok[0].textContent
@@ -43,6 +50,16 @@ if (messages_ok[0] != null){
         timer: 4000
     })
     }
+
+    if(message_ok === 'Profile has been successfully updated'){
+        Swal.fire({
+        imageUrl: '/static/assets/successful-profile-update.jpeg',
+        imageWidth: 500,
+        imageHeight: 800,
+        timer: 4000
+    })
+    }
+
 }
 }
 

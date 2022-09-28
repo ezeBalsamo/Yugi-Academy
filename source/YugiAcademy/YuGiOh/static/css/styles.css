@@ -323,13 +323,11 @@ label[for="avatar-clear_id"]
 }
 
 .message-error {
-    color:red;
-    margin-left: 1rem;
+    color:white;
 }
 
 .message-info {
-    color:green;
-    margin-left: 1rem;
+    color:white;
 }
 
 #main-messages h1{
