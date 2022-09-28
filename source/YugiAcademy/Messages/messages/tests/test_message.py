@@ -42,11 +42,10 @@ def test_instance_creation_and_accessing():
         'receiver': receiver,
         'content': 'Hola Nico, cómo estás?'
     }
-    date_and_time_sent = datetime.now()
-
+    date_and_time_sent = datetime(2020, 5, 17, 6, 6, 6)
     message = Message.from_form(user=sender, date_and_time_sent=date_and_time_sent, form_data=form_data)
     assert message.receiver.get_username() == 'Nicoleta'
     assert message.sender.get_username() == 'Guido'
-    assert message.date_and_time_sent == date_and_time_sent.strftime("%d/%m/%Y %H:%M:%S")
+    assert message.date_and_time_sent == date_and_time_sent
     assert message.content == 'Hola Nico, cómo estás?'
-    assert str(message) == 'Message from Guido to Nicoleta at ' + date_and_time_sent.strftime("%d/%m/%Y %H:%M:%S")
+    assert str(message) == 'Message from Guido to Nicoleta at 17/05/2020 06:06:06'
