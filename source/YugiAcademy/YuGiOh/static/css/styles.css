@@ -156,14 +156,18 @@ input {
   text-align: center;
 }
 
-#profile-form label {
-  font-weight: bold;
-}
-
 #profile-form input {
-    min-width: 75%;
+    min-width: 90%;
 }
 
+#profile-form textarea {
+    min-width: 90%;
+}
+
+#id_username{
+    color: white;
+    border: 1rem black;
+}
 
 .form-row {
   text-align: left;
@@ -331,4 +335,61 @@ label[for="avatar-clear_id"]
 .message-info {
     color:green;
     margin-left: 1rem;
+}
+
+#main-messages h1{
+    text-align: center;
+}
+
+#message-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#conversation-messages{
+    color: white;
+    list-style: none;
+}
+
+#conversation-messages li{
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+}
+#conversation-messages li span{
+    border-radius: 15%;
+    padding: 0.3rem;
+}
+
+.conversation-box {
+    background-color: #0f3a42;
+    width: 45%;
+    margin: auto;
+    border-radius: 10%;
+    padding-bottom: 1rem;
+}
+
+#user-name-and-avatar-conversation{
+    display: flex;
+    justify-content: center;
+    color: white;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+#name-conversation{
+    margin-left: 2rem;
+}
+
+
+#avatar-conversation{
+    background-color: transparent;
+}
+
+#content-main-send-messages {
+    text-align: center;
+}
+
+#send-messages-buttons {
+    text-align: center;
 }
