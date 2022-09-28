@@ -33,13 +33,13 @@
 
       {% endif %}
 
-        <div id="message-form">
+        <div id="message-conversation-box">
             <ul id="conversation-messages">
               {% for message in conversation %}
                  {% if message.sender.get_username == user.get_username %}
-                  <li style="text-align: right"> <span style="background-color: mediumseagreen;"> {{message.date_and_time_sent}} - {{message.content}}</span></li>
+                  <li style="text-align: right"> <span style="background-color: mediumseagreen; "> {{message.date_and_time_sent}} - {{message.content}}</span></li>
                 {% else %}
-                  <li style="text-align: left"> <span style="background-color: dimgrey;"> {{message.date_and_time_sent}} - {{message.content}} </span></li>
+                  <li style="text-align: left;" > <span style="background-color: dimgrey;"> {{message.date_and_time_sent}} - {{message.content}} </span></li>
                 {% endif %}
               {% endfor %}
             </ul>

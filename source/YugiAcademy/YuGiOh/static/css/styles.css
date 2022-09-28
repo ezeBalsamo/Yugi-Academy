@@ -349,18 +349,20 @@ label[for="avatar-clear_id"]
 }
 
 #conversation-messages li{
-    margin: 0.5rem;
+    margin-top: 1rem;
+    margin-right: 2.5rem;
 }
 #conversation-messages li span{
     border-radius: 15%;
-    padding: 0.15rem;
+    padding: 0.3rem;
 }
 
 .conversation-box {
     background-color: #0f3a42;
-    width: 55%;
+    width: 45%;
     margin: auto;
     border-radius: 10%;
+    padding-bottom: 1rem;
 }
 
 #user-name-and-avatar-conversation{
