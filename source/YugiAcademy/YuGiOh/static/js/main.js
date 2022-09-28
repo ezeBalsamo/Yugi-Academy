@@ -24,14 +24,22 @@ if (messages_error[0] != null){
         Swal.fire({
         imageUrl: '/static/assets/invalid-sign-up.jpeg',
         imageWidth: 500,
+        imageHeight: 800
+    })
+    }
+
+    if(message_error === 'Profile update has failed.'){
+        Swal.fire({
+        imageUrl: '/static/assets/invalid-profile-update.jpeg',
+        imageWidth: 500,
         imageHeight: 800,
         timer: 12000
     })
     }
 
-        if(message_error === 'Profile update has failed.'){
+    if(message_error === 'Password update has failed.'){
         Swal.fire({
-        imageUrl: '/static/assets/invalid-profile-update.jpeg',
+        imageUrl: '/static/assets/invalid-password-update.jpeg',
         imageWidth: 500,
         imageHeight: 800,
         timer: 12000
@@ -59,6 +67,16 @@ if (messages_ok[0] != null){
         timer: 4000
     })
     }
+
+    if(message_ok === 'Password has been successfully updated'){
+        Swal.fire({
+        imageUrl: '/static/assets/successful-password-update.jpeg',
+        imageWidth: 500,
+        imageHeight: 800,
+        timer: 4000
+    })
+    }
+
 
 }
 }
