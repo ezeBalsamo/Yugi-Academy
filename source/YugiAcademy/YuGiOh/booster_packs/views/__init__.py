@@ -1,5 +1,6 @@
 from .booster_packs_view import booster_packs
 from .store_booster_pack_view import store_booster_pack
+from .update_booster_pack_view import update_booster_pack
 from .purge_booster_pack_view import purge_booster_pack
 
 from .booster_pack_cards_view import booster_pack_cards

@@ -8,6 +8,7 @@ from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 
 def store_spell_card(request):
+    form = SpellCardForm()
     if request.method == 'POST':
         form = SpellCardForm(request.POST)
         if form.is_valid():
@@ -17,12 +18,9 @@ def store_spell_card(request):
                 return redirect('cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))
-                return render(request, 'YuGiOh/store_spell_card.html', {form: SpellCardForm()})
+                return render(request, 'YuGiOh/store_spell_card.html', {'form': form})
 
     if request.method == 'GET':
-        context = {
-            'form': SpellCardForm()
-        }
-        return render(request, 'YuGiOh/store_spell_card.html', context)
+        return render(request, 'YuGiOh/store_spell_card.html', {'form': form})
 
     raise Exception(f'The {request.method} method was not expected')
