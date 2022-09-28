@@ -21,9 +21,10 @@ def show_messages_to_user(request):
             form_data = form.cleaned_data
             receiver = form_data.get('receiver')
             context = {
+                'form': MessageForm(sender=sender),
                 'conversation': message_system.conversation_between(sender, receiver)
             }
-            return render(request, "conversation.html", context)
+            return render(request, "messages.html", context)
 
     if request.method == 'GET':
         return render(request, "messages.html", {"form": MessageForm(sender=sender)})

@@ -12,4 +12,4 @@ class MessageForm(forms.Form):
 
 
 class SendMessageForm(MessageForm):
-    content = forms.CharField(label='content', widget=forms.Textarea)
+    content = forms.CharField(label='Content', widget=forms.Textarea)
