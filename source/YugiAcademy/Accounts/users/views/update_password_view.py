@@ -12,7 +12,7 @@ def update_password(request):
         if form.is_valid():
             form.save()
             messages.info(request, "Password has been successfully updated")
-            # Django will automagically redirect to login
+            return redirect('login')
         else:
             messages.error(request, 'Password update has failed.')
             return redirect('profile')
