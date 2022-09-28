@@ -156,10 +156,6 @@ input {
   text-align: center;
 }
 
-#profile-form label {
-  font-weight: bold;
-}
-
 #profile-form input {
     min-width: 90%;
 }
@@ -168,6 +164,10 @@ input {
     min-width: 90%;
 }
 
+#id_username{
+    color: white;
+    border: 1rem black;
+}
 
 .form-row {
   text-align: left;
