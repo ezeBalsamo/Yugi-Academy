@@ -2,10 +2,14 @@ from django import forms
 from django.contrib.auth.models import User
 
 
-class SendMessageForm(forms.Form):
-    receiver = forms.ModelChoiceField(User.objects.all())
-    content = forms.CharField(label='content', widget=forms.Textarea)
-
-
 class MessageForm(forms.Form):
-    receiver = forms.ModelChoiceField(User.objects.all())
+    def __init__(self, *args, **kwargs):
+        sender = kwargs.pop('sender')
+        super(MessageForm, self).__init__(*args, **kwargs)
+        self.fields['receiver'].queryset = User.objects.exclude(username=sender.get_username())
+
+    receiver = forms.ModelChoiceField(queryset=User.objects.none())
+
+
+class SendMessageForm(MessageForm):
+    content = forms.CharField(label='content', widget=forms.Textarea)
