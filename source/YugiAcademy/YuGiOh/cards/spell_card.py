@@ -19,6 +19,12 @@ class SpellCard(Card):
 
         return cls(name=name, type=type, description=description)
 
+    @classmethod
+    def from_from(cls, form_data):
+        return cls.named(name=form_data.get('name'),
+                         type=form_data.get('type'),
+                         description=form_data.get('description'))
+
     def synchronize_with(self, spell_card):
         self.name = spell_card.name
         self.type = spell_card.type

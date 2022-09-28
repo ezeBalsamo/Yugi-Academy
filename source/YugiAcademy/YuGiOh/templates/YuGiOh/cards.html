@@ -2,7 +2,7 @@
 {% block page-content %}
     <h1>Cards</h1>
 
-    <a href="{% url 'find_or_store_spell_card' %}">Register spell card</a>
+    <a href="{% url 'store_spell_card' %}">Register spell card</a>
     <h2>Monster Cards</h2>
     <ul>
         {% for card in monster_cards %}

@@ -1,15 +1,22 @@
 import pytest
 
 from datetime import date
-from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack
+from YuGiOh.cards import SpellCard, CardManagementSystem
+from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-                        assert_is_empty, assert_the_only_one_in, \
-                        with_the_only_one_in, \
-                        assert_collections_have_same_elements
+    assert_is_empty, assert_the_only_one_in, \
+    with_the_only_one_in, \
+    assert_collections_have_same_elements
 
 
 def legend_of_blue_eyes_white_dragon():
     return BoosterPack.named(name="Legend of Blue Eyes White Dragon", code='LOB-EN', release_date=date(2002, 3, 8))
+
+
+def pot_of_greed():
+    spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+    CardManagementSystem().store_spell_card(spell_card)
+    return spell_card
 
 
 def metal_raiders():
@@ -29,6 +36,13 @@ class TestBoosterPackManagementSystem:
     @pytest.fixture(autouse=True)
     def set_up(self):
         self.system = BoosterPackManagementSystem()
+
+    def store_booster_pack_card_belonging_to(self, booster_pack):
+        booster_pack_card = BoosterPackCard.referring_to(card=pot_of_greed(),
+                                                         booster_pack=booster_pack,
+                                                         identifier='LOB-EN119',
+                                                         rarity='Rare')
+        self.system.store_booster_pack_card(booster_pack_card)
 
     def test_store_booster_pack(self):
         assert_is_empty(self.system.booster_packs())
@@ -65,6 +79,15 @@ class TestBoosterPackManagementSystem:
                                                 'was not.'
         assert_is_empty(self.system.booster_packs())
 
+    def test_cannot_purge_booster_pack_with_cards(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        self.system.store_booster_pack(booster_pack)
+        self.store_booster_pack_card_belonging_to(booster_pack)
+        with pytest.raises(SystemRestrictionInfringed) as exception_info:
+            self.system.purge_booster_pack(booster_pack)
+        assert exception_info.message_text() == 'Legend of Blue Eyes White Dragon cannot be deleted since it has cards.'
+        assert_the_only_one_in(self.system.booster_packs(), booster_pack)
+
     def test_update_booster_pack(self):
         booster_pack = legend_of_blue_eyes_white_dragon()
         updated_booster_pack = metal_raiders()
@@ -74,7 +97,7 @@ class TestBoosterPackManagementSystem:
                              lambda managed_booster_pack: assert_booster_pack_was_updated(booster_pack,
                                                                                           updated_booster_pack,
                                                                                           managed_booster_pack))
-        
+
     def test_cannot_update_booster_pack_where_there_is_one_with_same_name(self):
         booster_pack = legend_of_blue_eyes_white_dragon()
         another_booster_pack = metal_raiders()
@@ -86,14 +109,26 @@ class TestBoosterPackManagementSystem:
         assert exception_info.message_text() == 'There is already a booster pack named Legend of Blue Eyes White ' \
                                                 'Dragon.'
         assert_collections_have_same_elements([booster_pack, another_booster_pack], self.system.booster_packs())
-        
+
     def test_querying_booster_pack_by_name_fails_when_booster_pack_not_found(self):
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.booster_pack_named('Metal Raiders', if_found=lambda: pytest.fail())
-        assert exception_info.message_text() == 'There is no booster pack named Metal Raiders.'
-        
+        assert exception_info.message_text() == "There is no booster pack matching {'name': 'Metal Raiders'}."
+
     def test_querying_booster_pack_by_name(self):
         booster_pack = legend_of_blue_eyes_white_dragon()
         self.system.store_booster_pack(booster_pack)
         found_booster_pack = self.system.booster_pack_named(booster_pack.name, if_none=lambda: pytest.fail())
+        assert found_booster_pack == booster_pack
+
+    def test_querying_booster_packs_by_partial_name(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        self.system.store_booster_pack(booster_pack)
+        found_booster_packs = self.system.booster_packs_named_like('white')
+        assert_the_only_one_in(found_booster_packs, booster_pack)
+
+    def test_querying_booster_pack_by_id(self):
+        booster_pack = legend_of_blue_eyes_white_dragon()
+        self.system.store_booster_pack(booster_pack)
+        found_booster_pack = self.system.booster_pack_numbered(booster_pack.id)
         assert found_booster_pack == booster_pack

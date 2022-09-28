@@ -32,8 +32,14 @@
           <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
           <li> <a href="{% url 'about' %}">About</a></li>
           <li>
+
               <form name="form-nav" method="post" action="">
-                  <select name="avatar" id="profile" onchange="location.href=form.avatar.value;">
+
+                {% if user.userprofile.avatar %}
+                  <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("{{user.userprofile.avatar.url }}");'>
+                {% else %}
+                  <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("/static/assets/profile-icon-white.png");'>
+                {% endif %}
                     <option id="option-hide" value="{% url 'cards' %}"> </option>
                     <option value="{% url 'profile' %}">Profile</option>
                     <option value="{% url 'logout' %}">Logout</option>
@@ -46,6 +52,13 @@
 </header>
 
 <main class="main-content-background">
+
+    {% if messages %}
+            {% for message in messages %}
+            <p {% if message.tags %} class="message-{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
     {% block page-content %}
     {% endblock %}
 </main>

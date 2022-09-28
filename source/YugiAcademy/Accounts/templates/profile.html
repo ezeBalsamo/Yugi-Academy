@@ -10,12 +10,16 @@
     <form action="" method="post" id="profile-form" enctype="multipart/form-data"> {% csrf_token %}
         <div id="avatar-block">
           <figure>
-            <img id="profile-icon-white" src="/static/assets/profile-icon-white.png">
-              <input type="file" id="image"  name="image" accept=".jpg,.png"/>
+            {% if user.userprofile.avatar %}
+              <img id="avatar" src="{{user.userprofile.avatar.url }}">
+            {% else %}
+              <img id="avatar" src="/static/assets/profile-icon-white.png">
+            {% endif %}
               <label for="image" style="cursor: pointer;">
-                <span> <img src="/static/assets/camera-gold.png" title="Load a profile image">
+                <span> <img id="gold-camera" src="/static/assets/camera-gold.png" title="Load a profile image">
                 </span>
               </label>
+            <input type="file" name="avatar" accept="image/*" id="select_avatar_file">
             </figure>
           </div>
 
