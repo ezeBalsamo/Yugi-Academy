@@ -1,9 +1,12 @@
 {% extends "YuGiOh/base.html" %}
 
 {% block page-content %}
-    <h1>Booster Pack {{ action_name }}</h1>
-    <form action="" method="post"> {% csrf_token %}
+    <h1 style="text-align: center">Booster Pack {{ action_name }}</h1>
+    <form action="" method="post" id="booster-pack-registration-form"> {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">{{ button_content }}</button>
+      <div id="booster-packs-registration-buttons">
+          <input type="button" onclick="location.href='/yugioh/booster-packs'" class="button" id="back-button" value="Back"/>
+          <button type="submit" class="button" id="login-button">{{ button_content }}</button>
+        </div>
     </form>
 {% endblock %}
