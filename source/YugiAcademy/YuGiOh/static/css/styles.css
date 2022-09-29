@@ -20,6 +20,7 @@ h1 {
 
 h2 {
   text-align: center;
+  color: #d9b054;
 }
 
 p {
@@ -389,5 +390,86 @@ label[for="avatar-clear_id"]
 }
 
 #send-messages-buttons {
+    text-align: center;
+}
+
+#booster-packs-box{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    width: 80%;
+    height: 40rem;
+}
+
+#register-booster-pack{
+    display: flex;
+    max-width: 40%;
+    height: auto;
+    background-image: url('/static/assets/booster-packs-creation.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: 10rem;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#filter-booster-pack{
+    max-width: 100%;
+    height: 30rem;
+    background-image: url('/static/assets/booster-packs.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#booster-packs-box label{
+    font-weight: bold;
+}
+
+
+.icono-booster-packs{
+    width: 2rem;
+    height: 1.5rem;
+}
+
+#booster-packs-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: #6c7983;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#filter-booster-pack-form{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    min-width: 80%;
+    margin-top: -0.5rem;
+}
+
+#filter-booster-pack-form input{
+    min-width: 85%;
+}
+
+
+.booster-pack-row{
+    margin-top: 1rem;
+}
+
+.booster-packs-grid-title {
+    font-weight: bold;
+    color: black;
+}
+
+#booster-pack-registration-form{
+    text-align: center;
+}
+
+#booster-pack-registration-form input{
+    text-align: center;
+}
+
+#booster-packs-registration-buttons{
     text-align: center;
 }
