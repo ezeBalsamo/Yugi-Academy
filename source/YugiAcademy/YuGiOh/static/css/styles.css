@@ -76,6 +76,10 @@ input {
   text-align: right;
 }
 
+#nav-links form select:hover {
+    cursor: pointer;
+}
+
 .header-footer {
   background: black;
 }
