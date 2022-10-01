@@ -7,7 +7,6 @@ body {
     margin: 0;
 }
 
-
 main {
     display: block;
 }
@@ -47,7 +46,6 @@ input {
   margin-top: 15rem;
   margin-left: 10rem;
 }
-
 
 .nav-menu {
   display: grid;
@@ -138,6 +136,15 @@ input {
 
 #create-account{
     color: #d9b054;
+}
+
+.home-section {
+    margin-left: 1rem;
+    width: 65%
+}
+
+.home-section p {
+    line-height: 1.5rem;
 }
 
 #profile-form {
