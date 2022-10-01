@@ -1,23 +1,28 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
     <h1>Spell Cards</h1>
-
-    <a href="{% url 'store_spell_card' %}">Register spell card</a>
+    <input id="submit-button" class="button" type="button" onclick="location.href='{% url 'store_spell_card' %}'" value="Register">
     <section class="cards">
-        {% for card in cards %}
-            <article class="card">
-                <a href="{{card.image.url }}" target="_blank">
-                    <img class="image" src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
-                </a>
-                <div class="actions">
-                    <a class="action" href="{% url 'update_spell_card' card.id %}">
-                        <img class="icono-booster-packs" src="/static/assets/update.jpg" alt="Update" title="Update" />
+        {% if not booster_packs %}
+            <p style="font-weight: bold; color: #6c7983">
+                No Spell Card has been registered yet.
+            </p>
+        {% else %}
+            {% for card in cards %}
+                <article class="card">
+                    <a href="{{card.image.url }}" target="_blank">
+                        <img class="image" src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
                     </a>
-                    <a class="action" href="{% url 'purge_spell_card' card.id %}">
-                        <img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Delete" />
-                    </a>
-                </div>
-            </article>
-        {% endfor %}
+                    <div class="actions">
+                        <a class="action" href="{% url 'update_spell_card' card.id %}">
+                            <img class="icono-booster-packs" src="/static/assets/update.jpg" alt="Update" title="Update" />
+                        </a>
+                        <a class="action" href="{% url 'purge_spell_card' card.id %}">
+                            <img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Delete" />
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+        {% endif %}
     </section>
 {% endblock %}
