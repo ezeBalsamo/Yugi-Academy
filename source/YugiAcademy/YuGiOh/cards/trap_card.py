@@ -21,7 +21,17 @@ class TrapCard(Card):
 
         return cls(name=name, type=type, description=description, image=image)
 
+    @classmethod
+    def without_image_named(cls, name, type, description):
+        enforce_not_blank(name, "Name")
+        enforce_not_blank(type, "Type")
+        enforce_not_blank(description, "Description")
+
+        return cls(name=name, type=type, description=description)
+
     def synchronize_with(self, trap_card):
         self.name = trap_card.name
         self.type = trap_card.type
         self.description = trap_card.description
+        if trap_card.image.name != 'cards/card-back.jpg':
+            self.image = trap_card.image

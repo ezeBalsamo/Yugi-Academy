@@ -30,6 +30,10 @@ def assert_trap_card_was_updated(trap_card, updated_trap_card, managed_trap_card
     assert managed_trap_card.name == updated_trap_card.name
     assert managed_trap_card.type == updated_trap_card.type
     assert managed_trap_card.description == updated_trap_card.description
+    if updated_trap_card.image.name == 'cards/card-back.jpg':
+        assert managed_trap_card.image != updated_trap_card.image
+    else:
+        assert managed_trap_card.image == updated_trap_card.image
 
 
 @pytest.mark.django_db
@@ -76,6 +80,17 @@ class TestCardManagementSystem:
     def test_update_trap_card(self):
         trap_card = jar_of_greed()
         updated_trap_card = magic_hammer()
+        self.system.store_trap_card(trap_card)
+        self.system.update_trap_card_with(trap_card, updated_trap_card)
+        with_the_only_one_in(self.system.trap_cards(),
+                             lambda managed_trap_card: assert_trap_card_was_updated(trap_card, updated_trap_card,
+                                                                                    managed_trap_card))
+
+    def test_trap_card_image_is_not_updated(self):
+        trap_card = jar_of_greed()
+        updated_trap_card = TrapCard.without_image_named(name='Image',
+                                                         type='Normal',
+                                                         description="I don't have image")
         self.system.store_trap_card(trap_card)
         self.system.update_trap_card_with(trap_card, updated_trap_card)
         with_the_only_one_in(self.system.trap_cards(),
