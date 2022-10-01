@@ -1,20 +1,29 @@
 import pytest
+from django.db.models.fields.files import ImageFieldFile, FileField
 
 from YuGiOh.cards import CardManagementSystem, SpellCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-                        assert_is_empty, assert_the_only_one_in, \
-                        with_the_only_one_in, \
-                        assert_collections_have_same_elements
+    assert_is_empty, assert_the_only_one_in, \
+    with_the_only_one_in, \
+    assert_collections_have_same_elements
+
+
+def card_back_image():
+    return ImageFieldFile(instance=None, field=FileField(), name='cards/card-back.jpg')
 
 
 def pot_of_greed():
-    return SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+    return SpellCard.named(name='Pot of Greed',
+                           type='Normal',
+                           description='Draw 2 cards.',
+                           image=card_back_image())
 
 
 def sogen():
     return SpellCard.named(name="Sogen",
                            type="Field",
-                           description="All Warrior and Beast-Warrior monsters on the field gain 200 ATK/DEF.")
+                           description="All Warrior and Beast-Warrior monsters on the field gain 200 ATK/DEF.",
+                           image=card_back_image())
 
 
 def assert_spell_card_was_updated(spell_card, updated_spell_card, managed_spell_card):
@@ -39,7 +48,10 @@ class TestCardManagementSystem:
 
     def test_cannot_store_spell_card_when_there_is_one_with_same_name(self):
         spell_card = pot_of_greed()
-        another_spell_card = SpellCard.named(name=spell_card.name, type='Continuous', description='Win the game')
+        another_spell_card = SpellCard.named(name=spell_card.name,
+                                             type='Continuous',
+                                             description='Win the game',
+                                             image=card_back_image())
         self.system.store_spell_card(spell_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.store_spell_card(another_spell_card)
@@ -74,7 +86,10 @@ class TestCardManagementSystem:
     def test_cannot_update_spell_card_where_there_is_one_with_same_name(self):
         spell_card = pot_of_greed()
         another_spell_card = sogen()
-        updated_spell_card = SpellCard.named(spell_card.name, type='Continuous', description='Win the game')
+        updated_spell_card = SpellCard.named(spell_card.name,
+                                             type='Continuous',
+                                             description='Win the game',
+                                             image=card_back_image())
         self.system.store_spell_card(spell_card)
         self.system.store_spell_card(another_spell_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:

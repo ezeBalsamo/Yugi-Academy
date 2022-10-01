@@ -1,6 +1,9 @@
 import pytest
 
 from datetime import date
+
+from django.db.models.fields.files import ImageFieldFile, FileField
+
 from YuGiOh.cards import SpellCard, CardManagementSystem
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
@@ -9,12 +12,16 @@ from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
     assert_collections_have_same_elements
 
 
+def card_back_image():
+    return ImageFieldFile(instance=None, field=FileField(), name='cards/card-back.jpg')
+
+
 def legend_of_blue_eyes_white_dragon():
     return BoosterPack.named(name="Legend of Blue Eyes White Dragon", code='LOB-EN', release_date=date(2002, 3, 8))
 
 
 def pot_of_greed():
-    spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+    spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.', image=card_back_image())
     CardManagementSystem().store_spell_card(spell_card)
     return spell_card
 

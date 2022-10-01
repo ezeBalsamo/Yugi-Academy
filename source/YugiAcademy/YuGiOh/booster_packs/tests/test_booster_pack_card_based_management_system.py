@@ -1,12 +1,19 @@
 import pytest
 
 from datetime import date
+
+from django.db.models.fields.files import ImageFieldFile, FileField
+
 from YuGiOh.cards import CardManagementSystem, SpellCard, TrapCard
 from YuGiOh.booster_packs import BoosterPackManagementSystem, BoosterPack, BoosterPackCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
     assert_is_empty, assert_the_only_one_in, \
     with_the_only_one_in, \
     assert_collections_have_same_elements
+
+
+def card_back_image():
+    return ImageFieldFile(instance=None, field=FileField(), name='cards/card-back.jpg')
 
 
 def assert_booster_pack_card_was_updated(booster_pack_card, updated_booster_pack_card, managed_booster_pack_card):
@@ -26,7 +33,7 @@ class TestBoosterPackManagementSystem:
         self.system = BoosterPackManagementSystem()
 
     def pot_of_greed(self):
-        spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+        spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.', image=card_back_image())
         self.card_system.store_spell_card(spell_card)
         return spell_card
 
