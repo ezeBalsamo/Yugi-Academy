@@ -9,7 +9,7 @@ from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
 
 
 def card_image():
-    return ImageFieldFile(instance=None, field=FileField(), name='cards/spell_cards/victory.jpg')
+    return ImageFieldFile(instance=None, field=FileField(), name='cards/trap_cards/victory.jpg')
 
 
 def jar_of_greed():
