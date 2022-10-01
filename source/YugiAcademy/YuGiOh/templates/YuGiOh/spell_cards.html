@@ -3,9 +3,11 @@
     <h1>Spell Cards</h1>
 
     <a href="{% url 'store_spell_card' %}">Register spell card</a>
-    <ul>
+    <ul class="cards">
         {% for card in cards %}
-            <li>{{card.name}}</li>
+            <a href="{{card.image.url }}" target="_blank">
+                <img src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
+            </a>
         {% endfor %}
     </ul>
 {% endblock %}

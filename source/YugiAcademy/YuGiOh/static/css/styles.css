@@ -497,3 +497,19 @@ label[for="avatar-clear_id"]
 #booster-packs-registration-buttons{
     text-align: center;
 }
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 75%;
+    padding: 0 3.2rem;
+}
+
+.cards img {
+    width: 10vw;
+    height: auto;
+}
+.cards img:hover {
+    transform: scale(1.5);
+}
