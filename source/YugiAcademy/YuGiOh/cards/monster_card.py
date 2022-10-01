@@ -15,6 +15,7 @@ class MonsterCard(Card):
     attack = models.IntegerField()
     defense = models.IntegerField()
     set = GenericRelation(to=BoosterPackCard, related_query_name='monster_card')
+    image = models.ImageField(upload_to='cards/monster_cards', default='cards/card-back.jpg')
 
     @classmethod
     def named(cls, name: str, race: str, attribute: str, level: int, attack: int, defense: int, description: str):
