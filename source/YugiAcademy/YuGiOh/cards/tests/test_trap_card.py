@@ -24,6 +24,13 @@ def test_trap_card_type_must_not_be_blank():
         assert exception_info.message_text() == 'Type must not be blank.'
 
 
+def test_trap_card_type_must_be_a_valid_one():
+    invalid_type = 'Invalid Type'
+    with pytest.raises(InstanceCreationFailed) as exception_info:
+        TrapCard.named(name='Jar of Greed', type=invalid_type, description='Draw 1 card.', image=card_back_image())
+    assert exception_info.message_text() == 'Type must be one of this: Normal, Continuous, Counter, Equip, Field.'
+
+
 def test_trap_card_name_must_not_be_blank():
     for invalid_name in ['', ' ']:
         with pytest.raises(InstanceCreationFailed) as exception_info:
