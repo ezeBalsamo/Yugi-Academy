@@ -29,6 +29,7 @@ def jar_of_greed():
 
 def dark_magician():
     return MonsterCard.named(name='Dark Magician',
+                             type='Normal',
                              race='Spellcaster',
                              attribute='Dark',
                              level=7,

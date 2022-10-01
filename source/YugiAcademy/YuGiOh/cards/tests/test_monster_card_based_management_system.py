@@ -14,6 +14,7 @@ def card_image():
 
 def dark_magician():
     return MonsterCard.named(name='Dark Magician',
+                             type='Normal',
                              race='Spellcaster',
                              attribute='Dark',
                              level=7,
@@ -25,6 +26,7 @@ def dark_magician():
 
 def monster_card_named(name):
     return MonsterCard.named(name=name,
+                             type='Normal',
                              race='Warrior',
                              attribute='Earth',
                              level=4,
@@ -37,6 +39,7 @@ def monster_card_named(name):
 
 def celtic_guardian():
     return MonsterCard.named(name='Celtic Guardian',
+                             type='Normal',
                              race='Warrior',
                              attribute='Earth',
                              level=4,
@@ -112,6 +115,7 @@ class TestCardManagementSystem:
     def test_monster_card_image_is_not_updated(self):
         monster_card = dark_magician()
         updated_monster_card = MonsterCard.without_image_named(name='Celtic Guardian',
+                                                               type='Normal',
                                                                race='Warrior',
                                                                attribute='Earth',
                                                                level=4,
