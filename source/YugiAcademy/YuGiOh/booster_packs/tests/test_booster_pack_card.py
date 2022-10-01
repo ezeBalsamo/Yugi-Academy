@@ -41,10 +41,13 @@ def dark_magician():
 
 def assert_is_expected(booster_pack_card, card, booster_pack, identifier, rarity):
     assert booster_pack_card.card == card
-    assert booster_pack_card.card_name() == card.name
     assert booster_pack_card.booster_pack == booster_pack
     assert booster_pack_card.identifier == identifier
     assert booster_pack_card.rarity == rarity
+
+    assert booster_pack_card.card_name() == card.name
+    assert booster_pack_card.card_type() == card.type
+    assert booster_pack_card.card_type_description() == card.type_description
 
 
 def test_booster_pack_card_identifier_must_not_be_blank():

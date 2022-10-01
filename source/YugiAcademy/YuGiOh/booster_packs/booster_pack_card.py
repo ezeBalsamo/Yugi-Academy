@@ -39,6 +39,12 @@ class BoosterPackCard(models.Model):
     def card_name(self):
         return self.card.name
 
+    def card_type(self):
+        return self.card.type
+
+    def card_type_description(self):
+        return self.card.type_description
+
     def synchronize_with(self, booster_pack_card):
         self.card = booster_pack_card.card
         self.booster_pack = booster_pack_card.booster_pack
