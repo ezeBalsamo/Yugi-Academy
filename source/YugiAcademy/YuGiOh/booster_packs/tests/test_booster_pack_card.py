@@ -24,7 +24,7 @@ def pot_of_greed():
 
 
 def jar_of_greed():
-    return TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.')
+    return TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.', image=card_back_image())
 
 
 def dark_magician():

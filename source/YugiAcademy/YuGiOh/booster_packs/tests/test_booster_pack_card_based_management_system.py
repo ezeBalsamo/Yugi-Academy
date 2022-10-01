@@ -33,7 +33,10 @@ class TestBoosterPackManagementSystem:
         self.system = BoosterPackManagementSystem()
 
     def pot_of_greed(self):
-        spell_card = SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.', image=card_back_image())
+        spell_card = SpellCard.named(name='Pot of Greed',
+                                     type='Normal',
+                                     description='Draw 2 cards.',
+                                     image=card_back_image())
         self.card_system.store_spell_card(spell_card)
         return spell_card
 
@@ -41,7 +44,8 @@ class TestBoosterPackManagementSystem:
         trap_card = TrapCard.named(name="Mirror Force",
                                    type="Normal",
                                    description="When an opponent's monster declares an attack: Destroy all your "
-                                               "opponent's Attack Position monsters.")
+                                               "opponent's Attack Position monsters.",
+                                   image=card_back_image())
         self.card_system.store_trap_card(trap_card)
         return trap_card
 
