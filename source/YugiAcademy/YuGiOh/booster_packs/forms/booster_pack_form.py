@@ -6,6 +6,6 @@ class DateInput(forms.DateInput):
 
 
 class BoosterPackForm(forms.Form):
-    name = forms.CharField(max_length=50)
-    code = forms.CharField(max_length=10)
-    release_date = forms.DateField(widget=DateInput)
+    name = forms.CharField(label_suffix='', max_length=50)
+    code = forms.CharField(label_suffix='', max_length=10)
+    release_date = forms.DateField(label_suffix='', widget=DateInput)
