@@ -549,3 +549,7 @@ label[for="image-clear_id"]
 #crud-form p {
     margin-top: 1rem;
 }
+
+.cards-registration-section{
+    text-align: center;
+}

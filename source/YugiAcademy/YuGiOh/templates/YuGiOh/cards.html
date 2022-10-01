@@ -1,7 +1,9 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
-    <h1>{{ card_type.capitalize }} Cards</h1>
-    <input id="submit-button" class="button" type="button" onclick="location.href='{% url store_url %}'" value="Register">
+    <section class="cards-registration-section">
+      <h1>{{ card_type.capitalize }} Cards</h1>
+      <input id="submit-button" class="button" type="button" onclick="location.href='{% url store_url %}'" value="Register">
+    </section>
     <section class="cards">
         {% if not cards %}
             <p style="font-weight: bold; color: #6c7983">
