@@ -38,7 +38,7 @@ def update_monster_card(request, monster_card_id):
                 updated_monster_card = MonsterCard.from_form(form.cleaned_data)
                 app.card_system.update_monster_card_with(monster_card, updated_monster_card)
                 messages.info(request, f'{monster_card} has been successfully updated.')
-                return redirect('spell_cards')
+                return redirect('monster_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))
                 return render(request, 'YuGiOh/card.html', context)

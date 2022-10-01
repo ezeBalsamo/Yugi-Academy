@@ -36,7 +36,7 @@ def store_monster_card(request):
                 monster_card = MonsterCard.from_form(form.cleaned_data)
                 app.card_system.store_monster_card(monster_card)
                 messages.info(request, f'{monster_card} has been successfully registered.')
-                return redirect('spell_cards')
+                return redirect('monster_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 return show_error_and_render_with(request, error)
         else:
