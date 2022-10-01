@@ -31,6 +31,7 @@ def update_spell_card(request, spell_card_id):
             try:
                 updated_spell_card = SpellCard.from_form(form.cleaned_data)
                 app.card_system.update_spell_card_with(spell_card, updated_spell_card)
+                messages.info(request, f'{spell_card} has been successfully updated.')
                 return redirect('spell_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))

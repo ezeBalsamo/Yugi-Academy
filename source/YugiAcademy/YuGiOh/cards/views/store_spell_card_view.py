@@ -33,6 +33,7 @@ def store_spell_card(request):
             try:
                 spell_card = SpellCard.from_form(form.cleaned_data)
                 app.card_system.store_spell_card(spell_card)
+                messages.info(request, f'{spell_card} has been successfully registered.')
                 return redirect('spell_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 return show_error_and_render_with(request, error)
