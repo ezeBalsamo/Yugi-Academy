@@ -425,7 +425,7 @@ Here, you will see:
 
 ## Admin
 
-To visit Admin page go to http://localhost:8000/admin/ with your web browser.
+To visit Admin page go to `http://localhost:8000/admin/` with your web browser.
 
 Here, you will see all Apps and models of our project:
 
