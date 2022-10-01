@@ -17,7 +17,12 @@ def context():
 
 
 def render_with(request):
-    return render(request, 'YuGiOh/store_spell_card.html', context())
+    return render(request, 'YuGiOh/spell_card.html', context())
+
+
+def show_error_and_render_with(request, error):
+    messages.error(request, str(error))
+    return render_with(request)
 
 
 @login_required
@@ -26,15 +31,13 @@ def store_spell_card(request):
         form = SpellCardForm(request.POST, request.FILES)
         if form.is_valid():
             try:
-                spell_card = SpellCard.from_from(form.cleaned_data)
+                spell_card = SpellCard.from_form(form.cleaned_data)
                 app.card_system.store_spell_card(spell_card)
                 return redirect('spell_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
-                messages.error(request, str(error))
-                return render_with(request)
+                return show_error_and_render_with(request, error)
         else:
-            messages.error(request, str(form.errors))
-            return render_with(request)
+            return show_error_and_render_with(request, form.errors)
 
     if request.method == 'GET':
         return render_with(request)
