@@ -28,10 +28,12 @@ With all this being said, you can play around registering some spell cards.
 
 ---
 
-## Home
+## Video Introduction Page
 
-Once there, you will see the home page (a video).
+Once there, you will see the video introduction page.
 Click anywhere to go to the login page.
+
+---
 
 ## Login
 
@@ -133,9 +135,9 @@ If you select any of these types you will be redirected to each card type page.
 
 ### Card Type Page
 
-Whatever type of card you chose you will see a list of all the cards of that type registered.
+Whatever type of card you chose you'll see all the cards of the selected type.
 
-Here you can also register, update or delete a card. 
+Here you can also register, update or delete a card.
 
 If a type does not have any card registered, you will see a message notifying that:
 
@@ -157,15 +159,15 @@ A Spell Card has:
 
 ### Spell Card Types
 
-- Normal 
+- Normal
 
-- Equip 
+- Equip
 
-- Continuous 
+- Continuous
 
-- Quick-Play 
+- Quick-Play
 
-- Field 
+- Field
 
 - Ritual
 
@@ -195,11 +197,11 @@ A Trap Card has:
 
 ### Trap Card Types
 
-- Normal 
+- Normal
 
-- Equip 
+- Equip
 
-- Continuous 
+- Continuous
 
 - Counter
 
@@ -241,11 +243,11 @@ A Monster Card has:
 
 ### Monster Card Type
 
-- Normal 
+- Normal
 
-- Effect 
+- Effect
 
-- Ritual 
+- Ritual
 
 - Fusion
 
@@ -259,14 +261,13 @@ A Monster Card has:
 
 - Token
 
-
 ### Monster Card Attributes
-      
-- Dark 
 
-- Divine 
+- Dark
 
-- Earth 
+- Divine
+
+- Earth
 
 - Fire
 
@@ -307,12 +308,12 @@ Here, you can also register a booster pack.
 Once you register a booster pack, you won´t see it immediately.
 You will have to filter them (again, by name).
 
-In case your filter don't find any booster pack you will see a message notifying that:
+In case your filter don't find any booster pack you'll see a message notifying:
 
 - No booster pack has been found or registered yet.
 
-If there is booster packs with a name like the name of the filter you will see all of them.
-A table will be displayed and this will show the information about all booster packs found.
+If there's booster packs with name like name of the filter you'll see them.
+A table will be displayed and this will show all booster packs found.
 
 Here you can also take some actions like:
 
@@ -352,7 +353,7 @@ You can do this by clicking on the cards icon in actions of that booster pack.
 There, you will see all the booster pack cards from that booster pack.
 Here you can also register, update or delete a booster pack card.
 
-If a booster pack does not have any card registered, you will see a message notifying that:
+If a booster pack doesn't have any card registered, you'll see a message:
 
 - You have no booster pack cards registered
 
