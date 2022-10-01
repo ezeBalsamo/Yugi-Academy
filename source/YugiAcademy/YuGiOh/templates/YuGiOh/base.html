@@ -63,6 +63,11 @@
 <main class="main-content-background">
     {% block page-content %}
     {% endblock %}
+    {% if messages %}
+        {% for message in messages %}
+        <p {% if message.tags %} class="notification message-{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
 </main>
 </body>
 </html>

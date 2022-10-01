@@ -352,12 +352,8 @@ label[for="avatar-clear_id"]
     text-align: center;
 }
 
-.message-error {
-    color:white;
-}
-
-.message-info {
-    color:white;
+.notification {
+    display: none;
 }
 
 #main-messages h1{
