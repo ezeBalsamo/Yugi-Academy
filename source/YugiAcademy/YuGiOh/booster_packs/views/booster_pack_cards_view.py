@@ -1,7 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from YuGiOh.models import app
 
 
+@login_required
 def booster_pack_cards(request, booster_pack_id: id):
     booster_pack = app.booster_pack_system.booster_pack_numbered(booster_pack_id)
 

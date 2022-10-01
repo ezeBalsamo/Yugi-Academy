@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from YuGiOh.booster_packs.forms import BoosterPackForm
@@ -15,6 +16,7 @@ def context():
     }
 
 
+@login_required
 def store_booster_pack(request):
     if request.method == 'POST':
         form = BoosterPackForm(request.POST)

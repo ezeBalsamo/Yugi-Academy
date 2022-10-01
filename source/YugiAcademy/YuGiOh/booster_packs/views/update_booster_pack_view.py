@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from YuGiOh.models import app
@@ -19,6 +20,7 @@ def context_for(booster_pack):
     }
 
 
+@login_required
 def update_booster_pack(request, booster_pack_id):
     booster_pack = app.booster_pack_system.booster_pack_numbered(booster_pack_id)
     context = context_for(booster_pack)

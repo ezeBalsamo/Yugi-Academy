@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from YuGiOh.cards.forms import SpellCardForm
@@ -7,6 +8,7 @@ from YuGiOh.models import app
 from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 
+@login_required
 def store_spell_card(request):
     form = SpellCardForm()
     if request.method == 'POST':
