@@ -13,4 +13,4 @@ def purge_booster_pack(request, booster_pack_id):
         app.booster_pack_system.purge_booster_pack(booster_pack)
     except SystemRestrictionInfringed as error:
         messages.error(request, str(error))
-    return redirect('/yugioh/booster-packs')
+    return redirect('booster_packs')
