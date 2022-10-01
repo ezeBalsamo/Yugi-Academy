@@ -66,6 +66,7 @@ const infoNotificationDetailDueTo = infoDescription => {
     return {
         icon: 'success',
         title: 'Great!',
+        timer: 2500,
         text: infoDescription
     }
 }
