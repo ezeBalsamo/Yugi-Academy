@@ -1,8 +1,8 @@
 from django.urls import path
 
-from YuGiOh.website.views import home, about
+from YuGiOh.website.views import index, about
 
 urlpatterns = [
-    path('', home, name="home"),
+    path('', index, name="index"),
     path('about', about, name="about")
 ]
