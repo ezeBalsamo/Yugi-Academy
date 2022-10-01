@@ -71,8 +71,8 @@ class CardManagementSystem:
                           if_found=if_found,
                           if_none=if_none)
 
-    def spell_card_numbered(self, booster_pack_id):
-        return self.spell_card_filtered_by(query_filter={'id': booster_pack_id})
+    def spell_card_numbered(self, spell_card_id):
+        return self.spell_card_filtered_by(query_filter={'id': spell_card_id})
 
     """ Trap Cards """
 
@@ -100,12 +100,21 @@ class CardManagementSystem:
         trap_card.synchronize_with(updated_trap_card)
         trap_card.save()
 
+    def trap_card_filtered_by(self, query_filter, if_found=None, if_none=None):
+        return managed_object_filtered_by(query_filter=query_filter,
+                                          repository=self.trap_cards_repository,
+                                          if_found=if_found,
+                                          if_none=if_none)
+
     def trap_card_named(self, name, if_found=None, if_none=None):
         return card_named(name,
                           card_type=TrapCard.type_description,
                           repository=self.trap_cards_repository,
                           if_found=if_found,
                           if_none=if_none)
+
+    def trap_card_numbered(self, trap_card_id):
+        return self.trap_card_filtered_by(query_filter={'id': trap_card_id})
 
     """ Monster Cards """
 

@@ -106,3 +106,9 @@ class TestCardManagementSystem:
         self.system.store_trap_card(trap_card)
         found_trap_card = self.system.trap_card_named(trap_card.name, if_none=lambda: pytest.fail())
         assert found_trap_card == trap_card
+
+    def test_querying_trap_card_by_id(self):
+        trap_card = jar_of_greed()
+        self.system.store_trap_card(trap_card)
+        found_trap_card = self.system.trap_card_numbered(trap_card.id)
+        assert found_trap_card == trap_card
