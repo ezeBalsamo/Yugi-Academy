@@ -1,14 +1,19 @@
 import pytest
+from django.db.models.fields.files import ImageFieldFile, FileField
 
 from YuGiOh.cards import CardManagementSystem, TrapCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound, \
-                        assert_is_empty, assert_the_only_one_in, \
-                        with_the_only_one_in, \
-                        assert_collections_have_same_elements
+    assert_is_empty, assert_the_only_one_in, \
+    with_the_only_one_in, \
+    assert_collections_have_same_elements
+
+
+def card_image():
+    return ImageFieldFile(instance=None, field=FileField(), name='cards/spell_cards/victory.jpg')
 
 
 def jar_of_greed():
-    return TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.')    
+    return TrapCard.named(name='Jar of Greed', type='Normal', description='Draw 1 card.', image=card_image())
 
 
 def magic_hammer():
@@ -16,7 +21,8 @@ def magic_hammer():
                           type='Counter',
                           description='When a Spell Card is activated: Discard'
                                       ' 1 card; negate the activation, and if'
-                                      ' you do, destroy it.')
+                                      ' you do, destroy it.',
+                          image=card_image())
 
 
 def assert_trap_card_was_updated(trap_card, updated_trap_card, managed_trap_card):
@@ -41,7 +47,10 @@ class TestCardManagementSystem:
 
     def test_cannot_store_trap_card_when_there_is_one_with_same_name(self):
         trap_card = jar_of_greed()
-        another_trap_card = TrapCard.named(name=trap_card.name, type='Continuous', description='Win the game')
+        another_trap_card = TrapCard.named(name=trap_card.name,
+                                           type='Continuous',
+                                           description='Win the game',
+                                           image=card_image())
         self.system.store_trap_card(trap_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.store_trap_card(another_trap_card)
@@ -72,11 +81,14 @@ class TestCardManagementSystem:
         with_the_only_one_in(self.system.trap_cards(),
                              lambda managed_trap_card: assert_trap_card_was_updated(trap_card, updated_trap_card,
                                                                                     managed_trap_card))
-        
+
     def test_cannot_update_trap_card_where_there_is_one_with_same_name(self):
         trap_card = jar_of_greed()
         another_trap_card = magic_hammer()
-        updated_trap_card = TrapCard.named(trap_card.name, type='Continuous', description='Win the game')
+        updated_trap_card = TrapCard.named(trap_card.name,
+                                           type='Continuous',
+                                           description='Win the game',
+                                           image=card_image())
         self.system.store_trap_card(trap_card)
         self.system.store_trap_card(another_trap_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
@@ -88,7 +100,7 @@ class TestCardManagementSystem:
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.trap_card_named('Jar of Greed', if_found=lambda: pytest.fail())
         assert exception_info.message_text() == 'There is no trap card named Jar of Greed.'
-    
+
     def test_querying_trap_card_by_name(self):
         trap_card = jar_of_greed()
         self.system.store_trap_card(trap_card)
