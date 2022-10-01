@@ -2,39 +2,46 @@
 {% block page-content %}
     <h1 style="text-align: center">Booster Packs</h1>
 
-  <div id="booster-packs-box">
-    <div id="register-booster-pack">
-      <input type="button" onclick="location.href='booster-pack/registration';" class="button" id="login-button" value="Register"/>
+    <div id="booster-packs-box">
+        <div id="register-booster-pack">
+            <input type="button" onclick="location.href='booster-pack/registration';" class="button" id="login-button"
+                value="Register" />
+        </div>
+        <div>
+            <div id="filter-booster-pack"></div>
+            <h2>Filter booster packs by name</h2>
+            <form id="filter-booster-pack-form" action="" method="post">
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit" class="button" id="login-button">Search</button>
+            </form>
+            {% if not booster_packs %}
+                <p style="font-weight: bold; color: #6c7983">
+                    No booster pack has been found or registered yet.
+                </p>
+            {% else %}
+                <div id="booster-packs-grid">
+                <div class="booster-packs-grid-title">Name</div>
+                <div class="booster-packs-grid-title">Code</div>
+                <div class="booster-packs-grid-title">Release Date</div>
+                <div class="booster-packs-grid-title">Actions</div>
+                {% for booster_pack in booster_packs %}
+                    <div class="booster-pack-row">{{booster_pack.name}}</div>
+                    <div class="booster-pack-row">{{booster_pack.code}}</div>
+                    <div class="booster-pack-row">{{booster_pack.release_date}}</div>
+                    <div class="booster-pack-row">
+                        <a href="{% url 'booster_pack_cards_of_booster_pack' booster_pack.id %}"><img
+                                class="icono-booster-packs" src="/static/assets/yu-gi-cards.jpg" alt="Cards"
+                                title="Click to see cards of this booster pack" /></a>
+                        <a href="{% url 'update_booster_pack' booster_pack.id %}"><img class="icono-booster-packs"
+                                src="/static/assets/update.jpg" alt="Update"
+                                title="Click to update this booster pack" /></a>
+                        <a href="{% url 'purge_booster_pack' booster_pack.id %}"><img class="icono-booster-packs"
+                                src="/static/assets/delete.jpg" alt="Delete"
+                                title="Click to delete this booster pack" /></a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
     </div>
-    <div>
-    <div id="filter-booster-pack">
-    </div>
-      <h2>Filter booster packs by name</h2>
-      <form id="filter-booster-pack-form" action="" method="post"> {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="button" id="login-button">Search</button>
-      </form>
-      {% if not booster_packs %}
-          <p style="font-weight: bold; color:#6c7983;">No booster pack has been found or registered yet.</p>
-      {% else %}
-          <div id="booster-packs-grid">
-          <div class="booster-packs-grid-title">Name</div>
-          <div class="booster-packs-grid-title">Code</div>
-          <div class="booster-packs-grid-title">Release Date</div>
-          <div class="booster-packs-grid-title">Actions</div>
-              {% for booster_pack in booster_packs %}
-                <div class="booster-pack-row">{{booster_pack.name}}</div>
-                <div class="booster-pack-row">{{booster_pack.code}}</div>
-                <div class="booster-pack-row">{{booster_pack.release_date}}</div>
-                <div class="booster-pack-row">
-                  <a href="{% url 'booster_pack_cards_of_booster_pack' booster_pack.id %}"><img class="icono-booster-packs" src="/static/assets/yu-gi-cards.jpg" alt="Cards" title="Click to see cards of this booster pack"></a>
-                  <a href="{% url 'update_booster_pack' booster_pack.id %}"><img class="icono-booster-packs" src="/static/assets/update.jpg" alt="Update" title="Click to update this booster pack"></a>
-                  <a href="{% url 'purge_booster_pack' booster_pack.id %}"><img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Click to delete this booster pack"></a>
-                </div>
-
-              {% endfor %}
-          </div>
-      {% endif %}
-    </div>
-  </div>
 {% endblock %}
