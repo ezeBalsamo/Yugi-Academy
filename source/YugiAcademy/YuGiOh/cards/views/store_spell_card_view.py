@@ -10,14 +10,16 @@ from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 def context():
     return {
+        'card_type': 'spell',
         'form': SpellCardForm(),
         'action_name': 'Registration',
-        'button_content': 'Store'
+        'button_content': 'Store',
+        'cards_url': 'spell_cards',
     }
 
 
 def render_with(request):
-    return render(request, 'YuGiOh/spell_card.html', context())
+    return render(request, 'YuGiOh/card.html', context())
 
 
 def show_error_and_render_with(request, error):
