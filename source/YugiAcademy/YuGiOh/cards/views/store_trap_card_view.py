@@ -14,7 +14,7 @@ def context():
         'form': TrapCardForm(),
         'action_name': 'Registration',
         'button_content': 'Store',
-        'cards_url': 'spell_cards',
+        'cards_url': 'trap_cards',
     }
 
 
