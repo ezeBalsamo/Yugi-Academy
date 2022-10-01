@@ -16,7 +16,7 @@
                             {{card.name }} - {{ card.type }}
                   </p>
                     <a href="{{card.image.url }}" target="_blank">
-                        <img class="image" src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
+                        <img class="image" src="{{card.image.url }}" title="{{ card.name }} - {{ card.type }} {{ card_type.capitalize }} Card">
                     </a>
                     <div class="actions">
                         <a class="action" href="{% url update_url card.id %}">
