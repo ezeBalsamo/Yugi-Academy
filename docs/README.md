@@ -54,3 +54,37 @@ Don't forget to read [this](how-to/how-to-use.md) article to know how to use it.
   - [Github](https://github.com/NicolasGuidoBarbeito)
 
   - [LinkedIn](https://www.linkedin.com/in/nicolasguidobarbeito/)
+
+---
+
+### How we work
+
+We develop all with TDD, making different branches for every issue to resolve.
+After the works was done, we made a pull request adding our colleague as a reviewer
+who must do a code review and approve the pull request afterwards, or request changes if needed.
+
+We practically did all together but if we need to describe which things we work most alone, we can describe: 
+
+- Alexander Ezequiel Bálsamo
+
+  - Project architecture.
+
+  - Booster Packs structure and functionality.
+
+  - Cards: Spell/Trap/Monster structure and functionality.
+  
+  - Profile structure and functionality.
+  
+  - Documentation.
+
+- Nicolás Guido Barbeito 
+
+  - Login structure and functionality. 
+  
+  - Message structure and functionality.
+  
+  - Profile structure and functionality.
+  
+  - Application Website style.
+
+  - Documentation.
