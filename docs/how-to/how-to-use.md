@@ -382,18 +382,36 @@ Example
 
 ---
 
-## About
+## Messages
 
-You can visit the About page from the navigation bar.
+You can visit user messages from the navigation bar displaying user menu:
+
+- You have to click on profile white logo and click on "Messages" option.
+
 Here, you will see:
 
-- Porpuse of this page.
+- An option where you can select a user and search conversation with him.
 
-- Information about the authors of this Yugi Academy World!
+- A send button message that links to send message page.
+
+### Conversation page
+
+Here you can see all the conversation between user login and selected user.
+This conversation has the style of "Whatsapp" where:
+
+- Avatar and username of selected user at the top of conversation.
+
+- Sent messages have a green background, and have been aligned to right.
+
+- Received messages have a gray background, and have been aligned to left.
+
+### Send message page
+
+Here you can select a user of Yugi Academy and send to him a message.
 
 ---
 
-## Messages
+## About
 
 You can visit the About page from the navigation bar.
 Here, you will see:
