@@ -1,15 +1,30 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
-    <h1>Cards in {{ booster_pack.name }}</h1>
-    <a href="{% url 'store_booster_pack_card' %}">Register booster pack card</a>
-    {% if not booster_pack_cards %}
-        <p>No booster pack card has been registered yet.</p>
-    {% else %}
-        <ul>
+    <section class="cards-registration-section">
+      <h1>Cards in {{ booster_pack.name }}</h1>
+      <input id="submit-button" class="button" type="button" onclick="location.href='{% url store_url %}'" value="Register">
+    </section>
+    <section class="cards">
+        {% if not booster_pack_cards %}
+            <p style="font-weight: bold; color: #6c7983">
+                No {{ type_description }} has been registered yet.
+            </p>
+        {% else %}
             {% for booster_pack_card in booster_pack_cards %}
-                <li>{{booster_pack_card.card_name}} - {{booster_pack_card.identifier}}</li>
-                <a href="{% url 'purge_booster_pack_card' booster_pack_card.id %}">Delete</a>
+                <article class="card">
+                  <p style="font-weight: bold; color: #6c7983; text-align: center">
+                            {{booster_pack_card.card_name }} - {{ booster_pack_card.identifier }} - {{ booster_pack_card.rarity }}
+                  </p>
+                    <a href="{{booster_pack_card.card.image.url }}" target="_blank">
+                        <img class="image" src="{{booster_pack_card.card.image.url }}" title="{{ booster_pack_card.card_name }} - {{ booster_pack_card.card_type }} {{ booster_pack_card.card_type_description.title }}">
+                    </a>
+                    <div class="actions">
+                        <a class="action" href="{% url purge_url booster_pack_card.id %}">
+                            <img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Delete" />
+                        </a>
+                    </div>
+                </article>
             {% endfor %}
-        </ul>
-    {% endif %}
+        {% endif %}
+    </section>
 {% endblock %}
