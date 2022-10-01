@@ -22,14 +22,31 @@ class SpellCard(Card):
         return cls(name=name, type=type, description=description, image=image)
 
     @classmethod
+    def without_image_named(cls, name, type, description):
+        enforce_not_blank(name, "Name")
+        enforce_not_blank(type, "Type")
+        enforce_not_blank(description, "Description")
+
+        return cls(name=name, type=type, description=description)
+
+    @classmethod
     def from_form(cls, form_data):
-        return cls.named(name=form_data.get('name'),
-                         type=form_data.get('type'),
-                         description=form_data.get('description'),
-                         image=form_data.get('image'))
+        image = form_data.get('image')
+
+        if image:
+            return cls.named(name=form_data.get('name'),
+                             type=form_data.get('type'),
+                             description=form_data.get('description'),
+                             image=image)
+
+        return cls.without_image_named(name=form_data.get('name'),
+                                       type=form_data.get('type'),
+                                       description=form_data.get('description'))
 
     def synchronize_with(self, spell_card):
         self.name = spell_card.name
         self.type = spell_card.type
         self.description = spell_card.description
-        self.image = spell_card.image
+        if spell_card.image.name != 'cards/card-back.jpg':
+            self.image = spell_card.image
+

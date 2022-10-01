@@ -9,11 +9,12 @@ def card_back_image():
     return ImageFieldFile(instance=None, field=FileField(), name='cards/card-back.jpg')
 
 
-def assert_is_expected(spell_card, name, type, description):
+def assert_is_expected(spell_card, name, type, description, image):
     assert spell_card.name == name
     assert spell_card.type == type
     assert spell_card.description == description
     assert str(spell_card) == spell_card.name
+    assert spell_card.image == image
 
 
 def test_spell_card_name_must_not_be_blank():
@@ -43,14 +44,23 @@ def test_instance_creation_and_accessing():
     name = 'Pot of Greed'
     type = 'Normal'
     description = 'Draw 2 cards'
-    spell_card = SpellCard.named(name=name, type=type, description=description, image=card_back_image())
-    assert_is_expected(spell_card, name, type, description)
+    image = card_back_image()
+    spell_card = SpellCard.named(name=name, type=type, description=description, image=image)
+    assert_is_expected(spell_card, name, type, description, image)
 
 
-def test_instance_creation_from_form():
+def test_instance_creation_from_form_with_image():
     name = 'Pot of Greed'
     type = 'Normal'
     description = 'Draw 2 cards'
     image = card_back_image()
     spell_card = SpellCard.from_form(locals())
-    assert_is_expected(spell_card, name, type, description)
+    assert_is_expected(spell_card, name, type, description, image)
+
+
+def test_instance_creation_from_form_without_image():
+    name = 'Pot of Greed'
+    type = 'Normal'
+    description = 'Draw 2 cards'
+    spell_card = SpellCard.from_form(locals())
+    assert_is_expected(spell_card, name, type, description, card_back_image())
