@@ -1,0 +1,14 @@
+{% extends "YuGiOh/base.html" %}
+
+{% block page-content %}
+    <h1 style="text-align: center">{{ card_type.capitalize }} Card {{ action_name }}</h1>
+    <div id="crud-card-box">
+      <form action="" method="post" id="crud-form" enctype="multipart/form-data"> {% csrf_token %}
+          {{ form.as_p }}
+        <div id="crud-form-registration-buttons">
+            <input type="button" onclick="location.href='{% url cards_url %}'" class="button" id="back-button" value="Back"/>
+            <button type="submit" class="button" id="submit-button">{{ button_content }}</button>
+          </div>
+      </form>
+    </div>
+{% endblock %}

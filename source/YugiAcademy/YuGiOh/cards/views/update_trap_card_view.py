@@ -3,38 +3,38 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from YuGiOh.models import app
-from YuGiOh.cards.forms import SpellCardForm
-from YuGiOh.cards import SpellCard
+from YuGiOh.cards.forms import TrapCardForm
+from YuGiOh.cards import TrapCard
 from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 
-def context_for(spell_card):
+def context_for(trap_card):
     return {
         'card_type': 'spell',
-        'form': SpellCardForm(initial={
-            'name': spell_card.name,
-            'type': spell_card.type,
-            'description': spell_card.description,
-            'image': spell_card.image
+        'form': TrapCardForm(initial={
+            'name': trap_card.name,
+            'type': trap_card.type,
+            'description': trap_card.description,
+            'image': trap_card.image
         }),
         'action_name': 'Update',
         'button_content': 'Update',
-        'cards_url': 'spell_cards',
+        'cards_url': 'trap_cards',
     }
 
 
 @login_required
-def update_spell_card(request, spell_card_id):
-    spell_card = app.card_system.spell_card_numbered(spell_card_id)
-    context = context_for(spell_card)
+def update_trap_card(request, trap_card_id):
+    trap_card = app.card_system.trap_card_numbered(trap_card_id)
+    context = context_for(trap_card)
     if request.method == 'POST':
-        form = SpellCardForm(request.POST, request.FILES)
+        form = TrapCardForm(request.POST, request.FILES)
         if form.is_valid():
             try:
-                updated_spell_card = SpellCard.from_form(form.cleaned_data)
-                app.card_system.update_spell_card_with(spell_card, updated_spell_card)
-                messages.info(request, f'{spell_card} has been successfully updated.')
-                return redirect('spell_cards')
+                updated_trap_card = TrapCard.from_form(form.cleaned_data)
+                app.card_system.update_trap_card_with(trap_card, updated_trap_card)
+                messages.info(request, f'{trap_card} has been successfully updated.')
+                return redirect('trap_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))
                 return render(request, 'YuGiOh/card.html', context)

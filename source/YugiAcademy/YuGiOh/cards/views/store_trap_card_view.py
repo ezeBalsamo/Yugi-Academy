@@ -2,19 +2,19 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from YuGiOh.cards.forms import SpellCardForm
-from YuGiOh.cards import SpellCard
+from YuGiOh.cards.forms import TrapCardForm
+from YuGiOh.cards import TrapCard
 from YuGiOh.models import app
 from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 
 def context():
     return {
-        'card_type': 'spell',
-        'form': SpellCardForm(),
+        'card_type': 'trap',
+        'form': TrapCardForm(),
         'action_name': 'Registration',
         'button_content': 'Store',
-        'cards_url': 'spell_cards',
+        'cards_url': 'trap_cards',
     }
 
 
@@ -28,15 +28,15 @@ def show_error_and_render_with(request, error):
 
 
 @login_required
-def store_spell_card(request):
+def store_trap_card(request):
     if request.method == 'POST':
-        form = SpellCardForm(request.POST, request.FILES)
+        form = TrapCardForm(request.POST, request.FILES)
         if form.is_valid():
             try:
-                spell_card = SpellCard.from_form(form.cleaned_data)
-                app.card_system.store_spell_card(spell_card)
-                messages.info(request, f'{spell_card} has been successfully registered.')
-                return redirect('spell_cards')
+                trap_card = TrapCard.from_form(form.cleaned_data)
+                app.card_system.store_trap_card(trap_card)
+                messages.info(request, f'{trap_card} has been successfully registered.')
+                return redirect('trap_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 return show_error_and_render_with(request, error)
         else:

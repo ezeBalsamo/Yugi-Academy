@@ -4,7 +4,7 @@ from django.db.models.fields.files import ImageFieldFile
 
 from .card import Card
 from YuGiOh.booster_packs import BoosterPackCard
-from assertions import enforce_not_blank
+from assertions import enforce_not_blank, enforce_is_included_in
 
 
 class SpellCard(Card):
@@ -18,6 +18,7 @@ class SpellCard(Card):
     def named(cls, name: str, type: str, description: str, image: ImageFieldFile):
         enforce_not_blank(name, "Name")
         enforce_not_blank(type, "Type")
+        enforce_is_included_in(type, "Type", cls.Types)
         enforce_not_blank(description, "Description")
 
         return cls(name=name, type=type, description=description, image=image)

@@ -1,11 +1,11 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
-    <h1>Spell Cards</h1>
-    <input id="submit-button" class="button" type="button" onclick="location.href='{% url 'store_spell_card' %}'" value="Register">
+    <h1>{{ card_type.capitalize }} Cards</h1>
+    <input id="submit-button" class="button" type="button" onclick="location.href='{% url store_url %}'" value="Register">
     <section class="cards">
         {% if not cards %}
             <p style="font-weight: bold; color: #6c7983">
-                No card has been registered yet.
+                No {{ card_type }} card has been registered yet.
             </p>
         {% else %}
             {% for card in cards %}
@@ -17,10 +17,10 @@
                         <img class="image" src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
                     </a>
                     <div class="actions">
-                        <a class="action" href="{% url 'update_spell_card' card.id %}">
+                        <a class="action" href="{% url update_url card.id %}">
                             <img class="icono-booster-packs" src="/static/assets/update.jpg" alt="Update" title="Update" />
                         </a>
-                        <a class="action" href="{% url 'purge_spell_card' card.id %}">
+                        <a class="action" href="{% url purge_url card.id %}">
                             <img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Delete" />
                         </a>
                     </div>

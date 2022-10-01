@@ -36,3 +36,8 @@ def assert_is_empty(collection):
 
 def assert_collections_have_same_elements(collection, another_collection):
     assert collections.Counter(collection) == collections.Counter(another_collection)
+
+
+def enforce_is_included_in(element, name, collection):
+    if element not in collection:
+        raise InstanceCreationFailed(f'{name} must be one of this: {", ".join(collection)}.')
