@@ -31,7 +31,14 @@
       </div>
 
       <div id="nav-links">
-          <li> <a href="{% url 'cards' %}">Cards</a></li>
+          <li>
+              <form name="form-nav" method="post" action="">
+                  <select name="cards" class="cards" onchange="location.href=form.cards.value;">
+                    <option id="option-hide">Cards</option>
+                    <option value="{% url 'spell_cards' %}">Spell Cards</option>
+                  </select>
+              </form>
+          </li>
           <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
           <li> <a href="{% url 'about' %}">About</a></li>
           <li>

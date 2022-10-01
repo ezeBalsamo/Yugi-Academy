@@ -1,8 +1,8 @@
 from django.urls import path
 
-from YuGiOh.cards.views import cards, store_spell_card
+from YuGiOh.cards.views import spell_cards, store_spell_card
 
 urlpatterns = [
-    path('cards', cards, name="cards"),
-    path('cards/registration', store_spell_card, name="store_spell_card"),
+    path('spell-cards', spell_cards, name="spell_cards"),
+    path('spell-card/registration', store_spell_card, name="store_spell_card"),
 ]
