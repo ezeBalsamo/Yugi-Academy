@@ -52,3 +52,20 @@ def test_instance_creation_and_accessing():
     image = card_back_image()
     trap_card = TrapCard.named(name=name, type=type, description=description, image=image)
     assert_is_expected(trap_card, name, type, description, image)
+
+
+def test_instance_creation_from_form_with_image():
+    name = 'Jar of Greed'
+    type = 'Normal'
+    description = 'Draw 1 card.'
+    image = card_back_image()
+    trap_card = TrapCard.from_form(locals())
+    assert_is_expected(trap_card, name, type, description, image)
+
+
+def test_instance_creation_from_form_without_image():
+    name = 'Jar of Greed'
+    type = 'Normal'
+    description = 'Draw 1 card.'
+    trap_card = TrapCard.from_form(locals())
+    assert_is_expected(trap_card, name, type, description, card_back_image())

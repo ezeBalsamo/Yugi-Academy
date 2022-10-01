@@ -31,6 +31,20 @@ class TrapCard(Card):
 
         return cls(name=name, type=type, description=description)
 
+    @classmethod
+    def from_form(cls, form_data):
+        image = form_data.get('image')
+
+        if image:
+            return cls.named(name=form_data.get('name'),
+                             type=form_data.get('type'),
+                             description=form_data.get('description'),
+                             image=image)
+
+        return cls.without_image_named(name=form_data.get('name'),
+                                       type=form_data.get('type'),
+                                       description=form_data.get('description'))
+
     def synchronize_with(self, trap_card):
         self.name = trap_card.name
         self.type = trap_card.type
