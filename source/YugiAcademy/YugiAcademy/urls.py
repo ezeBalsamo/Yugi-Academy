@@ -14,17 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.shortcuts import redirect
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-urlpatterns = [
+from YugiAcademy.website.urls import urlpatterns as website_urlpatterns
+
+app_urlpatterns = [
     path('admin/', admin.site.urls),
     path('yugioh/', include('YuGiOh.urls')),
     path('accounts/', include('Accounts.urls')),
-    path('', lambda _: redirect('yugioh/')),
     path('messages/', include('Messages.urls'))
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = website_urlpatterns + app_urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

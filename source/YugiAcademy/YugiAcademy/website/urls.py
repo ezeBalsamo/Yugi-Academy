@@ -1,6 +1,6 @@
 from django.urls import path
 
-from YuGiOh.website.views import index, home, about
+from YugiAcademy.website.views import index, home, about
 
 urlpatterns = [
     path('', index, name="index"),
