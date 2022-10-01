@@ -27,6 +27,7 @@ class SpellCard(Card):
     def without_image_named(cls, name, type, description):
         enforce_not_blank(name, "Name")
         enforce_not_blank(type, "Type")
+        enforce_is_included_in(type, "Type", cls.Types)
         enforce_not_blank(description, "Description")
 
         return cls(name=name, type=type, description=description)
