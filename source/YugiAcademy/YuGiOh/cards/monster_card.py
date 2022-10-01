@@ -4,7 +4,7 @@ from django.db.models.fields.files import ImageFieldFile
 
 from .card import Card
 from YuGiOh.booster_packs import BoosterPackCard
-from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_be_positive, enforce_is_included_in
+from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_be_positive_or_zero, enforce_is_included_in
 
 
 class MonsterCard(Card):
@@ -39,8 +39,8 @@ class MonsterCard(Card):
         enforce_is_included_in(attribute, "Attribute", cls.Attributes)
         enforce_not_blank(description, "Description")
         enforce_must_be_between(1, level, 12, "Level")
-        enforce_must_be_positive(attack, "Attack")
-        enforce_must_be_positive(defense, "Defense")
+        enforce_must_be_positive_or_zero(attack, "Attack")
+        enforce_must_be_positive_or_zero(defense, "Defense")
 
         return cls(name=name,
                    type=type,
@@ -70,8 +70,8 @@ class MonsterCard(Card):
         enforce_is_included_in(attribute, "Attribute", cls.Attributes)
         enforce_not_blank(description, "Description")
         enforce_must_be_between(1, level, 12, "Level")
-        enforce_must_be_positive(attack, "Attack")
-        enforce_must_be_positive(defense, "Defense")
+        enforce_must_be_positive_or_zero(attack, "Attack")
+        enforce_must_be_positive_or_zero(defense, "Defense")
 
         return cls(name=name,
                    type=type,
