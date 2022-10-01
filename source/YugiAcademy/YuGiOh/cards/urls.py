@@ -10,5 +10,6 @@ urlpatterns = [
 
     path('trap-cards', trap_cards, name="trap_cards"),
     path('trap-card/registration', store_trap_card, name="store_trap_card"),
+    path('trap-card/update/<int:trap_card_id>', update_trap_card, name="update_trap_card"),
 
 ]
