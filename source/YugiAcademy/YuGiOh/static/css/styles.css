@@ -486,15 +486,15 @@ label[for="avatar-clear_id"]
     color: black;
 }
 
-#booster-pack-registration-form{
+#crud-form{
     text-align: center;
 }
 
-#booster-pack-registration-form input{
+#crud-form input {
     text-align: center;
 }
 
-#booster-packs-registration-buttons{
+crud-form-registration-buttons {
     text-align: center;
 }
 
