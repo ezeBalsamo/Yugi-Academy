@@ -1,5 +1,6 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django.db.models.fields.files import ImageFieldFile
 
 from .card import Card
 from YuGiOh.booster_packs import BoosterPackCard
@@ -18,7 +19,15 @@ class MonsterCard(Card):
     image = models.ImageField(upload_to='cards/monster_cards', default='cards/card-back.jpg')
 
     @classmethod
-    def named(cls, name: str, race: str, attribute: str, level: int, attack: int, defense: int, description: str):
+    def named(cls,
+              name: str,
+              race: str,
+              attribute: str,
+              level: int,
+              attack: int,
+              defense: int,
+              description: str,
+              image: ImageFieldFile):
         enforce_not_blank(name, "Name")
         enforce_not_blank(race, "Race")
         enforce_not_blank(attribute, "Attribute")
@@ -33,7 +42,8 @@ class MonsterCard(Card):
                    level=level,
                    attack=attack,
                    defense=defense,
-                   description=description)
+                   description=description,
+                   image=image)
     
     def synchronize_with(self, monster_card):
         self.name = monster_card.name
