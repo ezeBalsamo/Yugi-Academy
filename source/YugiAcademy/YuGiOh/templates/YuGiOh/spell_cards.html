@@ -3,9 +3,9 @@
     <h1>Spell Cards</h1>
     <input id="submit-button" class="button" type="button" onclick="location.href='{% url 'store_spell_card' %}'" value="Register">
     <section class="cards">
-        {% if not booster_packs %}
+        {% if not cards %}
             <p style="font-weight: bold; color: #6c7983">
-                No Spell Card has been registered yet.
+                No card has been registered yet.
             </p>
         {% else %}
             {% for card in cards %}
