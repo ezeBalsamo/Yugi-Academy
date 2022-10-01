@@ -9,7 +9,7 @@ def login_with(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             login(request, form.user_cache)
-            return redirect('cards')
+            return redirect('home')
         else:
             messages.error(request, 'Invalid credentials.')
             return redirect('login')
