@@ -422,3 +422,43 @@ Here, you will see:
 - Information about the authors of this Yugi Academy World!
 
 ---
+
+## Admin
+
+To visit Admin page go to http://localhost:8000/admin/ with your web browser.
+
+Here, you will see all Apps and models of our project:
+
+- ACCOUNTS
+
+  - User profiles
+
+- MESSAGES
+
+  - Messages
+
+- YUGIOH
+
+  - Booster pack cards
+
+  - Booster packs
+
+  - Monster cards
+
+  - Spell cards
+
+  - Trap cards
+
+You can add, update or delete all models, but you must meet some conditions:
+
+- Messages must have different sender and receiver.
+
+- In booster pack card, the content type must be one of these:
+
+  - YuGiOh | monster card
+
+  - YuGiOh | spell card
+
+  - YuGiOh | trap card
+
+---
