@@ -107,3 +107,9 @@ class TestCardManagementSystem:
         self.system.store_spell_card(spell_card)
         found_spell_card = self.system.spell_card_named(spell_card.name, if_none=lambda: pytest.fail())
         assert found_spell_card == spell_card
+
+    def test_querying_spell_card_by_id(self):
+        spell_card = pot_of_greed()
+        self.system.store_spell_card(spell_card)
+        found_spell_card = self.system.spell_card_numbered(spell_card.id)
+        assert found_spell_card == spell_card

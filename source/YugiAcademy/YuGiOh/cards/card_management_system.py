@@ -2,6 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from YuGiOh.cards import SpellCard, TrapCard, MonsterCard
 from assertions import SystemRestrictionInfringed, DataInconsistencyFound
+from persistence import managed_object_filtered_by
 
 
 def raise_expected_to_be_found(managed_object):
@@ -57,12 +58,21 @@ class CardManagementSystem:
         spell_card.synchronize_with(updated_spell_card)
         spell_card.save()
 
+    def spell_card_filtered_by(self, query_filter, if_found=None, if_none=None):
+        return managed_object_filtered_by(query_filter=query_filter,
+                                          repository=self.spell_cards_repository,
+                                          if_found=if_found,
+                                          if_none=if_none)
+
     def spell_card_named(self, name, if_found=None, if_none=None):
         return card_named(name,
                           card_type=SpellCard.type_description,
                           repository=self.spell_cards_repository,
                           if_found=if_found,
                           if_none=if_none)
+
+    def spell_card_numbered(self, booster_pack_id):
+        return self.spell_card_filtered_by(query_filter={'id': booster_pack_id})
 
     """ Trap Cards """
 
