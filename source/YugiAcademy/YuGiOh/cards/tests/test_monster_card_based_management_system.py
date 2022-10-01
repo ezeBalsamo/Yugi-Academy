@@ -126,3 +126,9 @@ class TestCardManagementSystem:
         self.system.store_monster_card(monster_card)
         found_monster_card = self.system.monster_card_named(monster_card.name, if_none=lambda: pytest.fail())
         assert found_monster_card == monster_card
+
+    def test_querying_monster_card_by_id(self):
+        monster_card = dark_magician()
+        self.system.store_monster_card(monster_card)
+        found_trap_card = self.system.monster_card_numbered(monster_card.id)
+        assert found_trap_card == monster_card
