@@ -56,6 +56,10 @@ def assert_monster_card_was_updated(monster_card, updated_monster_card, managed_
     assert managed_monster_card.attack == updated_monster_card.attack
     assert managed_monster_card.defense == updated_monster_card.defense
     assert managed_monster_card.description == updated_monster_card.description
+    if updated_monster_card.image.name == 'cards/card-back.jpg':
+        assert managed_monster_card.image != updated_monster_card.image
+    else:
+        assert managed_monster_card.image == updated_monster_card.image
 
 
 @pytest.mark.django_db
@@ -99,6 +103,23 @@ class TestCardManagementSystem:
     def test_update_monster_card(self):
         monster_card = dark_magician()
         updated_monster_card = celtic_guardian()
+        self.system.store_monster_card(monster_card)
+        self.system.update_monster_card_with(monster_card, updated_monster_card)
+        with_the_only_one_in(self.system.monster_cards(),
+                             lambda managed_monster_card:
+                             assert_monster_card_was_updated(monster_card, updated_monster_card, managed_monster_card))
+
+    def test_monster_card_image_is_not_updated(self):
+        monster_card = dark_magician()
+        updated_monster_card = MonsterCard.without_image_named(name='Celtic Guardian',
+                                                               race='Warrior',
+                                                               attribute='Earth',
+                                                               level=4,
+                                                               attack=1400,
+                                                               defense=1200,
+                                                               description='An elf who learned to wield a sword, '
+                                                                           'he baffles enemies with lightning-swift '
+                                                                           'attacks.')
         self.system.store_monster_card(monster_card)
         self.system.update_monster_card_with(monster_card, updated_monster_card)
         with_the_only_one_in(self.system.monster_cards(),

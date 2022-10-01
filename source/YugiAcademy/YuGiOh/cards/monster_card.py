@@ -44,6 +44,31 @@ class MonsterCard(Card):
                    defense=defense,
                    description=description,
                    image=image)
+
+    @classmethod
+    def without_image_named(cls,
+                            name: str,
+                            race: str,
+                            attribute: str,
+                            level: int,
+                            attack: int,
+                            defense: int,
+                            description: str):
+        enforce_not_blank(name, "Name")
+        enforce_not_blank(race, "Race")
+        enforce_not_blank(attribute, "Attribute")
+        enforce_not_blank(description, "Description")
+        enforce_must_be_between(1, level, 12, "Level")
+        enforce_must_be_positive(attack, "Attack")
+        enforce_must_be_positive(defense, "Defense")
+
+        return cls(name=name,
+                   race=race,
+                   attribute=attribute,
+                   level=level,
+                   attack=attack,
+                   defense=defense,
+                   description=description)
     
     def synchronize_with(self, monster_card):
         self.name = monster_card.name
@@ -53,3 +78,5 @@ class MonsterCard(Card):
         self.attack = monster_card.attack
         self.defense = monster_card.defense
         self.description = monster_card.description
+        if monster_card.image.name != 'cards/card-back.jpg':
+            self.image = monster_card.image
