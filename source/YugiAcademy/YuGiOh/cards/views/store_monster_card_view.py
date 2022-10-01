@@ -28,7 +28,7 @@ def show_error_and_render_with(request, error):
 
 
 @login_required
-def store_spell_card(request):
+def store_monster_card(request):
     if request.method == 'POST':
         form = MonsterCardForm(request.POST, request.FILES)
         if form.is_valid():
