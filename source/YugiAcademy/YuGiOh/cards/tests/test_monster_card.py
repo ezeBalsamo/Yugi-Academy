@@ -63,6 +63,21 @@ def test_monster_card_attribute_must_not_be_blank():
         assert exception_info.message_text() == 'Attribute must not be blank.'
 
 
+def test_monster_card_attribute_must_be_a_valid_one():
+    invalid_attribute = 'Invalid Attribute'
+    with pytest.raises(InstanceCreationFailed) as exception_info:
+        MonsterCard.named(name='Dark Magician',
+                          race='Spellcaster',
+                          attribute=invalid_attribute,
+                          level=7,
+                          attack=2500,
+                          defense=2100,
+                          description='The ultimate wizard in terms of attack and defense.',
+                          image=card_back_image())
+    assert exception_info.message_text() == 'Attribute must be one of this: Dark, Divine, Earth, Fire, Light, Water, ' \
+                                            'Wind.'
+
+
 def test_monster_card_level_must_between_1_and_12():
     for invalid_level in [-1, 0, 13]:
         with pytest.raises(InstanceCreationFailed) as exception_info:
