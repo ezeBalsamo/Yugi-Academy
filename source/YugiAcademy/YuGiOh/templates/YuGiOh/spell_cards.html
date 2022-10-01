@@ -3,11 +3,21 @@
     <h1>Spell Cards</h1>
 
     <a href="{% url 'store_spell_card' %}">Register spell card</a>
-    <ul class="cards">
+    <section class="cards">
         {% for card in cards %}
-            <a href="{{card.image.url }}" target="_blank">
-                <img src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
-            </a>
+            <article class="card">
+                <a href="{{card.image.url }}" target="_blank">
+                    <img class="image" src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
+                </a>
+                <div class="actions">
+                    <a class="action" href="{% url 'update_spell_card' card.id %}">
+                        <img class="icono-booster-packs" src="/static/assets/update.jpg" alt="Update" title="Update" />
+                    </a>
+                    <a class="action" href="{% url 'purge_spell_card' card.id %}">
+                        <img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Delete" />
+                    </a>
+                </div>
+            </article>
         {% endfor %}
-    </ul>
+    </section>
 {% endblock %}

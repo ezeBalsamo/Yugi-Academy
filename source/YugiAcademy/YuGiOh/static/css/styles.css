@@ -503,13 +503,29 @@ crud-form-registration-buttons {
     flex-wrap: wrap;
     gap: 1rem;
     width: 75%;
-    padding: 0 3.2rem;
+    margin: 1rem 3.2rem;
+    align-items: end;
 }
 
-.cards img {
+.cards .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.cards .card .actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cards .card .image {
     width: 10vw;
     height: auto;
 }
-.cards img:hover {
+.cards .card .image:hover {
     transform: scale(1.5);
+}
+
+.cards .card .action:hover {
+    transform: scale(1.1);
 }
