@@ -52,6 +52,22 @@ def test_monster_card_type_must_not_be_blank():
         assert exception_info.message_text() == 'Type must not be blank.'
 
 
+def test_monster_card_type_must_be_a_valid_one():
+    invalid_type = 'Invalid Type'
+    with pytest.raises(InstanceCreationFailed) as exception_info:
+        MonsterCard.named(name='Dark Magician',
+                          type=invalid_type,
+                          race='Spellcaster',
+                          attribute='Dark',
+                          level=7,
+                          attack=2500,
+                          defense=2100,
+                          description='The ultimate wizard in terms of attack and defense.',
+                          image=card_back_image())
+    assert exception_info.message_text() == 'Type must be one of this: Normal, Effect, Ritual, Fusion, Synchro, Xyz, ' \
+                                            'Pendulum, Link, Token.'
+
+
 def test_monster_card_race_must_not_be_blank():
     for invalid_race in ['', ' ']:
         with pytest.raises(InstanceCreationFailed) as exception_info:

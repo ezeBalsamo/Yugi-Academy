@@ -33,6 +33,7 @@ class MonsterCard(Card):
               image: ImageFieldFile):
         enforce_not_blank(name, "Name")
         enforce_not_blank(type, "Type")
+        enforce_is_included_in(type, "Type", cls.Types)
         enforce_not_blank(race, "Race")
         enforce_not_blank(attribute, "Attribute")
         enforce_is_included_in(attribute, "Attribute", cls.Attributes)
@@ -63,6 +64,7 @@ class MonsterCard(Card):
                             description: str):
         enforce_not_blank(name, "Name")
         enforce_not_blank(type, "Type")
+        enforce_is_included_in(type, "Type", cls.Types)
         enforce_not_blank(race, "Race")
         enforce_not_blank(attribute, "Attribute")
         enforce_is_included_in(attribute, "Attribute", cls.Attributes)
