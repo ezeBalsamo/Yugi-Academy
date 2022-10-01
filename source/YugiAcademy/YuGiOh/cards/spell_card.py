@@ -9,7 +9,8 @@ from assertions import enforce_not_blank
 
 class SpellCard(Card):
     type_description = 'spell card'
-    type = models.CharField(max_length=20)
+    Types = models.TextChoices('Types', 'Normal Equip Continuous Quick-Play Field Ritual')
+    type = models.CharField(max_length=10, choices=Types.choices)
     set = GenericRelation(to=BoosterPackCard, related_query_name='spell_card')
     image = models.ImageField(upload_to='cards/spell_cards', default='cards/card-back.jpg')
 
