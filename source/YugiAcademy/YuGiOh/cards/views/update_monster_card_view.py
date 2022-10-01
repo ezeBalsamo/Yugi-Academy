@@ -13,6 +13,7 @@ def context_for(monster_card):
         'card_type': 'monster',
         'form': MonsterCardForm(initial={
             'name': monster_card.name,
+            'type': monster_card.type,
             'race': monster_card.race,
             'attribute': monster_card.attribute,
             'level': monster_card.level,

@@ -5,6 +5,7 @@ from YuGiOh.cards import MonsterCard
 
 class MonsterCardForm(forms.Form):
     name = forms.CharField(label_suffix='', max_length=50)
+    type = forms.ChoiceField(label_suffix='', choices=MonsterCard.Types.choices)
     race = forms.CharField(label_suffix='', max_length=25)
     attribute = forms.ChoiceField(label_suffix='', choices=MonsterCard.Attributes.choices)
     level = forms.IntegerField(label_suffix='', min_value=1, max_value=12)
