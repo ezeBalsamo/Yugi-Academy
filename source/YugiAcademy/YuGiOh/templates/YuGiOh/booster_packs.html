@@ -4,7 +4,7 @@
 
     <div id="booster-packs-box">
         <div id="register-booster-pack">
-            <input type="button" onclick="location.href='booster-pack/registration';" class="button" id="login-button"
+            <input type="button" onclick="location.href='booster-pack/registration';" class="button" id="submit-button"
                 value="Register" />
         </div>
         <div>
@@ -12,7 +12,7 @@
             <h2>Filter booster packs by name</h2>
             <form id="filter-booster-pack-form" action="" method="post">
                 {% csrf_token %} {{ form.as_p }}
-                <button type="submit" class="button" id="login-button">Search</button>
+                <button type="submit" class="button" id="submit-button">Search</button>
             </form>
             {% if not booster_packs %}
                 <p style="font-weight: bold; color: #6c7983">
