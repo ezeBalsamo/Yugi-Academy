@@ -22,7 +22,7 @@ class SpellCard(Card):
         return cls(name=name, type=type, description=description, image=image)
 
     @classmethod
-    def from_from(cls, form_data):
+    def from_form(cls, form_data):
         return cls.named(name=form_data.get('name'),
                          type=form_data.get('type'),
                          description=form_data.get('description'),

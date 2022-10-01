@@ -52,5 +52,5 @@ def test_instance_creation_from_form():
     type = 'Normal'
     description = 'Draw 2 cards'
     image = card_back_image()
-    spell_card = SpellCard.from_from(locals())
+    spell_card = SpellCard.from_form(locals())
     assert_is_expected(spell_card, name, type, description)
