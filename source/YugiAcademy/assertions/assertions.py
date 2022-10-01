@@ -13,8 +13,8 @@ def enforce_must_be_between(lower_bound, number_to_compare, upper_bound, number_
         raise InstanceCreationFailed(f'{number_name} must be between {lower_bound} and {upper_bound}.')
 
 
-def enforce_must_be_positive(number, number_name):
-    if number <= 0:
+def enforce_must_be_positive_or_zero(number, number_name):
+    if number < 0:
         raise InstanceCreationFailed(f'{number_name} must be positive.')
 
 

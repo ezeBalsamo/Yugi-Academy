@@ -142,9 +142,18 @@ class CardManagementSystem:
         monster_card.synchronize_with(updated_monster_card)
         monster_card.save()
 
+    def monster_card_filtered_by(self, query_filter, if_found=None, if_none=None):
+        return managed_object_filtered_by(query_filter=query_filter,
+                                          repository=self.monster_cards_repository,
+                                          if_found=if_found,
+                                          if_none=if_none)
+
     def monster_card_named(self, name, if_found=None, if_none=None):
         return card_named(name,
                           card_type=MonsterCard.type_description,
                           repository=self.monster_cards_repository,
                           if_found=if_found,
                           if_none=if_none)
+
+    def monster_card_numbered(self, monster_card_id):
+        return self.monster_card_filtered_by(query_filter={'id': monster_card_id})

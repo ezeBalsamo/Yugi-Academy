@@ -29,12 +29,14 @@ def jar_of_greed():
 
 def dark_magician():
     return MonsterCard.named(name='Dark Magician',
+                             type='Normal',
                              race='Spellcaster',
                              attribute='Dark',
                              level=7,
                              attack=2500,
                              defense=2100,
-                             description='The ultimate wizard in terms of attack and defense.')
+                             description='The ultimate wizard in terms of attack and defense.',
+                             image=card_back_image())
 
 
 def assert_is_expected(booster_pack_card, card, booster_pack, identifier, rarity):

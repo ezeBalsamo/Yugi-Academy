@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50, unique=True)),
                 ('description', models.CharField(max_length=8000)),
+                ('type', models.CharField(choices=[('Normal', 'Normal'), ('Effect', 'Effect'), ('Ritual', 'Ritual'), ('Fusion', 'Fusion'), ('Synchro', 'Synchro'), ('Xyz', 'Xyz'), ('Pendulum', 'Pendulum'), ('Link', 'Link'), ('Token', 'Token')], max_length=10)),
                 ('race', models.CharField(max_length=20)),
                 ('attribute', models.CharField(choices=[('Dark', 'Dark'), ('Divine', 'Divine'), ('Earth', 'Earth'), ('Fire', 'Fire'), ('Light', 'Light'), ('Water', 'Water'), ('Wind', 'Wind')], max_length=10)),
                 ('level', models.IntegerField()),
