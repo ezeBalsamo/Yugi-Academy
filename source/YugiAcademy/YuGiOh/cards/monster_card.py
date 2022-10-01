@@ -71,6 +71,28 @@ class MonsterCard(Card):
                    attack=attack,
                    defense=defense,
                    description=description)
+
+    @classmethod
+    def from_form(cls, form_data):
+        image = form_data.get('image')
+
+        if image:
+            return cls.named(name=form_data.get('name'),
+                             race=form_data.get('race'),
+                             attribute=form_data.get('attribute'),
+                             level=form_data.get('level'),
+                             attack=form_data.get('attack'),
+                             defense=form_data.get('defense'),
+                             description=form_data.get('description'),
+                             image=image)
+
+        return cls.without_image_named(name=form_data.get('name'),
+                                       race=form_data.get('race'),
+                                       attribute=form_data.get('attribute'),
+                                       level=form_data.get('level'),
+                                       attack=form_data.get('attack'),
+                                       defense=form_data.get('defense'),
+                                       description=form_data.get('description'))
     
     def synchronize_with(self, monster_card):
         self.name = monster_card.name

@@ -150,3 +150,28 @@ def test_monster_card_instance_creation_and_accessing():
                                      description=description,
                                      image=image)
     assert_is_expected(monster_card, name, race, attribute, level, attack, defense, description, image)
+
+
+def test_instance_creation_from_form_with_image():
+    name = 'Dark Magician'
+    race = 'Spellcaster'
+    attribute = 'Dark'
+    level = 7
+    attack = 2500
+    defense = 2100
+    description = 'The ultimate wizard in terms of attack and defense.'
+    image = card_back_image()
+    monster_card = MonsterCard.from_form(locals())
+    assert_is_expected(monster_card, name, race, attribute, level, attack, defense, description, image)
+
+
+def test_instance_creation_from_form_without_image():
+    name = 'Dark Magician'
+    race = 'Spellcaster'
+    attribute = 'Dark'
+    level = 7
+    attack = 2500
+    defense = 2100
+    description = 'The ultimate wizard in terms of attack and defense.'
+    monster_card = MonsterCard.from_form(locals())
+    assert_is_expected(monster_card, name, race, attribute, level, attack, defense, description, card_back_image())
