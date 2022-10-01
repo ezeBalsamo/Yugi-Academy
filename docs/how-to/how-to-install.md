@@ -35,7 +35,16 @@ Feel free to read how to create a virtualenv:
 - [on Linux](how-to-create-virtualenv-on-linux.md)
 
 Once you have configured the virtual environment, you'll need to install the requirements.
+
 To do this, you can execute:
+
+For development:
+
+```shell
+pip install -r dev-requirements.txt
+```
+
+For production:
 
 ```shell
 pip install -r requirements.txt
@@ -48,18 +57,11 @@ For the development process, you can generate an `.env` file with a secret key w
 
 ```shell
 cp .env.example .env
-python
-```
-
-This will initialize a python repl. You need to evaluate this Python code.
-
-```python
-from django.core.management.utils import get_random_secret_key
-get_random_secret_key()
+python -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())'
 ```
 
 A new random secret key will be generated.
-You have to copy it (without the quotes) and replaced it the `.env` file.
+You have to copy it and replaced it the `.env` file.
 For instance, if the secret is:
 
 `6(j^4d9wvx)%=6a1glire*mmid-ynnslt2=)vdbf_rqhf(6=gv`
@@ -74,7 +76,6 @@ Located at the `source` directory, you have to execute this commands:
 
 ```shell
 cd YugiAcademy
-python manage.py sqlmigrate YuGiOh 0001
 python manage.py migrate
 ```
 
