@@ -10,6 +10,8 @@ from assertions import enforce_not_blank, enforce_must_be_between, enforce_must_
 class MonsterCard(Card):
     type_description = 'monster card'
     Attributes = models.TextChoices('Attributes', 'Dark Divine Earth Fire Light Water Wind')
+    Types = models.TextChoices('Types', 'Normal Effect Ritual Fusion Synchro Xyz Pendulum Link Token')
+    type = models.CharField(max_length=10, choices=Types.choices)
     race = models.CharField(max_length=20)
     attribute = models.CharField(max_length=10, choices=Attributes.choices)
     level = models.IntegerField()
@@ -21,6 +23,7 @@ class MonsterCard(Card):
     @classmethod
     def named(cls,
               name: str,
+              type: str,
               race: str,
               attribute: str,
               level: int,
@@ -38,6 +41,7 @@ class MonsterCard(Card):
         enforce_must_be_positive(defense, "Defense")
 
         return cls(name=name,
+                   type=type,
                    race=race,
                    attribute=attribute,
                    level=level,
@@ -49,6 +53,7 @@ class MonsterCard(Card):
     @classmethod
     def without_image_named(cls,
                             name: str,
+                            type: str,
                             race: str,
                             attribute: str,
                             level: int,
@@ -65,6 +70,7 @@ class MonsterCard(Card):
         enforce_must_be_positive(defense, "Defense")
 
         return cls(name=name,
+                   type=type,
                    race=race,
                    attribute=attribute,
                    level=level,
@@ -78,6 +84,7 @@ class MonsterCard(Card):
 
         if image:
             return cls.named(name=form_data.get('name'),
+                             type=form_data.get('type'),
                              race=form_data.get('race'),
                              attribute=form_data.get('attribute'),
                              level=form_data.get('level'),
@@ -87,6 +94,7 @@ class MonsterCard(Card):
                              image=image)
 
         return cls.without_image_named(name=form_data.get('name'),
+                                       type=form_data.get('type'),
                                        race=form_data.get('race'),
                                        attribute=form_data.get('attribute'),
                                        level=form_data.get('level'),
