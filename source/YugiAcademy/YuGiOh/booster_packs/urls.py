@@ -3,7 +3,7 @@ from YuGiOh.booster_packs.views import booster_packs, store_booster_pack, update
     booster_pack_cards, store_booster_pack_card, purge_booster_pack_card
 
 urlpatterns = [
-    path('booster-packs', booster_packs, name="booster-packs"),
+    path('booster-packs', booster_packs, name="booster_packs"),
     path('booster-pack/registration', store_booster_pack, name="store_booster_pack"),
     path('booster-pack/update/<int:booster_pack_id>', update_booster_pack, name="update_booster_pack"),
     path('booster-pack/purge/<int:booster_pack_id>', purge_booster_pack, name="purge_booster_pack"),
