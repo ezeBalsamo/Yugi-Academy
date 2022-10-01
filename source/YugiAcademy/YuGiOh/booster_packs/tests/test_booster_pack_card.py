@@ -2,9 +2,15 @@ import pytest
 
 from datetime import date
 
+from django.db.models.fields.files import ImageFieldFile, FileField
+
 from assertions import InstanceCreationFailed
 from YuGiOh.booster_packs import BoosterPack, BoosterPackCard
 from YuGiOh.cards import SpellCard, TrapCard, MonsterCard
+
+
+def card_back_image():
+    return ImageFieldFile(instance=None, field=FileField(), name='cards/card-back.jpg')
 
 
 def legend_of_blue_eyes_white_dragon():
@@ -14,7 +20,7 @@ def legend_of_blue_eyes_white_dragon():
 
 
 def pot_of_greed():
-    return SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.')
+    return SpellCard.named(name='Pot of Greed', type='Normal', description='Draw 2 cards.', image=card_back_image())
 
 
 def jar_of_greed():

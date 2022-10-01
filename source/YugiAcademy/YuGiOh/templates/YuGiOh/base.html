@@ -31,19 +31,24 @@
       </div>
 
       <div id="nav-links">
-          <li> <a href="{% url 'cards' %}">Cards</a></li>
-          <li> <a href="{% url 'booster-packs' %}">Booster Packs</a></li>
+          <li>
+              <form name="form-nav" method="post" action="">
+                  <select name="cards" class="cards" onchange="location.href=form.cards.value;">
+                    <option id="option-hide">Cards</option>
+                    <option value="{% url 'spell_cards' %}">Spell Cards</option>
+                  </select>
+              </form>
+          </li>
+          <li> <a href="{% url 'booster_packs' %}">Booster Packs</a></li>
           <li> <a href="{% url 'about' %}">About</a></li>
           <li>
-
               <form name="form-nav" method="post" action="">
-
                 {% if user.userprofile.avatar %}
                   <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("{{user.userprofile.avatar.url }}");'>
                 {% else %}
                   <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("/static/assets/profile-icon-white.png");'>
                 {% endif %}
-                    <option id="option-hide" value="{% url 'cards' %}"> </option>
+                    <option id="option-hide"></option>
                     <option value="{% url 'profile' %}">Profile</option>
                     <option value="{% url 'messages' %}">Messages</option>
                     <option value="{% url 'logout' %}">Logout</option>
@@ -58,6 +63,11 @@
 <main class="main-content-background">
     {% block page-content %}
     {% endblock %}
+    {% if messages %}
+        {% for message in messages %}
+        <p {% if message.tags %} class="notification message-{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
 </main>
 </body>
 </html>

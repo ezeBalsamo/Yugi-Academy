@@ -76,6 +76,25 @@ input {
   text-align: right;
 }
 
+#nav-links form select.cards {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.4rem;
+    border: none;
+}
+
+#nav-links form select.cards:hover {
+    color: #d9b054;
+}
+
+#nav-links form select.cards option {
+    font-size: 1rem;
+}
+
+#nav-links form select:hover {
+    cursor: pointer;
+}
+
 .header-footer {
   background: black;
 }
@@ -197,7 +216,6 @@ input {
     margin-left: 0;
 }
 
-
 .button {
   color: white;
   border: #6c7983;
@@ -219,7 +237,7 @@ input {
     background-color: #6c7983;
 }
 
-#login-button {
+#submit-button {
   background-color: #d9b054;
 }
 
@@ -230,7 +248,6 @@ input {
 #save-button {
   background-color: #d9b054;
 }
-
 
 #update-password-button{
   background-color: #6c7983;
@@ -335,12 +352,8 @@ label[for="avatar-clear_id"]
     text-align: center;
 }
 
-.message-error {
-    color:white;
-}
-
-.message-info {
-    color:white;
+.notification {
+    display: none;
 }
 
 #main-messages h1{
@@ -469,14 +482,46 @@ label[for="avatar-clear_id"]
     color: black;
 }
 
-#booster-pack-registration-form{
+#crud-form{
     text-align: center;
 }
 
-#booster-pack-registration-form input{
+#crud-form input {
     text-align: center;
 }
 
-#booster-packs-registration-buttons{
+crud-form-registration-buttons {
     text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 75%;
+    margin: 1rem 3.2rem;
+    align-items: end;
+}
+
+.cards .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.cards .card .actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cards .card .image {
+    width: 10vw;
+    height: auto;
+}
+.cards .card .image:hover {
+    transform: scale(1.5);
+}
+
+.cards .card .action:hover {
+    transform: scale(1.1);
 }

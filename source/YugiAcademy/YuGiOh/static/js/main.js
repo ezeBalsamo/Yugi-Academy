@@ -1,77 +1,101 @@
-window.addEventListener("load", getMessageInformation);
+// error notifications
 
-function getMessageInformation() {
-  let messages_error = document.getElementsByClassName("message-error");
+const notificationDetailByError = new Map();
 
-  let messages_ok = document.getElementsByClassName("message-info");
+notificationDetailByError.set("Invalid credentials.", {
+    imageUrl: "/static/assets/invalid-login.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+    timer: 4000,
+});
 
-  if (messages_error[0] != null) {
-    let message_error = messages_error[0].textContent;
+notificationDetailByError.set("Invalid sign up credentials.", {
+    imageUrl: "/static/assets/invalid-sign-up.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+});
 
-    if (message_error === "Invalid credentials.") {
-      Swal.fire({
-        imageUrl: "/static/assets/invalid-login.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-        timer: 4000,
-      });
+notificationDetailByError.set("Profile update has failed.", {
+    imageUrl: "/static/assets/invalid-profile-update.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+    timer: 12000,
+});
+
+notificationDetailByError.set("Password update has failed.", {
+    imageUrl: "/static/assets/invalid-password-update.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+    timer: 12000,
+});
+
+const errorNotificationDetailDueTo = errorDescription => {
+    return {
+        icon: 'error',
+        title: 'Oops...',
+        text: errorDescription
     }
-
-    if (message_error === "Invalid sign up credentials.") {
-      Swal.fire({
-        imageUrl: "/static/assets/invalid-sign-up.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-      });
-    }
-
-    if (message_error === "Profile update has failed.") {
-      Swal.fire({
-        imageUrl: "/static/assets/invalid-profile-update.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-        timer: 12000,
-      });
-    }
-
-    if (message_error === "Password update has failed.") {
-      Swal.fire({
-        imageUrl: "/static/assets/invalid-password-update.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-        timer: 12000,
-      });
-    }
-  }
-
-  if (messages_ok[0] != null) {
-    let message_ok = messages_ok[0].textContent;
-
-    if (message_ok === "Sign up has been successful") {
-      Swal.fire({
-        imageUrl: "/static/assets/successful-signup.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-        timer: 4000,
-      });
-    }
-
-    if (message_ok === "Profile has been successfully updated") {
-      Swal.fire({
-        imageUrl: "/static/assets/successful-profile-update.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-        timer: 4000,
-      });
-    }
-
-    if (message_ok === "Password has been successfully updated") {
-      Swal.fire({
-        imageUrl: "/static/assets/successful-password-update.jpeg",
-        imageWidth: 500,
-        imageHeight: 800,
-        timer: 4000,
-      });
-    }
-  }
 }
+
+// success notifications
+
+const notificationDetailByInfo = new Map();
+
+notificationDetailByInfo.set("Sign up has been successful", {
+    imageUrl: "/static/assets/successful-signup.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+    timer: 4000,
+});
+
+notificationDetailByInfo.set("Profile has been successfully updated", {
+    imageUrl: "/static/assets/successful-profile-update.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+    timer: 4000,
+});
+
+notificationDetailByInfo.set("Password has been successfully updated", {
+    imageUrl: "/static/assets/successful-password-update.jpeg",
+    imageWidth: 500,
+    imageHeight: 800,
+    timer: 4000,
+});
+
+const infoNotificationDetailDueTo = infoDescription => {
+    return {
+        icon: 'success',
+        title: 'Great!',
+        timer: 2500,
+        text: infoDescription
+    }
+}
+
+const getMessageInformation = () => {
+    const messageErrorElements = document.getElementsByClassName("message-error");
+    const messageInfoElements = document.getElementsByClassName("message-info");
+
+    if (messageErrorElements[0] != null) {
+        const element = messageErrorElements[0];
+        const message = element.textContent;
+        element.remove();
+        const notificationDetail =
+            notificationDetailByError.has(message)
+                ? notificationDetailByError.get(message)
+                : errorNotificationDetailDueTo(message);
+        Swal.fire(notificationDetail);
+    }
+
+    if (messageInfoElements[0] != null) {
+        const element = messageInfoElements[0];
+        const message = element.textContent;
+        element.remove();
+        const notificationDetail =
+            notificationDetailByInfo.has(message)
+                ? notificationDetailByInfo.get(message)
+                : infoNotificationDetailDueTo(message);
+        Swal.fire(notificationDetail);
+    }
+}
+
+window.addEventListener("load", getMessageInformation);
