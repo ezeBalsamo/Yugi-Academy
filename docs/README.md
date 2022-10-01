@@ -61,9 +61,9 @@ Don't forget to read [this](how-to/how-to-use.md) article to know how to use it.
 
 We develop all with TDD, making different branches for every issue to resolve.
 After the works was done, we made a pull request adding our colleague as a reviewer
-who must do a code review and approve the pull request afterwards, or request changes if needed.
-
-We practically did all together but if we need to describe which things we work most alone, we can describe: 
+who must do a code review and approve the pull request afterwards.
+In case changes are needed they were requested.
+If we need to describe which things we work most alone, we can describe:
 
 - Alexander Ezequiel Bálsamo
 
@@ -77,9 +77,9 @@ We practically did all together but if we need to describe which things we work 
   
   - Documentation.
 
-- Nicolás Guido Barbeito 
+- Nicolás Guido Barbeito
 
-  - Login structure and functionality. 
+  - Login structure and functionality.
   
   - Message structure and functionality.
   
