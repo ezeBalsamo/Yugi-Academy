@@ -482,18 +482,6 @@ label[for="avatar-clear_id"]
     color: black;
 }
 
-#crud-form{
-    text-align: center;
-}
-
-#crud-form input {
-    text-align: center;
-}
-
-crud-form-registration-buttons {
-    text-align: center;
-}
-
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -520,8 +508,44 @@ crud-form-registration-buttons {
 }
 .cards .card .image:hover {
     transform: scale(1.5);
+    transition: all 0.35s;
 }
 
 .cards .card .action:hover {
     transform: scale(1.1);
+}
+
+#image-clear_id{
+    display: none;
+}
+
+
+label[for="image-clear_id"]
+{
+    display:none;
+}
+
+
+#crud-card-box{
+    max-width: 25%;
+    margin: auto;
+    text-align: center;
+
+}
+
+#crud-form input {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#crud-form textarea {
+    width: 90%;
+}
+
+#crud-form select {
+    width: 75%;
+}
+
+#crud-form p {
+    margin-top: 1rem;
 }

@@ -10,6 +10,9 @@
         {% else %}
             {% for card in cards %}
                 <article class="card">
+                  <p style="font-weight: bold; color: #6c7983; text-align: center">
+                            {{card.name }} - {{ card.type }}
+                  </p>
                     <a href="{{card.image.url }}" target="_blank">
                         <img class="image" src="{{card.image.url }}" title="{{card.name }} - {{ card.type }} Spell Card">
                     </a>
