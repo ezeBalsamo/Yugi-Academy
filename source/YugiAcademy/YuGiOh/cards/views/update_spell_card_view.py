@@ -10,6 +10,7 @@ from assertions import InstanceCreationFailed, SystemRestrictionInfringed
 
 def context_for(spell_card):
     return {
+        'card_type': 'spell',
         'form': SpellCardForm(initial={
             'name': spell_card.name,
             'type': spell_card.type,
@@ -17,7 +18,8 @@ def context_for(spell_card):
             'image': spell_card.image
         }),
         'action_name': 'Update',
-        'button_content': 'Update'
+        'button_content': 'Update',
+        'cards_url': 'spell_cards',
     }
 
 
@@ -35,12 +37,12 @@ def update_spell_card(request, spell_card_id):
                 return redirect('spell_cards')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))
-                return render(request, 'YuGiOh/spell_card.html', context)
+                return render(request, 'YuGiOh/card.html', context)
         else:
             messages.error(request, str(form.errors))
-            return render(request, 'YuGiOh/spell_card.html', context)
+            return render(request, 'YuGiOh/card.html', context)
 
     if request.method == 'GET':
-        return render(request, 'YuGiOh/spell_card.html', context)
+        return render(request, 'YuGiOh/card.html', context)
 
     raise Exception(f'The {request.method} method was not expected')
