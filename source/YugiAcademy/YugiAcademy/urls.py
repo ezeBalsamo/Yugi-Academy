@@ -18,13 +18,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from YugiAcademy.website.urls import urlpatterns as website_urlpatterns
-
-app_urlpatterns = [
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('yugioh/', include('YuGiOh.urls')),
     path('accounts/', include('Accounts.urls')),
-    path('messages/', include('Messages.urls'))
+    path('messages/', include('Messages.urls')),
+    path('', include('YugiAcademy.website.urls')),
 ]
 
-urlpatterns = website_urlpatterns + app_urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
