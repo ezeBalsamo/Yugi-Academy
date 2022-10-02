@@ -27,14 +27,17 @@ IS_HEROKU = "DYNO" in os.environ
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+
+if 'SECRET_KEY' in os.environ:
+    SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if not IS_HEROKU:
     DEBUG = True
 
 if IS_HEROKU:  # pragma: no cover
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ['yugi-academy.herokuapp.com']
 else:
     ALLOWED_HOSTS = []
 
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
     'YuGiOh',
     'Accounts',
     'Messages',
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
@@ -103,6 +107,9 @@ if "DATABASE_URL" in os.environ:  # pragma: no cover
     # Enable test database if found in CI environment.
     if "CI" in os.environ:
         DATABASES["default"]["TEST"] = DATABASES["default"]
+
+db_from_env = dj_database_url.config(conn_max_age=MAX_CONN_AGE)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

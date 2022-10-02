@@ -19,12 +19,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f source/dev-requirements.txt ]; then pip install -r source/dev-requirements.txt; fi
+          if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
       - name: Test with pytest
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          pytest --cov -c source/YugiAcademy/pytest.ini
+          pytest --cov -c pytest.ini
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
