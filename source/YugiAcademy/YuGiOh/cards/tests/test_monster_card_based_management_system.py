@@ -84,7 +84,7 @@ class TestCardManagementSystem:
         self.system.store_monster_card(monster_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.store_monster_card(another_monster_card)
-        assert exception_info.message_text() == 'There is already a monster card named Dark Magician.'
+        assert exception_info.message_text() == 'There is already a card named Dark Magician.'
         assert_the_only_one_in(self.system.monster_cards(), monster_card)
 
     def test_purge_monster_card(self):
@@ -138,7 +138,7 @@ class TestCardManagementSystem:
         self.system.store_monster_card(another_monster_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.update_monster_card_with(another_monster_card, updated_monster_card)
-        assert exception_info.message_text() == 'There is already a monster card named Dark Magician.'
+        assert exception_info.message_text() == 'There is already a card named Dark Magician.'
         assert_collections_have_same_elements([monster_card, another_monster_card], self.system.monster_cards())
 
     def test_querying_monster_card_by_name_fails_when_card_not_found(self):

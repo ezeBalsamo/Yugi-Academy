@@ -58,7 +58,7 @@ class TestCardManagementSystem:
         self.system.store_trap_card(trap_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.store_trap_card(another_trap_card)
-        assert exception_info.message_text() == 'There is already a trap card named Jar of Greed.'
+        assert exception_info.message_text() == 'There is already a card named Jar of Greed.'
         assert_the_only_one_in(self.system.trap_cards(), trap_card)
 
     def test_purge_trap_card(self):
@@ -108,7 +108,7 @@ class TestCardManagementSystem:
         self.system.store_trap_card(another_trap_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.update_trap_card_with(another_trap_card, updated_trap_card)
-        assert exception_info.message_text() == 'There is already a trap card named Jar of Greed.'
+        assert exception_info.message_text() == 'There is already a card named Jar of Greed.'
         assert_collections_have_same_elements([trap_card, another_trap_card], self.system.trap_cards())
 
     def test_querying_trap_card_by_name_fails_when_card_not_found(self):

@@ -59,7 +59,7 @@ class TestCardManagementSystem:
         self.system.store_spell_card(spell_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.store_spell_card(another_spell_card)
-        assert exception_info.message_text() == 'There is already a spell card named Pot of Greed.'
+        assert exception_info.message_text() == 'There is already a card named Pot of Greed.'
         assert_the_only_one_in(self.system.spell_cards(), spell_card)
 
     def test_purge_spell_card(self):
@@ -109,7 +109,7 @@ class TestCardManagementSystem:
         self.system.store_spell_card(another_spell_card)
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.update_spell_card_with(another_spell_card, updated_spell_card)
-        assert exception_info.message_text() == 'There is already a spell card named Pot of Greed.'
+        assert exception_info.message_text() == 'There is already a card named Pot of Greed.'
         assert_collections_have_same_elements([spell_card, another_spell_card], self.system.spell_cards())
 
     def test_querying_spell_card_by_name_fails_when_card_not_found(self):
