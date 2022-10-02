@@ -29,11 +29,11 @@ Also, the regular user will be:
 ---
 Install this project following these [instructions](how-to/how-to-install.md).
 
+If you need more detail about the functionality, take a look at our [Test cases](Test%20cases.xlsx).
+
 Don't forget to read [this](how-to/how-to-use.md) article to know how to use it.
 
 You can also watch [this](https://drive.google.com/file/d/1pnhYBdya9ay9dYH9q-9_xxjHdRWqSwi2/view?usp=sharing) introductory video.
-
-If you need more detail about the functionality, take a look at our [Test cases](Test%20cases.xlsx). 
 
 ---
 
