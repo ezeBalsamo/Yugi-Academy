@@ -8,8 +8,8 @@ class MessageForm(forms.Form):
         super(MessageForm, self).__init__(*args, **kwargs)
         self.fields['receiver'].queryset = User.objects.exclude(username=sender.get_username())
 
-    receiver = forms.ModelChoiceField(queryset=User.objects.none())
+    receiver = forms.ModelChoiceField(label_suffix='', label='User', queryset=User.objects.none())
 
 
 class SendMessageForm(MessageForm):
-    content = forms.CharField(label='Content', widget=forms.Textarea)
+    content = forms.CharField(label_suffix='', label='Message', widget=forms.Textarea)
