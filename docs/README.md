@@ -10,15 +10,7 @@ The aim of the project is to show information about the Yu-Gi-Oh! TCG game:
 
 - Booster Packs
 
-- Ban lists
-
-- Much more
-
-This application will be fueled with this
-[API](https://db.ygoprodeck.com/api/v7/cardinfo.php).
-
-You can read more about this API in this
-[Guide](https://ygoprodeck.com/api-guide/).
+- Booster Pack Cards
 
 This information can be stored, updated and/or deleted by an administrator.
 An administrator is a user with specific permissions.
@@ -69,7 +61,7 @@ If we need to describe which things we work most alone, we can describe:
 
   - Project architecture.
 
-  - Booster Packs structure and functionality.
+  - Booster Packs and Cards structure and functionality.
 
   - Cards: Spell/Trap/Monster structure and functionality.
   
