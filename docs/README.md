@@ -85,5 +85,4 @@ If we need to describe which things we work most alone, we can describe:
 
   - Documentation.
 
-
 [introductory-video-link]:https://drive.google.com/file/d/1pnhYBdya9ay9dYH9q-9_xxjHdRWqSwi2/view?usp=sharing
