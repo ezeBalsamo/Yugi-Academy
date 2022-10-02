@@ -30,7 +30,8 @@ def update_booster_pack(request, booster_pack_id):
             try:
                 updated_booster_pack = BoosterPack.from_form(form.cleaned_data)
                 app.booster_pack_system.update_booster_pack_with(booster_pack, updated_booster_pack)
-                return redirect('/yugioh/booster-packs')
+                messages.info(request, f'{booster_pack} has been successfully updated.')
+                return redirect('booster_packs')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))
                 return render(request, 'YuGiOh/booster_pack.html', context)

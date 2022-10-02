@@ -5,4 +5,5 @@ from .purge_booster_pack_view import purge_booster_pack
 
 from .booster_pack_cards_view import booster_pack_cards
 from .store_booster_pack_card_view import store_booster_pack_card
+from .update_booster_pack_card_view import update_booster_pack_card
 from .purge_booster_pack_card_view import purge_booster_pack_card

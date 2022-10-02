@@ -24,6 +24,7 @@ def store_booster_pack(request):
             try:
                 booster_pack = BoosterPack.from_form(form.cleaned_data)
                 app.booster_pack_system.store_booster_pack(booster_pack)
+                messages.info(request, f'{booster_pack} has been successfully registered.')
                 return redirect('booster_packs')
             except (InstanceCreationFailed, SystemRestrictionInfringed) as error:
                 messages.error(request, str(error))

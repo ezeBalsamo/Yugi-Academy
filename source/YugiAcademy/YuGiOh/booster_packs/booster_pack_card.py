@@ -39,6 +39,12 @@ class BoosterPackCard(models.Model):
     def card_name(self):
         return self.card.name
 
+    def card_type(self):
+        return self.card.type
+
+    def card_type_description(self):
+        return self.card.type_description
+
     def synchronize_with(self, booster_pack_card):
         self.card = booster_pack_card.card
         self.booster_pack = booster_pack_card.booster_pack
@@ -46,9 +52,9 @@ class BoosterPackCard(models.Model):
         self.rarity = booster_pack_card.rarity
 
     @classmethod
-    def from_form(cls, form_data):
-        return cls.referring_to(card=form_data.get('card'),
-                                booster_pack=form_data.get('booster_pack'),
+    def from_form(cls, card, booster_pack, form_data):
+        return cls.referring_to(card=card,
+                                booster_pack=booster_pack,
                                 identifier=form_data.get('identifier'),
                                 rarity=form_data.get('rarity'))
 
