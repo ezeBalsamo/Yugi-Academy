@@ -29,7 +29,7 @@
                     <div class="booster-pack-row">{{booster_pack.code}}</div>
                     <div class="booster-pack-row">{{booster_pack.release_date}}</div>
                     <div class="booster-pack-row">
-                        <a href="{% url 'booster_pack_cards_of_booster_pack' booster_pack.id %}"><img
+                        <a href="{% url 'booster_pack_cards' booster_pack.id %}"><img
                                 class="icono-booster-packs" src="/static/assets/yu-gi-cards.jpg" alt="Cards"
                                 title="See cards" /></a>
                         <a href="{% url 'update_booster_pack' booster_pack.id %}"><img class="icono-booster-packs"
