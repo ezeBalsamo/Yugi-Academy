@@ -108,11 +108,19 @@ input {
   max-width: 10rem;
 }
 
+.gold-color {
+    color: #d9b054;
+}
+
 #welcome-message {
     display: flex;
     cursor: inherit;
     justify-content: center;
-    color: #d9b054;
+}
+
+.welcome-paragraph {
+    font-weight: bold;
+    text-align: center;
 }
 
 .main-content-background {
@@ -552,4 +560,10 @@ label[for="image-clear_id"]
 
 .cards-registration-section{
     text-align: center;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
 }

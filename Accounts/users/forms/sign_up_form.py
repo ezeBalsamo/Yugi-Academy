@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(required=True)
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat the password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
 
     class Meta:
         model = User

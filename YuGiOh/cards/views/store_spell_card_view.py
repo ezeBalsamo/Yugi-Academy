@@ -13,7 +13,7 @@ def context():
         'card_type': 'spell',
         'form': SpellCardForm(),
         'action_name': 'Registration',
-        'button_content': 'Store',
+        'button_content': 'Register',
         'cards_url': 'spell_cards',
     }
 
