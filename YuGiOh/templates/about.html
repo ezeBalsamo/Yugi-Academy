@@ -1,18 +1,31 @@
 {% extends "YuGiOh/base.html" %}
 {% block page-content %}
 
-    <h1 id="about-message">Your place to learn all about Yu-Gi-Oh! cards, sets, ban lists and much more!</h1>
+    <h1 id="about-message">Mission</h1>
 
     <main class="about-images">
-        <img
-          class="image-about"
-          src="/static/assets/ezequiel-balsamo-card.jpg"
-          alt="Image of Nicolás Guido Barbeito, represented by a Yu-Gi-Oh! Effect Monster card, which states that he is a semi-senior full stack developer, passionate about football and video games."
-        />
-        <img
-          class="image-about"
-          src="/static/assets/nicolas-barbeito-card.jpg"
-          alt="Image of Alexander Ezequiel Bálsamo, represented by a Yu-Gi-Oh! Normal Monster card, which states that he is a senior full stack developer, fan of Club Atlético Lanús."
-        />
+        <section>
+            <article>
+                <p>The goal behind Yugi Academy is straightforward...</p>
+                <blockquote>Create and gather content and resources to <strong>learn about Yu-Gi-Oh! cards, booster
+                    packs, ban lists and much more</strong></blockquote>
+            </article>
+        </section>
+        <section>
+            <article>
+                <h2>About us</h2>
+                <p>How could it be otherwise, we will introduce ourselves through cards</p>
+                <img
+                        class="image-about"
+                        src="/static/assets/ezequiel-balsamo-card.jpg"
+                        alt="Image of Nicolás Guido Barbeito, represented by a Yu-Gi-Oh! Effect Monster card, which states that he is a semi-senior full stack developer, passionate about football and video games."
+                />
+                <img
+                        class="image-about"
+                        src="/static/assets/nicolas-barbeito-card.jpg"
+                        alt="Image of Alexander Ezequiel Bálsamo, represented by a Yu-Gi-Oh! Normal Monster card, which states that he is a senior full stack developer, fan of Club Atlético Lanús."
+                />
+            </article>
+        </section>
     </main>
 {% endblock %}
