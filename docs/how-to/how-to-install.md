@@ -13,6 +13,7 @@ The project follows this directory structure
 - `assets/` : Static resources
 - `docs/` : Documentation
   - `README.md` : Documentation readme
+  - `Test cases.xlsx` : Tests cases
   - `how-to/` : [How-to guides](https://documentation.divio.com/how-to-guides/)
 - `README.md` : Readme
 - `CONTRIBUTING.md` : Contribution Guidelines
