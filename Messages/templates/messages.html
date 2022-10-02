@@ -23,16 +23,25 @@
       {% else %}
         <div class="conversation-box">
         <div id="user-name-and-avatar-conversation">
-          {% if conversation.0.receiver.userprofile.avatar %}
-              <img class="avatar" src="{{conversation.0.receiver.userprofile.avatar.url }}">
-            {% else %}
-              <img class="avatar" id="avatar-conversation" src="/static/assets/profile-icon-white.png">
+
+          {% if conversation.0.receiver.get_username != user.get_username %}
+            {% if conversation.0.receiver.userprofile.avatar %}
+                <img class="avatar" src="{{conversation.0.receiver.userprofile.avatar.url }}">
+              {% else %}
+                <img class="avatar" id="avatar-conversation" src="/static/assets/profile-icon-white.png">
+              {% endif %}
+              <h2 style="color:white" id="name-conversation">{{conversation.0.receiver.get_username}}</h2>
+          </div>
+          {% else %}
+            {% if conversation.0.sender.userprofile.avatar %}
+                <img class="avatar" src="{{conversation.0.sender.userprofile.avatar.url }}">
+              {% else %}
+                <img class="avatar" id="avatar-conversation" src="/static/assets/profile-icon-white.png">
+              {% endif %}
+              <h2 style="color:white" id="name-conversation">{{conversation.0.sender.get_username}}</h2>
+          </div>
             {% endif %}
-            <h2 id="name-conversation">{{conversation.0.receiver.get_username}}</h2>
-        </div>
-
       {% endif %}
-
         <div id="message-conversation-box">
             <ul id="conversation-messages">
               {% for message in conversation %}
