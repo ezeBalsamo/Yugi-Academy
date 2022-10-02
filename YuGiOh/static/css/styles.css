@@ -108,11 +108,19 @@ input {
   max-width: 10rem;
 }
 
+.gold-color {
+    color: #d9b054;
+}
+
 #welcome-message {
     display: flex;
     cursor: inherit;
     justify-content: center;
-    color: #d9b054;
+}
+
+.welcome-paragraph {
+    font-weight: bold;
+    text-align: center;
 }
 
 .main-content-background {
