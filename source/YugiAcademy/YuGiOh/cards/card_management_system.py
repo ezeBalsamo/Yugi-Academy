@@ -22,7 +22,7 @@ def card_named(name, repository, if_found, if_none):
         card = repository.get(name=name)
         return card if if_found is None else if_found(card)
     except ObjectDoesNotExist:
-        raise_not_found_card_named(name) if if_none is None else if_none()
+        return raise_not_found_card_named(name) if if_none is None else if_none()
 
 
 class CardManagementSystem:
