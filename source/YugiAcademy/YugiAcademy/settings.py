@@ -33,7 +33,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 if not IS_HEROKU:
     DEBUG = True
 
-if IS_HEROKU:
+if IS_HEROKU:  # pragma: no cover
     ALLOWED_HOSTS = ["*"]
 else:
     ALLOWED_HOSTS = []
@@ -95,7 +95,7 @@ DATABASES = {
     }
 }
 
-if "DATABASE_URL" in os.environ:
+if "DATABASE_URL" in os.environ:  # pragma: no cover
     # Configure Django for DATABASE_URL environment variable.
     DATABASES["default"] = dj_database_url.config(
         conn_max_age=MAX_CONN_AGE, ssl_require=True)
@@ -144,7 +144,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Test Runner Config
-class HerokuDiscoverRunner(DiscoverRunner):
+class HerokuDiscoverRunner(DiscoverRunner):  # pragma: no cover
     """Test Runner for Heroku CI, which provides a database for you.
     This requires you to set the TEST database (done for you by settings().)"""
 
@@ -154,7 +154,7 @@ class HerokuDiscoverRunner(DiscoverRunner):
 
 
 # Use HerokuDiscoverRunner on Heroku CI
-if "CI" in os.environ:
+if "CI" in os.environ:  # pragma: no cover
     TEST_RUNNER = "YugiAcademy.settings.HerokuDiscoverRunner"
 
 # Default primary key field type
