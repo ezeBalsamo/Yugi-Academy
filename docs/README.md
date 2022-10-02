@@ -33,7 +33,7 @@ If you need more detail about the functionality, take a look at our [Test cases]
 
 Don't forget to read [this](how-to/how-to-use.md) article to know how to use it.
 
-You can also watch [this](https://drive.google.com/file/d/1pnhYBdya9ay9dYH9q-9_xxjHdRWqSwi2/view?usp=sharing) introductory video.
+You can also watch [this][introductory-video-link] introductory video.
 
 ---
 
@@ -84,3 +84,6 @@ If we need to describe which things we work most alone, we can describe:
   - Application Website style.
 
   - Documentation.
+
+
+[introductory-video-link]:https://drive.google.com/file/d/1pnhYBdya9ay9dYH9q-9_xxjHdRWqSwi2/view?usp=sharing
