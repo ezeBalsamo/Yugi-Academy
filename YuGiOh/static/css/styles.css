@@ -567,3 +567,7 @@ footer{
     justify-content: space-between;
     padding: 0 2rem;
 }
+
+.text-center {
+    text-align: center;
+}
