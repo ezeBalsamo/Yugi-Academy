@@ -19,6 +19,9 @@
                         <img class="image" src="{{booster_pack_card.card.image.url }}" title="{{ booster_pack_card.card_name }} - {{ booster_pack_card.card_type }} {{ booster_pack_card.card_type_description.title }}">
                     </a>
                     <div class="actions">
+                        <a class="action" href="{% url update_url booster_pack_card.id %}">
+                            <img class="icono-booster-packs" src="/static/assets/update.jpg" alt="Update" title="Update" />
+                        </a>
                         <a class="action" href="{% url purge_url booster_pack_card.id %}">
                             <img class="icono-booster-packs" src="/static/assets/delete.jpg" alt="Delete" title="Delete" />
                         </a>

@@ -9,7 +9,11 @@ def all_cards_as_list_of_tuple():
 
 
 class BoosterPackCardForm(forms.Form):
-    card = forms.ChoiceField(label_suffix='', choices=all_cards_as_list_of_tuple())
+    card = forms.ChoiceField(label_suffix='', choices=())
     booster_pack = forms.CharField(label_suffix='', disabled=True, required=False)
     identifier = forms.CharField(label_suffix='', max_length=20)
     rarity = forms.CharField(label_suffix='', max_length=20)
+
+    def __init__(self, *args, **kwargs):
+        super(BoosterPackCardForm, self).__init__(*args, **kwargs)
+        self.fields['card'].choices = all_cards_as_list_of_tuple()
