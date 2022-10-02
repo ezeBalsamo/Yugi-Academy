@@ -553,3 +553,9 @@ label[for="image-clear_id"]
 .cards-registration-section{
     text-align: center;
 }
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}

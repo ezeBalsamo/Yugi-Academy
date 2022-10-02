@@ -1,75 +1,85 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 
-  {% load static %}
+    {% load static %}
 
-  <meta charset="UTF-8">
-  <meta name="viewport"
+    <meta charset="UTF-8">
+    <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
-  <link rel="icon" href="/static/assets/logo-small.png">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link rel="icon" href="/static/assets/logo-small.png">
 
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/static/js/main.js" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/static/js/main.js" defer></script>
 
 </head>
+
 <body>
 
-<header>
+    <header>
 
-  <nav class="main-menu header-footer">
-    <ul class="nav-menu">
-      <div>
-        <li><a href="{% url 'home' %}"><img src="/static/assets/logo.png" id="logo"></a></li>
-      </div>
+        <nav class="main-menu header-footer">
+            <ul class="nav-menu">
+                <div>
+                    <li><a href="{% url 'home' %}"><img src="/static/assets/logo.png" id="logo"></a></li>
+                </div>
 
-      <div>
-        <li id="welcome-message">Welcome to Yugi Academy, {{ user.get_username }}!</li>
-      </div>
+                <div>
+                    <li id="welcome-message">Welcome to Yugi Academy, {{ user.get_username }}!</li>
+                </div>
 
-      <div id="nav-links">
-          <li>
-              <form name="form-nav" method="post" action="">
-                  <select name="cards" class="cards" onchange="location.href=form.cards.value;">
-                    <option id="option-hide">Cards</option>
-                    <option value="{% url 'spell_cards' %}">Spell Cards</option>
-                    <option value="{% url 'trap_cards' %}">Trap Cards</option>
-                    <option value="{% url 'monster_cards' %}">Monster Cards</option>
-                  </select>
-              </form>
-          </li>
-          <li> <a href="{% url 'booster_packs' %}">Booster Packs</a></li>
-          <li> <a href="{% url 'about' %}">About</a></li>
-          <li>
-              <form name="form-nav" method="post" action="">
-                {% if user.userprofile.avatar %}
-                  <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("{{user.userprofile.avatar.url }}");'>
-                {% else %}
-                  <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;" style='background-image: url("/static/assets/profile-icon-white.png");'>
-                {% endif %}
-                    <option id="option-hide"></option>
-                    <option value="{% url 'profile' %}">Profile</option>
-                    <option value="{% url 'messages' %}">Messages</option>
-                    <option value="{% url 'logout' %}">Logout</option>
-                  </select>
-              </form>
-          </li>
-      </div>
-    </ul>
-  </nav>
-</header>
+                <div id="nav-links">
+                    <li>
+                        <form name="form-nav" method="post" action="">
+                            <select name="cards" class="cards" onchange="location.href=form.cards.value;">
+                                <option id="option-hide">Cards</option>
+                                <option value="{% url 'spell_cards' %}">Spell Cards</option>
+                                <option value="{% url 'trap_cards' %}">Trap Cards</option>
+                                <option value="{% url 'monster_cards' %}">Monster Cards</option>
+                            </select>
+                        </form>
+                    </li>
+                    <li><a href="{% url 'booster_packs' %}">Booster Packs</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li>
+                        <form name="form-nav" method="post" action="">
+                            {% if user.userprofile.avatar %}
+                            <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;"
+                                style='background-image: url("{{ user.userprofile.avatar.url }}");'>
+                                {% else %}
+                                <select name="avatar" class="avatar" onchange="location.href=form.avatar.value;"
+                                    style='background-image: url("/static/assets/profile-icon-white.png");'>
+                                    {% endif %}
+                                    <option id="option-hide"></option>
+                                    <option value="{% url 'profile' %}">Profile</option>
+                                    <option value="{% url 'messages' %}">Messages</option>
+                                    <option value="{% url 'logout' %}">Logout</option>
+                                </select>
+                        </form>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
 
-<main class="main-content-background">
-    {% block page-content %}
-    {% endblock %}
-    {% if messages %}
+    <main class="main-content-background">
+        {% block page-content %}
+        {% endblock %}
+        {% if messages %}
         {% for message in messages %}
-        <p {% if message.tags %} class="notification message-{{ message.tags }}"{% endif %}>{{ message }}</p>
+        <p {% if message.tags %} class="notification message-{{ message.tags }}" {% endif %}>{{ message }}</p>
         {% endfor %}
-    {% endif %}
-</main>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>© Yugi Academy - It's time to duel</p>
+        <p>Made with &#9829; by Alexander Ezequiel Bálsamo and Nicolás Guido Barbeito</p>
+    </footer>
 </body>
+
 </html>
