@@ -88,9 +88,7 @@ The prompt will require you, in order:
 
 If all went well, you should see a message like the following:
 
-```
-Superuser created successfully.
-```
+`Superuser created successfully.`
 
 You are almost ready.
 In order to play around with your application, you need to start the server.
