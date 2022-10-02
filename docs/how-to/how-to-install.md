@@ -13,21 +13,16 @@ The project follows this directory structure
 - `assets/` : Static resources
 - `docs/` : Documentation
   - `README.md` : Documentation readme
+  - `Test cases.xlsx` : Tests cases
   - `how-to/` : [How-to guides](https://documentation.divio.com/how-to-guides/)
-- `source/` : Source Code
 - `README.md` : Readme
 - `CONTRIBUTING.md` : Contribution Guidelines
 - `LICENSE` : MIT License
 
-As you can see, the source code is in `source/` directory.
+As you can see, the source code is in the root directory.
 All the following commands must be executed from there.
-From the project root directory (Yugi-Academy/) you can go to `source/` by executing:
 
-```shell
-cd source
-```
-
-From here, we suggest you to use virtual environments.
+From there, we suggest you to use virtual environments.
 Feel free to read how to create a virtualenv:
 
 - [on Windows](how-to-create-virtualenv-on-windows.md)
@@ -72,12 +67,29 @@ Then, your `.env` _SECRET_KEY_ variable should look like this
 
 From here, we need to prepare the database and migrate the model definitions.
 
-Located at the `source` directory, you have to execute this commands:
-
 ```shell
-cd YugiAcademy
 python manage.py migrate
 ```
+
+One last step remains. You must create a superuser.
+
+```shell
+python manage.py createsuperuser
+```
+
+The prompt will require you, in order:
+
+- The username
+
+- An email address
+
+- The password
+
+- The password confirmation
+
+If all went well, you should see a message like the following:
+
+`Superuser created successfully.`
 
 You are almost ready.
 In order to play around with your application, you need to start the server.
@@ -87,4 +99,5 @@ python manage.py runserver
 ```
 
 Congratulations, your application is up and running.
-Go to `http://localhost:8000/yugioh/` and have fun, because it's time to duel!
+
+Go to `http://localhost:8000/` and have fun, because it's time to duel!
