@@ -144,7 +144,7 @@ class TestCardManagementSystem:
     def test_querying_monster_card_by_name_fails_when_card_not_found(self):
         with pytest.raises(SystemRestrictionInfringed) as exception_info:
             self.system.monster_card_named('Dark Magician', if_found=lambda: pytest.fail())
-        assert exception_info.message_text() == 'There is no monster card named Dark Magician.'
+        assert exception_info.message_text() == 'There is no card named Dark Magician.'
 
     def test_querying_monster_card_by_name(self):
         monster_card = dark_magician()

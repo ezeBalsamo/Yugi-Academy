@@ -13,16 +13,16 @@ def raise_found_card_named(name):
     raise SystemRestrictionInfringed(f'There is already a card named {name}.')
 
 
-def raise_not_found_card_named(name, card_type):
-    raise SystemRestrictionInfringed(f'There is no {card_type} named {name}.')
+def raise_not_found_card_named(name):
+    raise SystemRestrictionInfringed(f'There is no card named {name}.')
 
 
-def card_named(name, card_type, repository, if_found, if_none):
+def card_named(name, repository, if_found, if_none):
     try:
         card = repository.get(name=name)
         return card if if_found is None else if_found(card)
     except ObjectDoesNotExist:
-        raise_not_found_card_named(name, card_type) if if_none is None else if_none()
+        raise_not_found_card_named(name) if if_none is None else if_none()
 
 
 class CardManagementSystem:
@@ -76,7 +76,6 @@ class CardManagementSystem:
 
     def spell_card_named(self, name, if_found=None, if_none=None):
         return card_named(name,
-                          card_type=SpellCard.type_description,
                           repository=self.spell_cards_repository,
                           if_found=if_found,
                           if_none=if_none)
@@ -112,7 +111,6 @@ class CardManagementSystem:
 
     def trap_card_named(self, name, if_found=None, if_none=None):
         return card_named(name,
-                          card_type=TrapCard.type_description,
                           repository=self.trap_cards_repository,
                           if_found=if_found,
                           if_none=if_none)
@@ -148,7 +146,6 @@ class CardManagementSystem:
 
     def monster_card_named(self, name, if_found=None, if_none=None):
         return card_named(name,
-                          card_type=MonsterCard.type_description,
                           repository=self.monster_cards_repository,
                           if_found=if_found,
                           if_none=if_none)
