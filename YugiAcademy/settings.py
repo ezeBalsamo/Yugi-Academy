@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'YuGiOh',
     'Accounts',
     'Messages',
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
