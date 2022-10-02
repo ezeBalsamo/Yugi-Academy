@@ -37,7 +37,7 @@ if not IS_HEROKU:
     DEBUG = True
 
 if IS_HEROKU:  # pragma: no cover
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ['https://yugi-academy.herokuapp.com/']
 else:
     ALLOWED_HOSTS = []
 
