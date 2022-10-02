@@ -13,7 +13,7 @@ def context():
         'card_type': 'trap',
         'form': TrapCardForm(),
         'action_name': 'Registration',
-        'button_content': 'Store',
+        'button_content': 'Register',
         'cards_url': 'trap_cards',
     }
 

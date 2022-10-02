@@ -13,7 +13,7 @@ def context():
         'card_type': 'monster',
         'form': MonsterCardForm(),
         'action_name': 'Registration',
-        'button_content': 'Store',
+        'button_content': 'Register',
         'cards_url': 'monster_cards',
     }
 

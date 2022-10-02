@@ -12,7 +12,7 @@ def context():
     return {
         'form': BoosterPackForm(),
         'action_name': 'Registration',
-        'button_content': 'Store'
+        'button_content': 'Register'
     }
 
 

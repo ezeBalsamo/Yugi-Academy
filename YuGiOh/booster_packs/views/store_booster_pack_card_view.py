@@ -16,7 +16,7 @@ def context_for(booster_pack):
         'booster_pack': booster_pack,
         'action_name': 'Registration',
         'type_description': BoosterPackCard.type_description,
-        'button_content': 'Store',
+        'button_content': 'Register',
         'back_url': 'booster_pack_cards',
     }
 
