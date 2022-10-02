@@ -102,5 +102,9 @@ def test_booster_pack_card_instance_creation_from_form():
         booster_pack = legend_of_blue_eyes_white_dragon()
         identifier = 'LOB-EN119'
         rarity = 'Rare'
-        booster_pack_card = BoosterPackCard.from_form(locals())
+        form_data = {
+            'identifier': identifier,
+            'rarity': rarity
+        }
+        booster_pack_card = BoosterPackCard.from_form(card=card, booster_pack=booster_pack, form_data=form_data)
         assert_is_expected(booster_pack_card, card, booster_pack, identifier, rarity)
