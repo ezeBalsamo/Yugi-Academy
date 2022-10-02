@@ -5,7 +5,7 @@ Great, with this guide you'll be more than ready.
 
 Don't forget to read [how to install](how-to-install.md) this application.
 
-You should go to `http://localhost:8000/yugioh/` with your web browser.
+You should go to `http://localhost:8000/` with your web browser.
 This is your application entry point.
 
 ---
